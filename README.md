@@ -1,6 +1,5 @@
 # Novelintel v1.0
 <p>Developed by Novelintel Investigations</p><br><br>
-
 # What is Novelintel?  
 <p>Novelintel is a comprehensive toolkit designed for expanding, gathering and harvesting Information aswell as network analysis. It supports assessments across both local and remote environments and integrates a wide range of utilities to assist security professionals in evaluating system resilience. One notable component is its web module, inspired by Hound (developed by TechChipNet). While Hound focuses primarily on geolocation capture, Novelintel expands the concept by offering a modular interface capable of simulating additional data‑collection vectors such as device sensors and credential‑capture workflows for legitimate testing scenarios. The interface has been extensively redesigned, retaining only the core payload structure and conversational layout.</p><br><br>
 
