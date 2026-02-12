@@ -54,6 +54,7 @@
 
 ## Requirements  
 <p>Installation is simplified through the CLI and Novelintel.sh, select the "INSTALL ALL REQUIREMENTS" option and thats it.</p><br>
+
 ## Usage Tips  
 <p>Web pages are most effective when accessed on mobile devices. Certain features, such as geolocation, may be less accurate on PCs or laptops, which also often lack webcams, TikTok and Instagram do not have native desktop applications. Preferred browsers are Firefox, Edge, Chrome, and Safari, as other browsers may block certain features.</p><br>
 
