@@ -19,7 +19,7 @@
 </ul><br>
 
 ## Obtainable information via the multi-tool
-<p>Pretty much anything as long as you know what you are doing and have a vulnerable target.</p><br>
+<p>The tool itself has a method for gathering any type of information, the important part is that you know what you are doing and are targeting someone vulnerable to specific attacks.</p><br>
 
 ## Features  
 <p>The tool offers a wide range of features and functionality, including:</p><br>
@@ -53,7 +53,7 @@
 </ul><br>
 
 ## Requirements  
-<p>Installation is simplified through the CLI and Novelintel.sh, select the "INSTALL ALL REQUIREMENTS" option and thats it.</p><br>
+<p>Installation is simplified through the CLI and Novelintel.sh, select the "INSTALL ALL REQUIREMENTS" option and thats it. Tools installed from GitHub may need a different installation process than those in the Manuals folder, because some Debian distributions require using a virtual environment.</p><br>
 
 ## Usage Tips  
 <p>Web pages are most effective when accessed on mobile devices. Certain features, such as geolocation, may be less accurate on PCs or laptops, which also often lack webcams, TikTok and Instagram do not have native desktop applications. Preferred browsers are Firefox, Edge, Chrome, and Safari, as other browsers may block certain features.</p><br>
