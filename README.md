@@ -10,19 +10,19 @@
 <ul>
   <li>Camera Access</li>
   <li>GPS Coordinates</li>
-  <li>Logging files<li>
+  <li>Logging files</li>
   <li>Microphone Input</li>
   <li>Message logs</li>
   <li>User Credentials</li>
   <li>System Information</li>
-  <li>Different ways of IP capture<li>
-</ul><br><br>
+  <li>Different ways of IP capture</li>
+</ul><br>
 
 ## Obtainable information via the multi-tool
-<p>Pretty much anything as long as you know what you are doing and have a vulnerable target.</p><br><br>
+<p>Pretty much anything as long as you know what you are doing and have a vulnerable target.</p><br>
 
 ## Features  
-<p>The tool offers a wide range of features and functionality, including:</p><br><br>
+<p>The tool offers a wide range of features and functionality, including:</p><br>
 <ul>
   <li>HOST AND CREATE</li>
   <li>OPEN DATA FOLDER</li>
@@ -40,7 +40,7 @@
   <li>DIGITAL FORENSICS</li>
   <li>PACKET SNIFFERS</li>
   <li>INSTALL GITHUB TOOLS</li>
-</ul><br><br>
+</ul><br>
 
 ## Supported Platforms  
 <ul>
@@ -50,16 +50,15 @@
   <li>Pop!_OS</li>
   <li>Parrot Sec OS</li>
   <li>Other Debian-based distributions</li>
-</ul><br><br>
+</ul><br>
 
 ## Requirements  
-<p>Installation is simplified through the CLI and Novelintel.sh, select the "INSTALL ALL REQUIREMENTS" option and thats it.</p><br><br>
-
+<p>Installation is simplified through the CLI and Novelintel.sh, select the "INSTALL ALL REQUIREMENTS" option and thats it.</p><br>
 ## Usage Tips  
-<p>Web pages are most effective when accessed on mobile devices. Certain features, such as geolocation, may be less accurate on PCs or laptops, which also often lack webcams, TikTok and Instagram do not have native desktop applications. Preferred browsers are Firefox, Edge, Chrome, and Safari, as other browsers may block certain features.</p><br><br>
+<p>Web pages are most effective when accessed on mobile devices. Certain features, such as geolocation, may be less accurate on PCs or laptops, which also often lack webcams, TikTok and Instagram do not have native desktop applications. Preferred browsers are Firefox, Edge, Chrome, and Safari, as other browsers may block certain features.</p><br>
 
 ## Important Notice  
-<p>Novelintel is intended only for ethical and educational purposes. Unauthorized or malicious use of this tool is strictly discouraged. Please respect privacy and legal boundaries when conducting security research.</p><br><br>
+<p>Novelintel is intended only for ethical and educational purposes. Unauthorized or malicious use of this tool is strictly discouraged. Please respect privacy and legal boundaries when conducting security research.</p><br>
 
 ## Credits
 <p>50% was made with ChatGPT and Venice.ai because they did most of the coding.</p>
