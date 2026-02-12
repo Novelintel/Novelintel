@@ -1,0 +1,4 @@
+
+sudo python3 setup.py install
+(be in monitor mode)
+sudo python3 Wifite.py

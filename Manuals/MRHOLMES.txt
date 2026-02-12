@@ -1,0 +1,5 @@
+
+sudo apt-get update
+sudo chmod +x install.sh
+sudo bash install.sh
+python3 MrHolmes.py

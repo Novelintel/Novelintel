@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="register-container">
+    <div class="header-with-icon">
+      <img src="https://imgs.search.brave.com/Ouh3lEiCOsfttzLyzxbPbibLWAlVdoif64mheaapMZs/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9wdWJs/aWNkb21haW52ZWN0/b3JzLm9yZy90bl9p/bWcvQW5vbnltb3Vz/X01hZ25pZnlfMV9p/Y29uLnBuZw" 
+           alt="Register Logo" />
+      <h2>Register</h2>
+    </div>
+
+    <form id="registerForm" action="Register.php" method="POST" onsubmit="return validateForm()">
+      
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" placeholder="Choose a username" />
+      <span id="username-error" class="error-message">
+       Username must be at least 3 characters long.
+      </span>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" />
+      <span id="email-error" class="error-message">
+        Invalid email domain. Only Gmail, Outlook/Hotmail, Yahoo, iCloud, ProtonMail, AOL, Zoho, and Yandex are allowed.
+      </span>
+
+      <div class="or-divider">or</div>
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" />
+      <span id="phone-error" class="error-message">
+       Phone number must be at least 9 digits and only numbers.
+      </span>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="new-password" />
+      <span id="password-error" class="error-message">
+       Password must be at least 6 characters long.
+      </span>
+        
+<label>Optional Profile Picture</label>
+
+<div class="profile-pic-wrapper">
+    <img id="previewImage" class="profile-preview" />
+</div>
+
+<div class="photo-buttons">
+    <button type="button" id="btnTakePhoto">Take Photo</button>
+    <button type="button" id="btnSelectPhoto">Select Photo</button>
+</div>
+
+<input 
+    type="file" 
+    id="takePhotoInput" 
+    name="profilePic" 
+    accept="image/*" 
+    capture="environment"
+    style="display:none;"
+>
+
+<input 
+    type="file" 
+    id="selectPhotoInput" 
+    name="profilePic" 
+    accept="image/*"
+    style="display:none;"
+>
+
+<img id="previewImage" style="display:none; width:120px; height:120px; border-radius:10px; margin-top:10px;" />
+
+      <button type="submit">Register</button>
+    </form>
+    
+    <div class="register-info">
+      <p>
+        Registration ensures that each user has a secure account and verified access. 
+        To prevent spiders spamming for searches a registration is required. You will not get any notification and its just to insure no false credentials are typed which would allow users to just spam post requests looking for info.
+      </p>
+    </div>
+  </div>
+  
+<div id="code" class="code-overlay">
+  <div class="code-content">
+    <h2>Your one-time use Token</h2><br>
+    <p>Do not share it with anyone,</br>
+    saving to clipboard is recommended</p><br><br>
+
+    <div class="code-display">29473160</div>
+
+    <button id="continueBtn">Continue</button>
+  </div>
+</div>
+
+<script>
+document.getElementById("btnTakePhoto").addEventListener("click", () => {
+    document.getElementById("takePhotoInput").click();
+});
+
+document.getElementById("btnSelectPhoto").addEventListener("click", () => {
+    document.getElementById("selectPhotoInput").click();
+});
+
+function handlePreview(input) {
+    const file = input.files[0];
+    const preview = document.getElementById("previewImage");
+
+    if (file) {
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = "block";
+    }
+}
+
+document.getElementById("takePhotoInput").addEventListener("change", function() {
+    handlePreview(this);
+});
+
+document.getElementById("selectPhotoInput").addEventListener("change", function() {
+    handlePreview(this);
+});
+</script>
+
+<script>
+document.getElementById("registerForm").addEventListener("submit", function(e) {
+    if (!validateForm()) {
+        return;
+    }
+
+    e.preventDefault();
+
+    const formData = new FormData(this);
+
+    fetch("Register.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.text())
+    .then(result => {
+        if (result.trim() === "OK") {
+            document.getElementById("code").classList.add("active");
+        } else {
+            alert("Server error: " + result);
+        }
+    })
+    .catch(error => {
+        alert("Request failed.");
+        console.error(error);
+    });
+});
+
+document.getElementById("continueBtn").addEventListener("click", function() {
+    window.location.href = "/../OSINTScraper.html";
+});
+</script>
+
+<script>
+  function validateForm() {
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const username = document.getElementById("username").value.trim();
+
+    const emailError = document.getElementById("email-error");
+    const passwordError = document.getElementById("password-error");
+    const usernameError = document.getElementById("username-error");
+    const phoneError = document.getElementById("phone-error");
+
+    emailError.style.display = "none";
+    passwordError.style.display = "none";
+    usernameError.style.display = "none";
+    phoneError.style.display = "none";
+
+    if (!email && !phone) {
+      alert("Please fill out either Email or Phone Number.");
+      return false;
+    }
+
+    if (email.length > 0) {
+      const allowedDomains = [
+        "gmail.com", "outlook.com", "hotmail.com", "yahoo.com", "myyahoo.com",
+        "icloud.com", "protonmail.com", "aol.com", "zoho.com", "yandex.com"
+      ];
+      const domain = email.split("@").pop().toLowerCase();
+      if (!allowedDomains.includes(domain)) {
+        emailError.style.display = "block";
+        return false;
+      }
+    }
+
+    if (phone.length > 0) {
+      const phonePattern = /^[0-9]{9,}$/;
+      if (!phonePattern.test(phone)) {
+        phoneError.style.display = "block";
+        return false;
+      }
+    }
+
+    if (password.length < 6) {
+      passwordError.style.display = "block";
+      return false;
+    }
+
+    if (username.length < 3) {
+      usernameError.style.display = "block";
+      return false;
+    }
+
+    localStorage.setItem("username", username);
+
+    return true;
+  }
+</script>
+</body>
+</html>
+

@@ -1,0 +1,121 @@
+:root {
+  --body-bg: linear-gradient(135deg, #1a1a1a 0%, #222222 50%, #2a2a2a 100%);
+  --container-bg: #1f1f1f;
+  --border: 3px solid #2a2a2a;
+  --accent-light: #2e2e2e;
+  --accent-dark: #3a3a3a;
+  --text-light: #eee;
+  --text-dark: #fff;
+}
+
+html {
+  box-sizing: border-box;
+}
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--body-bg);
+  font-family: Helvetica, sans-serif;
+  font-size: 1.3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  animation: fadeIn 1s ease-in forwards;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.18) 4px, transparent 4px),
+    radial-gradient(circle, rgba(255,255,255,0.12) 2px, transparent 2px);
+  background-size: 120px 120px, 80px 80px;
+  animation: particles 18s linear infinite;
+  opacity: 0.28;
+}
+
+@keyframes particles {
+  0% { transform: translateY(0) translateX(0); }
+  100% { transform: translateY(-200px) translateX(200px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.container {
+  width: 95%;
+  max-width: 900px;
+  background: var(--container-bg);
+  border: var(--border);
+  border-radius: 20px;
+  padding: 60px;
+  box-shadow: 0 16px 32px rgba(0,0,0,0.6);
+  text-align: center;
+}
+
+.container h1 {
+  color: var(--text-dark);
+  margin-bottom: 30px;
+  font-size: 3em;
+}
+
+.container p {
+  color: var(--text-light);
+  line-height: 1.8;
+  font-size: 1.5em;
+  margin-bottom: 40px;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.btn {
+  padding: 20px 40px;
+  font-size: 1.4em;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn.agree {
+  background: #4caf50;
+  color: var(--text-dark);
+}
+.btn.agree:hover {
+  background: #45a049;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.5);
+}
+
+.btn.decline {
+  background: #d9534f;
+  color: var(--text-dark);
+}
+.btn.decline:hover {
+  background: #c9302c;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.5);
+}
+
+html, body {
+  background-color: #1a1a1a;
+}
+
+body {
+  background-attachment: fixed;
+}

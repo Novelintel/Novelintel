@@ -1,0 +1,2 @@
+
+sudo ./fluxion.sh -i

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OSINTScraper</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 10px;
+    }
+
+    .action-buttons button {
+      flex: 1;
+      max-width: 220px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="msger">
+    <div class="msger-header">
+      <div class="msger-header-title">
+        <span>Captcha Verification</span>
+      </div>
+    </div>
+
+    <div class="msger-chat">
+      <div class="msg left-msg">
+        <div class="msg-bubble">
+          <div class="msg-info">
+            <div class="msg-info-name">OSINTScraper</div>
+          </div>
+          <div class="msg-text">
+<strong>Image validation failed.</strong><br>
+The photo you submitted couldn’t be verified as valid, which means our system wasn’t able to confidently recognize or process it.<br><br>
+This can happen for a variety of reasons low lighting, blurry details, partial visibility, or unsupported image formats. It doesn’t necessarily mean you did anything wrong.<br><br>
+Please try again by uploading a clearer photo, or continue using the free‑trial option below if you prefer to proceed without verification.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-buttons">
+      <button id="go-captcha" onclick="window.location.href='/../../Captcha/Captcha.html'">
+        Retry Captcha
+      </button>
+
+      <button id="go-post-errors" onclick="window.location.href='/../../OSINTScraper.html'">
+        Use Free Trial
+      </button>
+    </div>
+  </div>
+
+  <div class="page-info">
+    <p>
+<strong>Note:</strong> Verification ensures authenticity and security. If you encounter repeated issues,
+<strong>please contact us on our socials</strong> for assistance. Our team is always ready to help you resolve any concerns and guide you through the process. We’re committed to making your experience and searches smooth, secure, and hassle‑free.
+    </p>
+  </div>
+</body>
+</html>
+

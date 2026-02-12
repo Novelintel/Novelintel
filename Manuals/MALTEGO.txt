@@ -1,0 +1,4 @@
+
+cd <where you downloaded maltego>
+sudo  dpkg -i <maltego.deb>
+maltego

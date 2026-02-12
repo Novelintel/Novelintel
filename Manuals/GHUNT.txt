@@ -1,0 +1,11 @@
+
+pip3 install pipx
+pipx ensurepathpipx install ghunt
+
+ghunt login
+
+[1] (Companion) Put GHunt on listening mode (currently not compatible with docker)
+[2] (Companion) Paste base64-encoded cookies
+[3] Enter manually all cookies
+
+Choice =>
