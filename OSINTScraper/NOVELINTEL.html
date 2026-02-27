@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>NOVELINTEL</title>
+<style>
+:root {
+  --bg-1: #1a1a1a;
+  --bg-2: #222222;
+  --bg-3: #2a2a2a;
+  --accent: #888888;
+  --accent-glow: rgba(136, 136, 136, 0.45);
+  --text-light: #f5f5f5;
+  --glass: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --transition: 0.35s ease;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  background: radial-gradient(circle at 20% 20%, var(--bg-3), var(--bg-2), var(--bg-1));
+  color: var(--text-light);
+  overflow: hidden;
+  animation: bgShift 12s ease-in-out infinite alternate;
+  background-attachment: fixed;
+}
+
+@keyframes bgShift {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}
+
+@keyframes glowPulse {
+  0%, 100% { text-shadow: 0 0 10px var(--accent-glow); }
+  50% { text-shadow: 0 0 25px var(--accent-glow); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes floatUp {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+#unsupported-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(18px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#unsupported-modal {
+  width: 420px;
+  max-width: 90%;
+  background: var(--glass);
+  border-radius: 18px;
+  border: 1px solid var(--glass-border);
+  padding: 22px 24px;
+  box-sizing: border-box;
+  text-align: center;
+  animation: fadeIn 0.5s ease forwards;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.7);
+}
+
+#unsupported-modal h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.4em;
+  color: var(--accent);
+}
+
+#unsupported-modal p {
+  margin: 6px 0;
+  font-size: 0.95em;
+}
+
+#unsupported-close {
+  margin-top: 16px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  color: var(--text-light);
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 0.9em;
+}
+
+#unsupported-close:hover {
+  background: rgba(255,255,255,0.12);
+  box-shadow: 0 0 14px var(--accent-glow);
+}
+
+#titlebar {
+  width: 100%;
+  padding: 20px 32px;
+  background: rgba(0,0,0,0.45);
+  border-bottom: 1px solid var(--glass-border);
+  backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.8s ease forwards, glowPulse 4s infinite ease-in-out;
+  box-sizing: border-box;
+}
+
+#title-main {
+  font-size: 2.1em;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+#root {
+  display: flex;
+  height: calc(100vh - 70px);
+  box-sizing: border-box;
+}
+
+#sidebar {
+  width: 320px;
+  background: rgba(0,0,0,0.45);
+  border-right: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px);
+  padding: 18px;
+  overflow-y: auto;
+  animation: fadeIn 1s ease forwards;
+  box-sizing: border-box;
+}
+
+#sidebar-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+#openFolderBtn {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  color: white;
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 0.95em;
+}
+
+#openFolderBtn:hover {
+  background: rgba(255,255,255,0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 0 16px var(--accent-glow);
+}
+
+#sidebar-label {
+  font-size: 0.85em;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.7;
+}
+
+#fileTree {
+  margin-top: 10px;
+}
+
+.folder, .file {
+  padding: 7px 10px;
+  margin: 3px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition);
+  opacity: 0;
+  animation: fadeSlideIn 0.4s forwards;
+  font-size: 0.9em;
+}
+
+.folder:hover, .file:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.folder {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.indent {
+  margin-left: 18px;
+}
+
+#main {
+  flex: 1;
+  position: relative;
+  padding: 24px 32px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+#info-bar-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+#info-bar {
+  max-width: 1100px;
+  flex: 1;
+  padding: 14px 22px;
+  border-radius: 999px;
+  border: 1px solid var(--glass-border);
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(18px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85em;
+  opacity: 0.9;
+  animation: fadeIn 1s ease forwards;
+}
+
+.info-btn {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  color: var(--text-light);
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 0.85em;
+}
+
+.info-btn:hover {
+  background: rgba(255,255,255,0.12);
+  box-shadow: 0 0 14px var(--accent-glow);
+}
+
+#preview-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+}
+
+#fileContent {
+  max-width: 1100px;
+  width: 100%;
+  max-height: 80vh;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 18px;
+  backdrop-filter: blur(18px);
+  padding: 22px 24px;
+  box-sizing: border-box;
+  overflow: auto;
+  animation: floatUp 4s ease-in-out infinite, fadeIn 0.7s ease forwards;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+  transform-origin: center;
+}
+
+#fileContent-inner {
+  animation: fadeIn 0.6s ease forwards;
+  font-size: 0.95em;
+}
+
+.media-frame {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid var(--glass-border);
+  background: rgba(0,0,0,0.6);
+}
+
+.code-view {
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  font-size: 0.9em;
+  background: rgba(0,0,0,0.55);
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  padding: 12px 14px;
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+
+.code-line {
+  display: flex;
+  gap: 12px;
+}
+
+.code-lineno {
+  min-width: 40px;
+  text-align: right;
+  color: #777;
+  opacity: 0.9;
+}
+
+.code-text {
+  white-space: pre-wrap;
+  flex: 1;
+}
+
+.code-text span.kw {
+  color: var(--accent);
+}
+
+.code-text span.str {
+  color: #dcdcdc;
+}
+</style>
+</head>
+<body>
+
+<div id="unsupported-overlay">
+  <div id="unsupported-modal">
+    <h2>NOVELINTEL</h2>
+    <p>This browser cannot access local folders.</p>
+    <p>Use Chrome, Edge, or Opera.</p>
+    <button id="unsupported-close">Continue</button>
+  </div>
+</div>
+
+<div id="titlebar">
+  <div id="title-main">NOVELINTEL</div>
+</div>
+
+<div id="root">
+  <div id="sidebar">
+    <div id="sidebar-header">
+      <button id="openFolderBtn">Select Folder</button>
+      <div id="sidebar-label">Structure</div>
+    </div>
+    <div id="fileTree"></div>
+  </div>
+
+  <div id="main">
+
+    <div id="info-bar-wrapper">
+      <div id="info-bar">
+        <div id="info-left">
+          <div id="info-path">No file selected</div>
+          <div id="info-meta">Type: – | Size: – | Modified: –</div>
+        </div>
+        <div id="info-right">
+          <div class="info-pill" id="info-mode">Mode: Idle</div>
+          <div class="info-pill" id="info-count">Items: 0</div>
+        </div>
+      </div>
+
+      <button class="info-btn" id="btn-refresh">Refresh</button>
+      <button class="info-btn" id="btn-clear">Clear</button>
+    </div>
+
+    <div id="preview-wrapper">
+      <div id="fileContent">
+        <div id="fileContent-inner">
+          Select a folder on the left to explore and preview files.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+let currentDirHandle = null;
+let itemCount = 0;
+
+function renderMarkdown(md) {
+  md = md.replace(/^###### (.*$)/gim, "<h6>$1</h6>");
+  md = md.replace(/^##### (.*$)/gim, "<h5>$1</h5>");
+  md = md.replace(/^#### (.*$)/gim, "<h4>$1</h4>");
+  md = md.replace(/^### (.*$)/gim, "<h3>$1</h3>");
+  md = md.replace(/^## (.*$)/gim, "<h2>$1</h2>");
+  md = md.replace(/^# (.*$)/gim, "<h1>$1</h1>");
+  md = md.replace(/\*\*(.*?)\*\*/gim, "<b>$1</b>");
+  md = md.replace(/\*(.*?)\*/gim, "<i>$1</i>");
+  md = md.replace(/`([^`]+)`/gim, "<code>$1</code>");
+  md = md.replace(/\n{2,}/gim, "</p><p>");
+  md = "<p>" + md + "</p>";
+  return md;
+}
+
+function highlightText(text) {
+  const keywords = ["function","class","return","if","else","for","while","const","let","var","public","private","protected","static","import","from","export","extends"];
+  let escaped = text.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  escaped = escaped.replace(/"([^"]*)"/g,'<span class="str">"$1"</span>');
+  escaped = escaped.replace(/'([^']*)'/g,"<span class=\"str\">'$1'</span>");
+  keywords.forEach(k => {
+    const re = new RegExp("\\b" + k + "\\b","g");
+    escaped = escaped.replace(re,'<span class="kw">'+k+'</span>');
+  });
+  return escaped;
+}
+
+function renderCodeWithLines(text) {
+  const lines = text.split("\n");
+  let html = '<div class="code-view">';
+  for (let i = 0; i < lines.length; i++) {
+    const ln = i + 1;
+    const lineHtml = highlightText(lines[i]);
+    html += '<div class="code-line"><div class="code-lineno">'+ln+'</div><div class="code-text">'+lineHtml+'</div></div>';
+  }
+  html += "</div>";
+  return html;
+}
+
+function setStatus(text) {}
+
+function setMode(text) {
+  document.getElementById("info-mode").textContent = "Mode: " + text;
+}
+
+function setMeta(path, type, size, modified) {
+  document.getElementById("info-path").textContent = path || "No file selected";
+  document.getElementById("info-meta").textContent =
+    "Type: " + (type || "–") +
+    " | Size: " + (size || "–") +
+    " | Modified: " + (modified || "–");
+}
+
+function setItemCount(count) {
+  document.getElementById("info-count").textContent = "Items: " + count;
+}
+
+async function openFolder() {
+  try {
+    const dirHandle = await window.showDirectoryPicker();
+    currentDirHandle = dirHandle;
+    document.getElementById("fileTree").innerHTML = "";
+    itemCount = 0;
+    await renderDirectory(dirHandle, document.getElementById("fileTree"), dirHandle.name, 0);
+    setItemCount(itemCount);
+    setMode("Browsing");
+  } catch (e) {}
+}
+
+async function renderDirectory(dirHandle, container, basePath, depth) {
+  for await (const entry of dirHandle.values()) {
+    itemCount++;
+    const item = document.createElement("div");
+    item.classList.add(entry.kind === "directory" ? "folder" : "file");
+    item.style.marginLeft = depth * 15 + "px";
+    item.textContent = entry.name;
+    container.appendChild(item);
+
+    if (entry.kind === "directory") {
+      const subContainer = document.createElement("div");
+      subContainer.classList.add("indent");
+      subContainer.style.display = "none";
+      container.appendChild(subContainer);
+
+      item.addEventListener("click", () => {
+        subContainer.style.display = subContainer.style.display === "none" ? "block" : "none";
+      });
+
+      item.addEventListener("dblclick", () => {
+        subContainer.style.display = subContainer.style.display === "none" ? "block" : "none";
+      });
+
+      await renderDirectory(entry, subContainer, basePath + "/" + entry.name, depth + 1);
+    }
+
+    if (entry.kind === "file") {
+      item.addEventListener("click", async () => {
+        await handleFileClick(entry, basePath + "/" + entry.name);
+      });
+    }
+  }
+}
+
+function resetPreviewAnimation() {
+  const panel = document.getElementById("fileContent");
+  panel.style.animation = "none";
+  void panel.offsetWidth;
+  panel.style.animation = "floatUp 4s ease-in-out infinite, fadeIn 0.7s ease forwards";
+}
+
+async function handleFileClick(entry, fullPath) {
+  try {
+    const file = await entry.getFile();
+    const url = URL.createObjectURL(file);
+    const content = document.getElementById("fileContent-inner");
+    const size = file.size + " bytes";
+    const modified = file.lastModified ? new Date(file.lastModified).toLocaleString() : "Unknown";
+    setMeta(fullPath, file.type || "Unknown", size, modified);
+    setMode("Preview");
+    resetPreviewAnimation();
+
+    if (file.type.startsWith("image/")) {
+      content.innerHTML =
+        '<img src="' + url + '" class="media-frame" style="max-height:70vh; object-fit:contain;">';
+
+    } else if (file.type.startsWith("video/")) {
+      content.innerHTML =
+        '<video controls class="media-frame" style="height:70vh; object-fit:contain;">' +
+        '<source src="' + url + '">' +
+        "</video>";
+
+    } else if (file.type.startsWith("audio/")) {
+      content.innerHTML =
+        '<div style="display:flex;flex-direction:column;gap:12px;">' +
+        '<div>' + entry.name + "</div>" +
+        '<audio controls class="media-frame" style="width:100%;height:40px;padding:6px 10px;box-sizing:border-box;">' +
+        '<source src="' + url + '">' +
+        "</audio>" +
+        "</div>";
+
+    } else if (file.type === "application/pdf") {
+      content.innerHTML =
+        '<iframe src="' + url + '" class="media-frame" style="width:100%;height:72vh;border:none;"></iframe>';
+
+    } else if (entry.name.endsWith(".html") || entry.name.endsWith(".htm")) {
+      content.innerHTML =
+        '<iframe src="' + url + '" class="media-frame" style="width:100%;height:72vh;border:none;background:white;"></iframe>';
+
+    } else if (entry.name.endsWith(".md")) {
+      const text = await file.text();
+      content.innerHTML = renderMarkdown(text);
+
+    } else {
+      const text = await file.text();
+      content.innerHTML = renderCodeWithLines(text);
+    }
+
+  } catch (e) {
+    setMode("Error");
+  }
+}
+
+document.getElementById("btn-refresh").addEventListener("click", async () => {
+  if (!currentDirHandle) return;
+  document.getElementById("fileTree").innerHTML = "";
+  itemCount = 0;
+  await renderDirectory(currentDirHandle, document.getElementById("fileTree"), currentDirHandle.name, 0);
+  setItemCount(itemCount);
+});
+
+document.getElementById("btn-clear").addEventListener("click", () => {
+  document.getElementById("fileContent-inner").textContent =
+    "Preview cleared. Select a file from the left to display it here.";
+  setMeta(null, null, null, null);
+  setMode("Idle");
+  resetPreviewAnimation();
+});
+
+document.getElementById("openFolderBtn").addEventListener("click", openFolder);
+
+function checkSupport() {
+  const supported = "showDirectoryPicker" in window;
+  if (!supported) {
+    document.getElementById("unsupported-overlay").style.display = "flex";
+  }
+}
+
+document.getElementById("unsupported-close").addEventListener("click", () => {
+  document.getElementById("unsupported-overlay").style.display = "none";
+});
+
+checkSupport();
+</script> 
+</body> 
+</html>
