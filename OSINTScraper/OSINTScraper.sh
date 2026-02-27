@@ -87,6 +87,8 @@ cf_server() {
         exit 1
     else
         printf "\e[38;2;255;255;255m\e[1m[*] Direct link:\e[0m\e[38;2;255;255;255m %s\e[0m\n" "$link"
+        printf "\e[38;2;255;255;255m\e[1m[+] Files located in the 'Data' folder can be viewed in the browser under:\e[0m\n"
+        printf "\e[38;2;255;255;255m    %s/NOVELINTEL.html\e[0m\n" "$link"
     fi
 
     sed "s+forwarding_link+$link+g" template.php > index.php
