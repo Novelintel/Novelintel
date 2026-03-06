@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Novelintel</title>
+<title>NOVELINTEL</title>
 <style>
 :root {
   --bg-1: #1a1a1a;
@@ -50,6 +50,17 @@ html, body {
 @keyframes floatUp {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-6px); }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.15);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.25);
 }
 
 #unsupported-overlay {
@@ -134,11 +145,14 @@ html, body {
 
 #sidebar {
   width: 320px;
+  min-width: 220px;
+  max-width: 600px;
+  resize: horizontal;
+  overflow: auto;
   background: rgba(0,0,0,0.45);
   border-right: 1px solid var(--glass-border);
   backdrop-filter: blur(16px);
   padding: 18px;
-  overflow-y: auto;
   animation: fadeIn 1s ease forwards;
   box-sizing: border-box;
 }
@@ -160,12 +174,57 @@ html, body {
   cursor: pointer;
   transition: var(--transition);
   font-size: 0.95em;
+  box-sizing: border-box;
+  display: block;
 }
 
-#openFolderBtn:hover {
-  background: rgba(255,255,255,0.15);
-  transform: translateY(-2px);
-  box-shadow: 0 0 16px var(--accent-glow);
+#fileSearch {
+  width: 100%;
+  max-width: 100%;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  color: var(--text-light);
+  font-size: 0.9em;
+  margin-top: 6px;
+  box-sizing: border-box;
+}
+
+#favorites-label {
+  margin-top: 14px;
+  font-size: 0.85em;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.7;
+}
+
+#favorites {
+  margin-top: 6px;
+}
+
+.favorite-item {
+  padding: 7px 10px;
+  margin: 3px 0;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.05);
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.favorite-item:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.file-badge {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--accent);
+  opacity: 0.8;
 }
 
 #sidebar-label {
@@ -188,15 +247,14 @@ html, body {
   opacity: 0;
   animation: fadeSlideIn 0.4s forwards;
   font-size: 0.9em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .folder:hover, .file:hover {
   background: rgba(255,255,255,0.1);
-}
-
-.folder {
-  font-weight: 600;
-  color: var(--accent);
+  box-shadow: 0 0 12px rgba(255,255,255,0.15);
 }
 
 .indent {
@@ -211,6 +269,43 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: 18px;
+}
+
+#breadcrumb {
+  font-size: 0.85em;
+  opacity: 0.8;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+#breadcrumb span {
+  cursor: pointer;
+  color: var(--accent);
+}
+
+#breadcrumb span:hover {
+  text-decoration: underline;
+}
+
+#preview-toolbar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: -6px;
+}
+
+.toolbar-btn {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  color: var(--text-light);
+  cursor: pointer;
+  font-size: 0.8em;
+}
+
+.toolbar-btn:hover {
+  background: rgba(255,255,255,0.12);
 }
 
 #info-bar-wrapper {
@@ -274,10 +369,10 @@ html, body {
   animation: floatUp 4s ease-in-out infinite, fadeIn 0.7s ease forwards;
   box-shadow: 0 24px 60px rgba(0,0,0,0.6);
   transform-origin: center;
+  position: relative;
 }
 
 #fileContent-inner {
-  animation: fadeIn 0.6s ease forwards;
   font-size: 0.95em;
 }
 
@@ -286,6 +381,25 @@ html, body {
   border-radius: 14px;
   border: 1px solid var(--glass-border);
   background: rgba(0,0,0,0.6);
+  cursor: zoom-in;
+}
+
+#imgZoomOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(18px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9998;
+}
+
+#imgZoomOverlay img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 14px;
+  border: 1px solid var(--glass-border);
 }
 
 .code-view {
@@ -316,13 +430,11 @@ html, body {
   flex: 1;
 }
 
-.code-text span.kw {
-  color: var(--accent);
-}
-
-.code-text span.str {
-  color: #dcdcdc;
-}
+.code-text .tag { color: #c59fff; }
+.code-text .attr { color: #8fd3ff; }
+.code-text .val { color: #ffe29f; }
+.code-text .kw { color: var(--accent); }
+.code-text .str { color: #dcdcdc; }
 </style>
 </head>
 <body>
@@ -336,6 +448,8 @@ html, body {
   </div>
 </div>
 
+<div id="imgZoomOverlay"><img></div>
+
 <div id="titlebar">
   <div id="title-main">NOVELINTEL</div>
 </div>
@@ -344,12 +458,17 @@ html, body {
   <div id="sidebar">
     <div id="sidebar-header">
       <button id="openFolderBtn">Select Folder</button>
+      <input id="fileSearch" placeholder="Search files">
+      <div id="favorites-label">Favorites</div>
+      <div id="favorites"></div>
       <div id="sidebar-label">Structure</div>
     </div>
     <div id="fileTree"></div>
   </div>
 
   <div id="main">
+
+    <div id="breadcrumb"></div>
 
     <div id="info-bar-wrapper">
       <div id="info-bar">
@@ -358,7 +477,6 @@ html, body {
           <div id="info-meta">Type: – | Size: – | Modified: –</div>
         </div>
         <div id="info-right">
-          <div class="info-pill" id="info-mode">Mode: Idle</div>
           <div class="info-pill" id="info-count">Items: 0</div>
         </div>
       </div>
@@ -381,6 +499,7 @@ html, body {
 <script>
 let currentDirHandle = null;
 let itemCount = 0;
+let favorites = [];
 
 function renderMarkdown(md) {
   md = md.replace(/^###### (.*$)/gim, "<h6>$1</h6>");
@@ -406,10 +525,13 @@ function highlightText(text) {
     const re = new RegExp("\\b" + k + "\\b","g");
     escaped = escaped.replace(re,'<span class="kw">'+k+'</span>');
   });
+  escaped = escaped.replace(/(&lt;\/?)([a-zA-Z0-9\-]+)(.*?&gt;)/g, '$1<span class="tag">$2</span>$3');
+  escaped = escaped.replace(/([a-zA-Z\-]+)=/g, '<span class="attr">$1</span>=');
+  escaped = escaped.replace(/="([^"]*)"/g, '="<span class="val">$1</span>"');
   return escaped;
 }
 
-function renderCodeWithLines(text) {
+function renderCode(text) {
   const lines = text.split("\n");
   let html = '<div class="code-view">';
   for (let i = 0; i < lines.length; i++) {
@@ -419,12 +541,6 @@ function renderCodeWithLines(text) {
   }
   html += "</div>";
   return html;
-}
-
-function setStatus(text) {}
-
-function setMode(text) {
-  document.getElementById("info-mode").textContent = "Mode: " + text;
 }
 
 function setMeta(path, type, size, modified) {
@@ -439,6 +555,57 @@ function setItemCount(count) {
   document.getElementById("info-count").textContent = "Items: " + count;
 }
 
+function updateBreadcrumb(path) {
+  const bc = document.getElementById("breadcrumb");
+  bc.innerHTML = "";
+  if (!path) return;
+  const parts = path.split("/");
+  parts.forEach((p, i) => {
+    const span = document.createElement("span");
+    span.textContent = p;
+    bc.appendChild(span);
+    if (i < parts.length - 1) {
+      const sep = document.createElement("span");
+      sep.textContent = "/";
+      sep.style.opacity = "0.5";
+      bc.appendChild(sep);
+    }
+  });
+}
+
+function addFavorite(path) {
+  if (!favorites.includes(path)) {
+    favorites.push(path);
+    renderFavorites();
+  }
+}
+
+function renderFavorites() {
+  const favBox = document.getElementById("favorites");
+  favBox.innerHTML = "";
+  favorites.forEach(f => {
+    const item = document.createElement("div");
+    item.classList.add("favorite-item");
+    const badge = document.createElement("div");
+    badge.classList.add("file-badge");
+    const label = document.createElement("span");
+    label.textContent = f;
+    item.appendChild(badge);
+    item.appendChild(label);
+    item.onclick = () => jumpToFavorite(f);
+    favBox.appendChild(item);
+  });
+}
+
+function jumpToFavorite(path) {
+  const parts = path.split("/");
+  let handle = currentDirHandle;
+  let full = parts[0];
+  for (let i = 1; i < parts.length; i++) {
+    full += "/" + parts[i];
+  }
+}
+
 async function openFolder() {
   try {
     const dirHandle = await window.showDirectoryPicker();
@@ -447,8 +614,14 @@ async function openFolder() {
     itemCount = 0;
     await renderDirectory(dirHandle, document.getElementById("fileTree"), dirHandle.name, 0);
     setItemCount(itemCount);
-    setMode("Browsing");
+    updateBreadcrumb(dirHandle.name);
   } catch (e) {}
+}
+
+function fileBadge() {
+  const b = document.createElement("div");
+  b.classList.add("file-badge");
+  return b;
 }
 
 async function renderDirectory(dirHandle, container, basePath, depth) {
@@ -457,8 +630,19 @@ async function renderDirectory(dirHandle, container, basePath, depth) {
     const item = document.createElement("div");
     item.classList.add(entry.kind === "directory" ? "folder" : "file");
     item.style.marginLeft = depth * 15 + "px";
-    item.textContent = entry.name;
+
+    const badge = fileBadge();
+    const label = document.createElement("span");
+    label.textContent = entry.name;
+
+    item.appendChild(badge);
+    item.appendChild(label);
     container.appendChild(item);
+
+    item.oncontextmenu = e => {
+      e.preventDefault();
+      showContextMenu(e.pageX, e.pageY, basePath + "/" + entry.name);
+    };
 
     if (entry.kind === "directory") {
       const subContainer = document.createElement("div");
@@ -466,21 +650,21 @@ async function renderDirectory(dirHandle, container, basePath, depth) {
       subContainer.style.display = "none";
       container.appendChild(subContainer);
 
-      item.addEventListener("click", () => {
+      item.onclick = () => {
         subContainer.style.display = subContainer.style.display === "none" ? "block" : "none";
-      });
+      };
 
-      item.addEventListener("dblclick", () => {
+      item.ondblclick = () => {
         subContainer.style.display = subContainer.style.display === "none" ? "block" : "none";
-      });
+      };
 
       await renderDirectory(entry, subContainer, basePath + "/" + entry.name, depth + 1);
     }
 
     if (entry.kind === "file") {
-      item.addEventListener("click", async () => {
+      item.onclick = async () => {
         await handleFileClick(entry, basePath + "/" + entry.name);
-      });
+      };
     }
   }
 }
@@ -499,13 +683,20 @@ async function handleFileClick(entry, fullPath) {
     const content = document.getElementById("fileContent-inner");
     const size = file.size + " bytes";
     const modified = file.lastModified ? new Date(file.lastModified).toLocaleString() : "Unknown";
+
     setMeta(fullPath, file.type || "Unknown", size, modified);
-    setMode("Preview");
+    updateBreadcrumb(fullPath);
     resetPreviewAnimation();
 
     if (file.type.startsWith("image/")) {
       content.innerHTML =
         '<img src="' + url + '" class="media-frame" style="max-height:70vh; object-fit:contain;">';
+      const img = content.querySelector("img");
+      img.onclick = () => {
+        const overlay = document.getElementById("imgZoomOverlay");
+        overlay.style.display = "flex";
+        overlay.querySelector("img").src = url;
+      };
 
     } else if (file.type.startsWith("video/")) {
       content.innerHTML =
@@ -536,31 +727,51 @@ async function handleFileClick(entry, fullPath) {
 
     } else {
       const text = await file.text();
-      content.innerHTML = renderCodeWithLines(text);
+      content.innerHTML = renderCode(text);
     }
 
-  } catch (e) {
-    setMode("Error");
-  }
+  } catch (e) {}
 }
 
-document.getElementById("btn-refresh").addEventListener("click", async () => {
+document.getElementById("btn-refresh").onclick = async () => {
   if (!currentDirHandle) return;
   document.getElementById("fileTree").innerHTML = "";
   itemCount = 0;
   await renderDirectory(currentDirHandle, document.getElementById("fileTree"), currentDirHandle.name, 0);
   setItemCount(itemCount);
-});
+  updateBreadcrumb(currentDirHandle.name);
+};
 
-document.getElementById("btn-clear").addEventListener("click", () => {
+document.getElementById("btn-clear").onclick = () => {
   document.getElementById("fileContent-inner").textContent =
     "Preview cleared. Select a file from the left to display it here.";
   setMeta(null, null, null, null);
-  setMode("Idle");
+  updateBreadcrumb("");
   resetPreviewAnimation();
-});
+};
 
-document.getElementById("openFolderBtn").addEventListener("click", openFolder);
+document.getElementById("openFolderBtn").onclick = openFolder;
+
+document.getElementById("fileSearch").oninput = () => {
+  const q = document.getElementById("fileSearch").value.toLowerCase();
+  const items = document.querySelectorAll("#fileTree .folder, #fileTree .file");
+  items.forEach(i => {
+    const name = i.textContent.toLowerCase();
+    i.style.display = name.includes(q) ? "flex" : "none";
+  });
+};
+
+document.getElementById("imgZoomOverlay").onclick = () => {
+  document.getElementById("imgZoomOverlay").style.display = "none";
+};
+
+document.getElementById("copyPathBtn").onclick = () => {
+  const path = document.getElementById("info-path").textContent;
+  navigator.clipboard.writeText(path);
+};
+
+function showContextMenu(x, y, path) {
+}
 
 function checkSupport() {
   const supported = "showDirectoryPicker" in window;
@@ -569,11 +780,11 @@ function checkSupport() {
   }
 }
 
-document.getElementById("unsupported-close").addEventListener("click", () => {
+document.getElementById("unsupported-close").onclick = () => {
   document.getElementById("unsupported-overlay").style.display = "none";
-});
+};
 
 checkSupport();
-</script> 
+</script>
 </body> 
 </html>
