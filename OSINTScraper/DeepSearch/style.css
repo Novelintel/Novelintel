@@ -143,7 +143,7 @@ body {
 #go-post-error,
 #go-post-errors,
 #go-posts-error,
-#go-diagram {
+#go-MindMap {
   display: block;
   width: 100%;
   margin-top: 12px;
@@ -162,7 +162,7 @@ body {
 #go-post-error:hover,
 #go-post-errors:hover,
 #go-posts-error:hover,
-#go-diagram:hover {
+#go-MindMap:hover {
   background-color: #888888;
   transform: translateY(-2px);
   box-shadow: 0 8px 18px rgba(0,0,0,0.4);
@@ -171,7 +171,7 @@ body {
 #go-post-error:focus,
 #go-post-errors:focus,
 #go-posts-error:focus,
-#go-diagram:focus {
+#go-MindMap:focus {
   outline: 2px solid #888888;
 }
 
