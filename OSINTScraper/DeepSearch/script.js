@@ -38,11 +38,10 @@ let locationAllowed = false;
 let errorCount = 0;
 
 const fakeNames = ["Clara Whitmore","Daniel Huxley","Marissa Cole","Jonathan Pike","Evelyn Hartman","Akira Tanemura","Sofia Delgado","Rajesh Malhotra","Amara Okoye","Amara Okoye","Jasper Moonfield","Lyra Vexen","Orion Blackthorn","Nova Callahan","Felix Storme","Marcus Bellamy"];
-const fakeAliases = ["orionflux","zenithwave","emberveil","cryptovale","lyramask","pixelshade","astralbyte","novaecho","stormeon","velora","cipherloom","quartzling","onyxpetal","solsticeaura"];
 const fakePhones = ["(312) 864‑9274","(646) 203‑5819","(415) 778‑0942","(206) 491‑3827","(917) 642‑7093","+44 7301 482913","+49 162 847 3901","+61 412 839 572","+33 689 204 715","+91 98234 67109","+81 90 2745 1836","+44 7802 617394","+44 7729 540186"];
 const fakeCities = ["Chicago","Los Angeles","New York City","Berlin","Munich","Hamburg","London","Manchester","Birmingham","Vienna","Salzburg","Graz","Warsaw","Kraków","Gdańsk","Moscow","Saint Petersburg","Novosibirsk","Rome","Milan","Naples","Toronto","Vancouver","Montreal"];
 const fakeUsers = ["allenlam.","whzs.","austiewaustie","sqolsu","viacosplay","noxxisgaming","vehseh","airiyu","albeiro","yunchoku","darknetize",".cubbu","crocus_p","erfloria"];
-const fakeEmails = ["bluecloud92@gmail.com","shadowbyte77@yahoo.com","crystalwave88@web.de","ironpulse44@hotmail.com","silverstream21@outlook.com","darkorbit99@icloud.com","neonflare55@protonmail.com","rapidstorm73@gmail.com","frostline82@yahoo.com","embercore66@web.de","quantumshift90@aol.com","stormecho47@live.com","pixelburst33@gmail.com","voidspark81@yahoo.com"];
+const fakeEmails = ["bluecloud92@gmail.com","shadowbyte77@yahoo.com","crystalwave88@web.de","ironpulse44@hotmail.com","silverstream21@outlook.com","darkorbit99@icloud.com","neonflare55@protonmail.com","rapidstorm73@gmail.com","frostline82@yahoo.com","embercore66@web.de","quantumshift90@aol.com","stormecho47@gmail.com","pixelburst33@gmail.com","voidspark81@yahoo.com"];
 const fakeIPs = ["23.94.118.201","64.182.45.77","102.54.193.88","185.220.119.34","91.142.67.209","203.142.98.55","45.83.192.144","198.18.23.101","74.125.36.88","156.232.12.77","62.138.244.19","89.187.163.220","154.16.112.45","37.120.145.88","192.0.2.111","203.0.114.92","198.51.101.73","172.217.22.14","149.56.23.98"];
 
  function getRandomFakeInfo(excludeField) { 
@@ -52,7 +51,6 @@ const fakeIPs = ["23.94.118.201","64.182.45.77","102.54.193.88","185.220.119.34"
   const normalized = excludeField.toLowerCase();
 
   const name = fakeNames[random(0, fakeNames.length)];
-  const alias = fakeAliases[random(0, fakeAliases.length)];
   const phone = fakePhones[random(0, fakePhones.length)];
   const city = fakeCities[random(0, fakeCities.length)];
   const user = fakeUsers[random(0, fakeUsers.length)];
@@ -62,7 +60,6 @@ const fakeIPs = ["23.94.118.201","64.182.45.77","102.54.193.88","185.220.119.34"
   let result = "Potentially Linked information:\n";
 
   if (normalized !== "name" && Math.random() > 0.95) result += `Name: ${name}\n`;
-  if (normalized !== "alias" && Math.random() > 0.95) result += `Alias: ${alias}\n`;
   if (normalized !== "number" && Math.random() > 0.95) result += `Phone: ${phone}\n`;
   if (normalized !== "city" && Math.random() > 0.95) result += `Location: ${city}\n`;
   if (normalized !== "user" && Math.random() > 0.95) result += `User: ${user}\n`;
@@ -72,7 +69,6 @@ const fakeIPs = ["23.94.118.201","64.182.45.77","102.54.193.88","185.220.119.34"
   if (result.trim() === "Potentially Linked information:") {
     const fields = [];
     if (normalized !== "name") fields.push(`Name: ${name}`);
-    if (normalized !== "alias") fields.push(`Alias: ${alias}`);
     if (normalized !== "number") fields.push(`Phone: ${phone}`);
     if (normalized !== "city") fields.push(`Location: ${city}`);
     if (normalized !== "user") fields.push(`User: ${user}`);
@@ -119,7 +115,8 @@ msgerForm.addEventListener("submit", event => {
           "deepsearch user",
           "deepsearch email",
           "deepsearch ip",
-          "deepsearch name"
+          "deepsearch name",
+          "deepsearch password"
         ];
 
         if (!validCommands.includes(`${command.replace("!", "")} ${keyword.toLowerCase()}`)) {
@@ -278,4 +275,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-
