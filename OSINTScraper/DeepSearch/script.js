@@ -45,7 +45,7 @@ const fakeEmails = ["bluecloud92@gmail.com","shadowbyte77@yahoo.com","crystalwav
 const fakeIPs = ["23.94.118.201","64.182.45.77","102.54.193.88","185.220.119.34","91.142.67.209","203.142.98.55","45.83.192.144","198.18.23.101","74.125.36.88","156.232.12.77","62.138.244.19","89.187.163.220","154.16.112.45","37.120.145.88","192.0.2.111","203.0.114.92","198.51.101.73","172.217.22.14","149.56.23.98"];
 
  function getRandomFakeInfo(excludeField) { 
- if (Math.random() < 0.10) { 
+ if (Math.random() < 0.60) { 
  return "No information found"; 
  }
   const normalized = excludeField.toLowerCase();
