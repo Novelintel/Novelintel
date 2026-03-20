@@ -100,7 +100,7 @@ const msgerInput = get(".msger-input");
 const msgerChat = get(".msger-chat");
 
 const BOT_MSGS = [
-  "Code Error 345: Please make sure you have the required OS, Followed the steps and have a compatible Browser. If it still doesn't work check out our social media for Troubleshooting",
+  "Code Error 345: Please make sure you have the required OS, Followed the steps and have a compatible Browser. If it still doesn't work try DeepSearch or check out our social media for Troubleshooting",
 ];
 
 const BOT_IMG = "https://imgs.search.brave.com/Ouh3lEiCOsfttzLyzxbPbibLWAlVdoif64mheaapMZs/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9wdWJs/aWNkb21haW52ZWN0/b3JzLm9yZy90bl9p/bWcvQW5vbnltb3Vz/X01hZ25pZnlfMV9p/Y29uLnBuZw";
