@@ -133,16 +133,34 @@ msgerForm.addEventListener("submit", event => {
     return;
   }
 
-  if (lowerMsg.includes("!search ")) {
-    if (!locationAllowed) {
-      appendMessage(BOT_NAME, BOT_IMG, "left", "unable to search due to denied location permissions", true);
-    } else {
-      botResponse();
-    }
-    return;
-  }
+if (lowerMsg.startsWith("!search ")) {
+    const query = lowerMsg.replace("!search ", "").trim();
 
-  appendMessage(BOT_NAME, BOT_IMG, "left", "Invalid command", true);
+    if (!locationAllowed) {
+        appendMessage(BOT_NAME, BOT_IMG, "left", "unable to search due to denied location permissions", true);
+        return;
+    }
+
+    if (query.includes("number")) {
+        botResponse();
+        return;
+    }
+
+    if (query.includes("password")) {
+        appendMessage(BOT_NAME, BOT_IMG, "left", "Please specify which site you want the password checked for.", true);
+        return;
+    }
+
+    if (query.includes("cookie")) {
+        appendMessage(BOT_NAME, BOT_IMG, "left", "The cookie value you entered is not valid.", true);
+        return;
+    }
+
+    appendMessage(BOT_NAME, BOT_IMG, "left", "Invalid command please try again. if errors keep occurring please report the issue.", true);
+    return;
+}
+
+appendMessage(BOT_NAME, BOT_IMG, "left", "Invalid command please try again. if errors keep occurring please report the issue.", true);
 });
 
 function appendMessage(name, img, side, text, typingEffect = false) {
