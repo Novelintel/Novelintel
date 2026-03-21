@@ -82,13 +82,19 @@ body {
   background: var(--left-msg-bg);
   color: var(--text-light);
   line-height: 1.6;
+
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
 }
+
 .msg-info { display: flex; justify-content: space-between; margin-bottom: 8px; }
 .msg-info-name { margin-right: 10px; font-weight: bold; font-size: 1.1em; }
 .msg-info-time { font-size: 1em; }
 
 .left-msg .msg-bubble { border-bottom-left-radius: 0; }
 .right-msg { flex-direction: row-reverse; }
+
 .right-msg .msg-bubble {
   background: var(--right-msg-bg);
   color: #fff;
@@ -97,7 +103,12 @@ body {
   padding: 16px;
   font-size: 1.2em;
   line-height: 1.6;
+
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
 }
+
 .right-msg .msg-img { margin: 0 0 0 12px; }
 
 .msger-inputarea {
@@ -269,6 +280,7 @@ body {
   .call-modal p { font-size: 1.5em; }
   .call-modal button { font-size: 1.4em; padding: 16px 28px; }
 }
+
 @media (max-width: 480px) {
   .msger { height: 80vh; }
   .msg-img { width: 40px; height: 40px; }
