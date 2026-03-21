@@ -222,6 +222,7 @@ body {
 }
 .msger-inputarea .msger-send-btn:focus { outline: none; }
 
+#go-captcha,
 #go-post-error,
 #go-post-errors,
 #go-posts-error,
@@ -241,6 +242,7 @@ body {
   transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
 }
 
+#go-captcha:hover,
 #go-post-error:hover,
 #go-post-errors:hover,
 #go-posts-error:hover,
@@ -250,6 +252,7 @@ body {
   box-shadow: 0 8px 18px rgba(0,0,0,0.4);
 }
 
+#go-captcha:focus,
 #go-post-error:focus,
 #go-post-errors:focus,
 #go-posts-error:focus,
@@ -345,7 +348,7 @@ body {
   .msg-bubble, .right-msg .msg-bubble { font-size: 1em; padding: 12px; max-width: 85%; }
   .msger-input { font-size: 1em; padding: 14px; }
   .msger-inputarea .msger-send-btn { font-size: 1em; padding: 14px 20px; }
-  #go-post-error, #go-post-errors, #go-posts-error { font-size: 1em; padding: 14px 20px; }
+  #go-captcha, #go-post-error, #go-post-errors, #go-posts-error { font-size: 1em; padding: 14px 20px; }
   .call-modal { padding: 28px; }
   .call-modal h2 { font-size: 2em; }
   .call-modal p { font-size: 1.5em; }
@@ -358,7 +361,7 @@ body {
   .msg-bubble, .right-msg .msg-bubble { font-size: 0.95em; padding: 10px; max-width: 90%; }
   .msger-input { font-size: 0.95em; padding: 12px; }
   .msger-inputarea .msger-send-btn { font-size: 0.95em; padding: 12px 18px; }
-  #go-post-error, #go-post-errors, #go-posts-error { font-size: 0.95em; padding: 12px 18px; }
+  #go-captcha, #go-post-error, #go-post-errors, #go-posts-error { font-size: 0.95em; padding: 12px 18px; }
   .call-modal { width: 95%; padding: 20px; }
   .call-modal h2 { font-size: 1.8em; }
   .call-modal p { font-size: 1.3em; }
