@@ -29,8 +29,8 @@ const BOT_MSGS = [
   "Code Error 345: Please make sure you have the required OS, Followed the steps and have a compatible Browser. If it still doesn't work check out our social media for Troubleshooting",
 ];
 
-const BOT_IMG = "https://imgs.search.brave.com/Ouh3lEiCOsfttzLyzxbPbibLWAlVdoif64mheaapMZs/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9wdWJs/aWNkb21haW52ZWN0/b3JzLm9yZy90bl9p/bWcvQW5vbnltb3Vz/X01hZ25pZnlfMV9p/Y29uLnBuZw";
-const PERSON_IMG = "https://imgs.search.brave.com/YXlw6e2BG5AeYcaGz5xNGY2Cm7VqukOYSSd7dkoGJME/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wMDUv/NTQ1LzMzNS9zbWFs/bC91c2VyLXNpZ24t/aWNvbi1wZXJzb24t/c3ltYm9sLWh1bWFu/LWF2YXRhci1pc29s/YXRlZC1vbi13aGl0/ZS1iYWNrb2dydW5k/LXZlY3Rvci5qcGc";
+const BOT_IMG = "https://static.vecteezy.com/system/resources/thumbnails/009/589/789/small/magnifying-icon-magnifying-clipart-transparent-free-png.png";
+const PERSON_IMG = "https://static.vecteezy.com/system/resources/thumbnails/014/396/452/small/comic-style-user-icon-with-transparent-background-file-png.png";
 const BOT_NAME = "OSINTScraper";
 const PERSON_NAME = "User";
 
