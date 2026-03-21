@@ -6,16 +6,34 @@
   <link rel="stylesheet" href="./style.css">
 </head>
 <body onload="gpsLocation()">
-<section class="msger">
-  <header class="msger-header">
-    <div class="msger-header-title">
-      <i class="fas fa-comment-alt"></i> Powered by ChatGPT GPT-5
-    </div>
-    <div class="msger-header-options">
-      <span><i class="fas fa-cog"></i></span>
-    </div>
-    
-    <div id="code">
+
+<div id="start-overlay">
+  <div class="overlay-content">
+    <div class="overlay-title">Welcome to OSINTScraper</div>
+    <div class="overlay-text">
+
+     This is your gateway to fast, reliable, and streamlined open-source intelligence.<br><br> 
+     
+     To enhance your experience and provide you with the most accurate and relevant information, we need your permission to access a few features<br><br>
+
+      <strong>Location Services:</strong> Allowing location permissions helps us connect with publicly available sources in your region, ensuring that the information we provide is tailored to your area.<br><br>
+
+      <strong>Optional API Access:</strong> If you choose to log in, we can access your social media platforms to gather more detailed and specific information. This step is completely optional and will not affect your ability to use our service.<br><br>
+
+      <strong>Free Access:</strong> Currently, OSINTScraper is free to use. We plan to introduce a subscription model in the future to ensure the sustainability of our service and continue providing high-quality information.<br><br>
+      
+<strong>Your Privacy Matters:</strong> We never access private data without your explicit permission. All searches are performed using publicly available information and optional user-provided inputs.<br><br>
+
+Thank you for choosing OSINTScraper. We’re excited to help you uncover insights, verify information, and explore the digital footprint of the world around you.<br><br>
+
+When you're ready, click below to begin.
+</div>
+
+    <button id="overlay-btn">Understood</button>
+  </div>
+</div>
+
+<div id="code">
   <div class="code-content">
     <h2>Enter one-time use Token</h2>
     <p>Please enter the code you have received earlier</p><br><br>
@@ -39,19 +57,14 @@
   </div>
 </div>
 
-<script>
-  document.getElementById("code").classList.add("active");
-
-  document.getElementById("submitCode").addEventListener("click", function () {
-    const input = document.getElementById("codeInput").value;
-
-    if (input === "29473160") {
-      document.getElementById("code").classList.remove("active");
-    } else {
-      window.location.href = "/Register/Register.html";
-    }
-  });
-</script>
+<section class="msger">
+  <header class="msger-header">
+    <div class="msger-header-title">
+      <i class="fas fa-comment-alt"></i> Powered by ChatGPT GPT-5
+    </div>
+    <div class="msger-header-options">
+      <span><i class="fas fa-cog"></i></span>
+    </div>
     
    <div id="userArea" style="position:absolute; top:40px; right:150px; display:flex; align-items:center; gap:10px; color:#fff; font-weight:bold;">
     <div id="userDisplay"></div>
@@ -66,6 +79,20 @@
            alt="Phone Icon" />
     </div>
   </header>
+
+<script>
+  document.getElementById("code").classList.add("active");
+
+  document.getElementById("submitCode").addEventListener("click", function () {
+    const input = document.getElementById("codeInput").value;
+
+    if (input === "29473160") {
+      document.getElementById("code").classList.remove("active");
+    } else {
+      window.location.href = "/Register/Register.html";
+    }
+  });
+</script>
   
 <div id="settingsSidebar">
   <div class="sidebar-header">
@@ -138,31 +165,6 @@
         <p>Call</p>
       </div>
     </div>
-  </div>
-</div>
-
-<div id="start-overlay">
-  <div class="overlay-content">
-    <div class="overlay-title">Welcome to OSINTScraper</div>
-    <div class="overlay-text">
-
-     This is your gateway to fast, reliable, and streamlined open‑source intelligence.<br><br> 
-     
-     To enhance your experience and provide you with the most accurate and relevant information, we need your permission to access a few features<br><br>
-
-      <strong>Location Services:</strong> Allowing location permissions helps us connect with publicly available sources in your region, ensuring that the information we provide is tailored to your area.<br><br>
-
-      <strong>Optional API Access:</strong> If you choose to log in, we can access your social media platforms to gather more detailed and specific information. This step is completely optional and will not affect your ability to use our service.<br><br>
-
-      <strong>Free Access:</strong> Currently, OSINTScraper is free to use. We plan to introduce a subscription model in the future to ensure the sustainability of our service and continue providing high-quality information.<br><br>
-      
-<strong>Your Privacy Matters:</strong> We never access private data without your explicit permission. All searches are performed using publicly available information and optional user‑provided inputs.<br><br>
-
-Thank you for choosing OSINTScraper. We’re excited to help you uncover insights, verify information, and explore the digital footprint of the world around you.<br><br>
-
-When you're ready, click below to begin.
-
-    <button id="overlay-btn">Understood</button>
   </div>
 </div>
 
@@ -710,4 +712,3 @@ document.getElementById("overlay-btn").addEventListener("click", () => {
 </script>
 </body>
 </html>
-
