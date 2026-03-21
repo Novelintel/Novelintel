@@ -166,7 +166,7 @@ video::-moz-media-controls { display: none !important; }
   margin-bottom: 15px;
 }
 
-#countdown {
+# {
   font-size: 20px;
   font-weight: bold;
   margin: 10px 0;
@@ -256,7 +256,7 @@ body {
       AI review is in progress to ensure authenticity.<br>
       You may proceed once the countdown has ended.
     </p>
-    <div id="countdown">30</div>
+    <div id="countdown">15</div>
     <button id="deepSearchBtn" disabled>Use DeepSearch</button>
   </div>
 </div>
@@ -323,7 +323,7 @@ body {
         const json = await response.json();
 
         document.getElementById("captchaOverlay").style.display = "flex";
-        let countdown = 30;
+        let countdown = 15;
         const countdownEl = document.getElementById("countdown");
         const deepSearchBtn = document.getElementById("deepSearchBtn");
 
