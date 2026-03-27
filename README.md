@@ -18,6 +18,10 @@
   <li>Different ways of IP capture</li>
 </ul><br>
 
+## Cookie Copier Browser extension
+<p>Is a lightweight privacy and data‑control tool that lets you view, export, filter, and manage your browser cookies with ease.  
+The extension collects your browsing data on demand, encrypts it locally, and lets you copy or import cookie sets in a secure encoded format which also makes it hard to read if you have no idea what a cookie is so don't accidentally paste it into a website that logs messages ;). When importing, it automatically detects all domains and displays them in a searchable, alphabetized list for quick navigation. You can open any domain in a new tab, inspect its presence in your cookie data, or clear all cookies from your browser with a single action. A built‑in theme toggle, smooth animations, and a compact interface make the tool fast and pleasant to use.</p><br>
+
 ## Obtainable information via the multi-tool
 <p>The tool itself has a method for gathering any type of information, the important part is that you know what you are doing and are targeting someone vulnerable to specific attacks.</p><br>
 
