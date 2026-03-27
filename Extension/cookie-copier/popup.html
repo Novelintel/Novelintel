@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cookie Copier</title>
+  <style>
+    :root {
+      --bg: #121212;
+      --panel: #1a1a1a;
+      --text: #e0e0e0;
+      --button: #242424;
+      --border: #333;
+    }
+    body.light {
+      --bg: #f2f2f2;
+      --panel: #ffffff;
+      --text: #222;
+      --button: #e6e6e6;
+      --border: #ccc;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 20px;
+      min-width: 300px;
+      border-radius: 20px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .container {
+      background: var(--panel);
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 0 18px rgba(0,0,0,0.5);
+      animation: fadeIn 0.4s ease;
+      transition: background 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.97); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    h2 {
+      margin-top: 0;
+      font-weight: 500;
+      text-align: center;
+    }
+    p {
+      text-align: center;
+      font-size: 13px;
+      opacity: 0.8;
+      margin-bottom: 16px;
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--button);
+      color: var(--text);
+      margin-bottom: 12px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      background: var(--button);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      font-size: 15px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+    button:hover {
+      background: rgba(255,255,255,0.08);
+      transform: translateY(-2px);
+    }
+    button:active {
+      transform: scale(0.96);
+    }
+    button::after {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      transform: scale(0);
+      opacity: 0;
+      pointer-events: none;
+    }
+    button:active::after {
+      animation: ripple 0.5s ease;
+    }
+    @keyframes ripple {
+      from { transform: scale(0); opacity: 0.6; }
+      to { transform: scale(18); opacity: 0; }
+    }
+    
+#status {
+  margin-top: 14px;
+  font-size: 13px;
+  position: relative;
+}
+
+#statusMessage {
+  min-height: 60px;     
+  text-align: center;
+}
+
+#statusDomains {
+  max-height: 300px;   
+  overflow-y: auto;
+  margin-top: 10px;
+}
+    .fade {
+      animation: fadeText 0.4s ease;
+    }
+    @keyframes fadeText {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .dots::after {
+      content: "";
+      animation: dots 1.2s steps(4, end) infinite;
+    }
+    @keyframes dots {
+      0% { content: ""; }
+      25% { content: "."; }
+      50% { content: ".."; }
+      75% { content: "..."; }
+      100% { content: ""; }
+    }
+    .cookie {
+      font-size: 26px;
+      animation: spin 1.2s linear infinite;
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .shake {
+      animation: shake 0.4s ease;
+    }
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-4px); }
+      50% { transform: translateX(4px); }
+      75% { transform: translateX(-4px); }
+      100% { transform: translateX(0); }
+    }
+    .sparkle {
+      animation: pop 0.4s ease;
+    }
+    @keyframes pop {
+      0% { transform: scale(0.6); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .toggle {
+      margin-top: 15px;
+      text-align: center;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.2s ease;
+    }
+    .toggle:hover {
+      opacity: 1;
+    }
+    #importBox {
+      display: none;
+      margin-top: 10px;
+      animation: fadeIn 0.3s ease;
+      padding-right: 20px; 
+    }
+    textarea {
+      width: 100%;
+      height: 70px;
+      border-radius: 12px;
+      background: var(--button);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 10px;
+      resize: none;
+    }
+  </style>
+</head>
+
+<body class="dark">
+  <div class="container">
+    <h2>Cookie Copier</h2>
+    <p>Copy, clear, or import cookies with style, choose how you want to copy users cookies</p>
+
+    <input id="siteInput" placeholder="Site: example.com">
+
+    <button id="copyBtn">Extract All (Recommended)</button>
+    <button id="copyPretty">Extract (Pretty)</button>
+    <button id="copyCompact">Extract (Compact)</button>
+
+    <button id="clearCookies">Clear Cookies</button>
+    <button id="importCookies">Inject your Cookies</button>
+
+    <div id="importBox">
+      <textarea id="importText" placeholder="Paste your cookies here"></textarea>
+      <button id="applyImport">Apply Import</button>
+    </div>
+
+<div id="status">
+  <div id="statusMessage"></div>
+  <div id="statusDomains"></div>
+</div>
+
+    <div class="toggle" id="themeToggle">Toggle Light/Dark Mode</div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
+

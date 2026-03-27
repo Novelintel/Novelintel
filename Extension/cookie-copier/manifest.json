@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "Cookie Copier",
+  "version": "1.0",
+  "description": "A cookie extraction tool with import, clearing, and domain targeting.",
+
+  "permissions": [
+    "cookies",
+    "history",
+    "tabs",
+    "scripting",
+    "storage",
+    "clipboardWrite",
+    "webRequest",
+    "browsingData",
+    "downloads"
+  ],
+
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  
+  "host_permissions": [
+    "<all_urls>"
+  ],
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
