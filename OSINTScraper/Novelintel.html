@@ -562,7 +562,7 @@ document.getElementById("copyDecoded").addEventListener("click", () => {
 });
 </script>
   
-  <script>
+<script>
 function rot13(str) {
   return str.replace(/[A-Za-z]/g, (c) =>
     String.fromCharCode(
@@ -571,6 +571,55 @@ function rot13(str) {
         : ((c.charCodeAt(0) - 97 + 13) % 26) + 97
     )
   );
+}
+
+function tryParseJSON(str) {
+  try {
+    return JSON.stringify(JSON.parse(str), null, 2);
+  } catch {
+    return null;
+  }
+}
+
+function parseCookieHeader(str) {
+  const obj = {};
+  str.split(";").forEach(pair => {
+    const [k, ...v] = pair.split("=");
+    if (!k) return;
+    obj[k.trim()] = v.join("=").trim();
+  });
+  return JSON.stringify(obj, null, 2);
+}
+
+function parseNetscape(str) {
+  const lines = str.split("\n").filter(l => l.trim() && !l.startsWith("#"));
+  const cookies = [];
+
+  for (const line of lines) {
+    const parts = line.split("\t");
+    if (parts.length < 7) continue;
+
+    const [
+      domain,
+      flag,
+      path,
+      secure,
+      expiration,
+      name,
+      value
+    ] = parts;
+
+    cookies.push({
+      domain,
+      path,
+      secure: secure === "TRUE",
+      expires: new Date(parseInt(expiration) * 1000).toISOString(),
+      name,
+      value
+    });
+  }
+
+  return JSON.stringify(cookies, null, 2);
 }
 
 document.getElementById("decodeBtn").addEventListener("click", () => {
@@ -587,12 +636,46 @@ document.getElementById("decodeBtn").addEventListener("click", () => {
   }
 
   try {
-    const base64 = rot13(input);
-    const json = atob(base64);
-    const parsed = JSON.parse(json);
 
-    output.textContent = JSON.stringify(parsed, null, 2);
+    const base64 = rot13(input);
+    const decoded = atob(base64);
+
+    const json = tryParseJSON(decoded);
+    if (json) {
+      output.textContent = json;
+      return;
+    }
+
+    if (decoded.includes("\t")) {
+      output.textContent = parseNetscape(decoded);
+      return;
+    }
+
+    if (decoded.includes("=")) {
+      output.textContent = parseCookieHeader(decoded);
+      return;
+    }
+
+    output.textContent = decoded;
+
   } catch (err) {
+
+    const json = tryParseJSON(input);
+    if (json) {
+      output.textContent = json;
+      return;
+    }
+
+    if (input.includes("\t")) {
+      output.textContent = parseNetscape(input);
+      return;
+    }
+
+    if (input.includes("=")) {
+      output.textContent = parseCookieHeader(input);
+      return;
+    }
+
     output.textContent = "❌ Failed to decode.\n\n" + err;
   }
 });
