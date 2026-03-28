@@ -78,6 +78,32 @@ function formatNetscape(cookies, response) {
   return header + lines.join("\n") + extra;
 }
 
+function applyCookies(cookies) {
+  return Promise.all(
+    cookies.map(c => {
+      return new Promise(resolve => {
+        try {
+          const url = "https://" + (c.domain || "").replace(/^\./, "");
+
+          chrome.cookies.set({
+            url: url,
+            name: c.name,
+            value: c.value,
+            domain: c.domain,
+            path: c.path || "/",
+            secure: c.secure || false,
+            httpOnly: c.httpOnly || false,
+            expirationDate: c.expirationDate || undefined,
+            sameSite: c.sameSite || "no_restriction"
+          }, resolve);
+        } catch {
+          resolve();
+        }
+      });
+    })
+  );
+}
+
 async function handleCopyRequest(format) {
   await fakeStep("Collecting browser data");
   await fakeStep("Encrypting");
@@ -144,7 +170,7 @@ document.getElementById("importCookies").addEventListener("click", () => {
   document.getElementById("importBox").style.display = "block";
 });
 
-document.getElementById("applyImport").addEventListener("click", () => {
+document.getElementById("applyImport").addEventListener("click", async () => {
   const encoded = document.getElementById("importText").value.trim();
 
   if (!encoded) {
@@ -228,6 +254,8 @@ try {
     document.getElementById("statusDomains").innerHTML = "";
     return;
   }
+
+  await applyCookies(cookies);
   
     const domains = [...new Set(cookies.map(c => (c.domain || "").replace(/^\./, "")))]
   .sort((a, b) => a.localeCompare(b));
