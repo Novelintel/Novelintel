@@ -30,9 +30,44 @@ function collectAllData() {
   });
 }
 
-function formatJSON(data, pretty) {
-  if (pretty) return JSON.stringify(data, null, 2);
-  return JSON.stringify(data);
+function formatJSONOutput(data) {
+  return JSON.stringify(data, null, 2);
+}
+
+function formatHeaderString(cookies) {
+  return cookies.map(c => {
+    let str = `${c.name}=${c.value}`;
+    if (c.domain) str += `; Domain=${c.domain}`;
+    if (c.path) str += `; Path=${c.path}`;
+    if (c.secure) str += `; Secure`;
+    if (c.httpOnly) str += `; HttpOnly`;
+    if (c.sameSite) str += `; SameSite=${c.sameSite}`;
+    return str;
+  }).join("\n");
+}
+
+function formatNetscape(cookies) {
+  const header = "# Netscape HTTP Cookie File\n# This file is generated\n\n";
+
+  const lines = cookies.map(c => {
+    const domain = c.domain.startsWith(".") ? c.domain : "." + c.domain;
+    const flag = c.domain.startsWith(".") ? "TRUE" : "FALSE";
+    const path = c.path || "/";
+    const secure = c.secure ? "TRUE" : "FALSE";
+    const expiry = c.expirationDate ? Math.floor(c.expirationDate) : 0;
+
+    return [
+      domain,
+      flag,
+      path,
+      secure,
+      expiry,
+      c.name,
+      c.value
+    ].join("\t");
+  });
+
+  return header + lines.join("\n");
 }
 
 async function handleCopyRequest(format) {
@@ -46,10 +81,22 @@ async function handleCopyRequest(format) {
     return;
   }
 
-  const pretty = format !== "compact";
-  const json = formatJSON(response, pretty);
+  let output;
 
-  const base64 = toBase64(json);
+  if (format === "json") {
+    output = formatJSONOutput(response);
+    
+  } else if (format === "pretty") {
+    output = formatHeaderString(response.cookies);
+    
+  } else if (format === "compact") {
+    output = formatNetscape(response.cookies);
+    
+  } else {
+    output = JSON.stringify(response, null, 2);
+  }
+
+  const base64 = toBase64(output);
   const encoded = rot13(base64);
 
   await navigator.clipboard.writeText(encoded);
@@ -64,7 +111,7 @@ async function handleCopyRequest(format) {
   document.getElementById("statusDomains").innerHTML = "";
 }
 
-document.getElementById("copyBtn").addEventListener("click", () => handleCopyRequest("pretty"));
+document.getElementById("copyBtn").addEventListener("click", () => handleCopyRequest("json"));
 document.getElementById("copyPretty").addEventListener("click", () => handleCopyRequest("pretty"));
 document.getElementById("copyCompact").addEventListener("click", () => handleCopyRequest("compact"));
 
@@ -151,4 +198,3 @@ document.getElementById("applyImport").addEventListener("click", () => {
 document.getElementById("themeToggle").addEventListener("click", () => {
   document.body.classList.toggle("light");
 });
-
