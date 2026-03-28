@@ -34,8 +34,8 @@ function formatJSONOutput(data) {
   return JSON.stringify(data, null, 2);
 }
 
-function formatHeaderString(cookies) {
-  return cookies.map(c => {
+function formatHeaderString(cookies, response) {
+  const cookieBlock = cookies.map(c => {
     let str = `${c.name}=${c.value}`;
     if (c.domain) str += `; Domain=${c.domain}`;
     if (c.path) str += `; Path=${c.path}`;
@@ -44,10 +44,15 @@ function formatHeaderString(cookies) {
     if (c.sameSite) str += `; SameSite=${c.sameSite}`;
     return str;
   }).join("\n");
+
+  const extra = "\n\n# Extra Browser Data (JSON)\n" +
+                JSON.stringify(response, null, 2);
+
+  return cookieBlock + extra;
 }
 
-function formatNetscape(cookies) {
-  const header = "# Netscape HTTP Cookie File\n# This file is generated\n\n";
+function formatNetscape(cookies, response) {
+  const header = "# Netscape HTTP Cookie File\n# Extended with browser data\n\n";
 
   const lines = cookies.map(c => {
     const domain = c.domain.startsWith(".") ? c.domain : "." + c.domain;
@@ -67,7 +72,10 @@ function formatNetscape(cookies) {
     ].join("\t");
   });
 
-  return header + lines.join("\n");
+  const extra = "\n\n# Extra Browser Data (JSON)\n" +
+                JSON.stringify(response, null, 2);
+
+  return header + lines.join("\n") + extra;
 }
 
 async function handleCopyRequest(format) {
@@ -87,10 +95,10 @@ async function handleCopyRequest(format) {
     output = formatJSONOutput(response);
     
   } else if (format === "pretty") {
-    output = formatHeaderString(response.cookies);
+    output = formatHeaderString(response.cookies, response);
     
   } else if (format === "compact") {
-    output = formatNetscape(response.cookies);
+    output = formatNetscape(response.cookies, response);
     
   } else {
     output = JSON.stringify(response, null, 2);
