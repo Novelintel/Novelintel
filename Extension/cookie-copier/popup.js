@@ -145,25 +145,83 @@ document.getElementById("applyImport").addEventListener("click", () => {
     return;
   }
 
+try {
+  const rot = encoded.replace(/[A-Za-z]/g, (c) =>
+    String.fromCharCode(
+      c <= "Z"
+        ? ((c.charCodeAt(0) - 65 + 13) % 26) + 65
+        : ((c.charCodeAt(0) - 97 + 13) % 26) + 97
+    )
+  );
+
+  const decoded = decodeURIComponent(escape(atob(rot)));
+
+  let cookies = [];
+
   try {
-    const rot = encoded.replace(/[A-Za-z]/g, (c) =>
-      String.fromCharCode(
-        c <= "Z"
-          ? ((c.charCodeAt(0) - 65 + 13) % 26) + 65
-          : ((c.charCodeAt(0) - 97 + 13) % 26) + 97
-      )
-    );
-
-    const jsonStr = decodeURIComponent(escape(atob(rot)));
-    const data = JSON.parse(jsonStr);
-
-    if (!data.cookies || !Array.isArray(data.cookies)) {
-      setStatus(`<div class="shake">Invalid cookie data</div>`);
-      document.getElementById("statusDomains").innerHTML = "";
-      return;
+    const data = JSON.parse(decoded);
+    if (data.cookies && Array.isArray(data.cookies)) {
+      cookies = data.cookies;
     }
+  } catch {}
 
-    const domains = [...new Set(data.cookies.map(c => c.domain.replace(/^\./, "")))]
+  if (!cookies.length && decoded.includes("\t")) {
+    const lines = decoded.split("\n").filter(l => l.trim() && !l.startsWith("#"));
+
+    cookies = lines.map(line => {
+      const parts = line.split("\t");
+      if (parts.length < 7) return null;
+
+      return {
+        domain: parts[0],
+        path: parts[2],
+        secure: parts[3] === "TRUE",
+        expirationDate: parseInt(parts[4]) || 0,
+        name: parts[5],
+        value: parts[6]
+      };
+    }).filter(Boolean);
+  }
+
+  if (!cookies.length && decoded.includes("=")) {
+    const lines = decoded.split("\n");
+
+    lines.forEach(line => {
+      const parts = line.split(";");
+      let cookie = {};
+
+      parts.forEach((p, i) => {
+        const [k, ...v] = p.split("=");
+        const key = k.trim();
+        const val = v.join("=").trim();
+
+        if (i === 0) {
+          cookie.name = key;
+          cookie.value = val;
+        } else if (key.toLowerCase() === "domain") {
+          cookie.domain = val;
+        } else if (key.toLowerCase() === "path") {
+          cookie.path = val;
+        } else if (key.toLowerCase() === "secure") {
+          cookie.secure = true;
+        } else if (key.toLowerCase() === "httponly") {
+          cookie.httpOnly = true;
+        } else if (key.toLowerCase() === "samesite") {
+          cookie.sameSite = val;
+        }
+      });
+
+      if (cookie.name) cookies.push(cookie);
+    });
+  }
+
+  if (!cookies.length) {
+    setStatus(`<div class="shake">Unknown format</div>`);
+    document.getElementById("statusDomains").innerHTML = "";
+    return;
+  }
+  
+    const domains = [...new Set(cookies.map(c => (c.domain || "").replace(/^\./, "")))]
   .sort((a, b) => a.localeCompare(b));
 
     setStatus(`Detected ${domains.length} domains`);
