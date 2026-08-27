@@ -407,7 +407,7 @@ body {
   transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.25s ease;
   font-size: 48px;
   width: 650px;
-  height: 850px;
+  height: 800px;
   max-width: none;
   max-height: none;
   overflow-y: auto;
