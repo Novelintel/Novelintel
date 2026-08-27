@@ -65,5 +65,5 @@ The extension collects your browsing data on demand, encrypts it locally, and le
 ## Important Notice  
 <p>Novelintel is intended only for ethical and educational purposes. Unauthorized or malicious use of this tool is strictly discouraged. Please respect privacy and legal boundaries when conducting security research.</p><br>
 
-## Credits
-<p>30% was made with ChatGPT and Venice.ai because they did most of the coding.</p>
+## Developer notice
+<p>AI tools were used to support development, but the project’s architecture, functionality and logic were designed and validated by me. AI served as a coding assistant, not the author of the tool.</p>
