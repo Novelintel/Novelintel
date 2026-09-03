@@ -336,6 +336,35 @@ function downloadCookieCopier() {
 </script>
 
           <h3><strong>Our Socials</strong></h3>
+          
+                    <div class="command-dropdown">
+<div id="dropdownHeader3" class="dropdown-header" style="font-size:1.05em; font-weight:700;">
+    Why link your Social Media account? <span id="dropdownArrow3">^</span>
+  </div>
+
+  <div id="dropdownContent3" class="dropdown-content">
+    Linking your social media accounts such as Discord, TikTok, or Instagram allows 
+    OSINTScraper to access fresher, more accurate, and platform‑specific information. 
+    Without linking, OSINTScraper must rely on older or publicly cached sources, which 
+    may be outdated or incomplete.
+  </div>
+</div>
+
+<script>
+document.getElementById("dropdownHeader3").addEventListener("click", () => {
+  const content = document.getElementById("dropdownContent3");
+  const arrow = document.getElementById("dropdownArrow3");
+
+  if (content.style.display === "block") {
+    content.style.display = "none";
+    arrow.textContent = "^";
+  } else {
+    content.style.display = "block";
+    arrow.textContent = ">";
+  }
+});
+</script>
+          
           <button id="go-post-error" class="msger-send-btn">Instagram</button>
           <div id="instagram-dropdown" class="login-dropdown">
     <div class="login-container" style="background:#1e1e1e; border:1px solid #333;">
