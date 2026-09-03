@@ -172,10 +172,11 @@
         <div class="msg-text" style="font-size:1.30em; line-height:1.4;">
    Below are some example queries you can use to begin searching and exploring available data<br><br>
 
-                    <div class="command-dropdown">
-  <div id="dropdownHeader" class="dropdown-header">
+         <div class="command-dropdown">
+<div id="dropdownHeader" class="dropdown-header" style="font-size:1.28em; font-weight:700;">
     List available command catalog <span id="dropdownArrow">^</span>
-  </div>
+</div><br>
+                      
   <div id="dropdownContent" class="dropdown-content">      
     
   <strong>Basic</strong><br>
@@ -207,10 +208,112 @@
   </div>
 </div>
 
+<div class="command-dropdown">
+<div id="dropdownHeader2" class="dropdown-header" style="font-size:1.28em; font-weight:700;">
+    Basic vs DeepSearch <span id="dropdownArrow2">^</span>
+</div>
+
+  <div id="dropdownContent2" class="dropdown-content">
+
+    <strong>Basic vs DeepSearch Comparison</strong><br><br>
+
+    <table style="width:100%; border-collapse:collapse; font-size:1em; table-layout:fixed;">
+      <colgroup>
+        <col style="width:45%;">
+        <col style="width:27%;">
+        <col style="width:28%;">
+      </colgroup>
+
+      <tr>
+        <th style="text-align:left; padding:6px;">Feature</th>
+        <th style="text-align:center; padding:6px; white-space:nowrap;">Basic</th>
+        <th style="text-align:center; padding:6px; white-space:nowrap;">DeepSearch</th>
+      </tr>
+
+      <tr>
+        <td style="padding:6px;">Free to use</td>
+        <td style="text-align:center; white-space:nowrap;">✅</td>
+        <td style="text-align:center; white-space:nowrap;">✅</td>
+      </tr>
+
+      <tr>
+        <td style="padding:6px;">Uses public databanks</td>
+        <td style="text-align:center; white-space:nowrap;">✅</td>
+        <td style="text-align:center; white-space:nowrap;">✅</td>
+      </tr>
+
+      <tr>
+        <td style="padding:6px;">Call support</td>
+        <td style="text-align:center; white-space:nowrap;">✅</td>
+        <td style="text-align:center; white-space:nowrap;">✅</td>
+      </tr>
+
+      <tr>
+        <td style="padding:6px;">Fast response time</td>
+        <td style="text-align:center; white-space:nowrap;">✅</td>
+        <td style="text-align:center; white-space:nowrap;">✅</td>
+      </tr>
+
+      <tr>
+        <td style="padding:6px;">Advanced query depth</td>
+        <td style="text-align:center; white-space:nowrap;">❌</td>
+        <td style="text-align:center; white-space:nowrap;">✅</td>
+      </tr>
+
+      <tr>
+        <td style="padding:6px;">AI‑assisted search refinement</td>
+        <td style="text-align:center; white-space:nowrap;">❌</td>
+        <td style="text-align:center; white-space:nowrap;">✅</td>
+      </tr>
+
+      <tr>
+        <td style="padding:6px;">Uses previous results to improve future searches</td>
+        <td style="text-align:center; white-space:nowrap;">❌</td>
+        <td style="text-align:center; white-space:nowrap;">✅</td>
+      </tr>
+      
+      <tr>
+        <td style="padding:6px;">Access to private Databanks</td>
+        <td style="text-align:center; white-space:nowrap;">❌</td>
+        <td style="text-align:center; white-space:nowrap;">✅</td>
+      </tr>
+
+      <tr>
+        <td style="padding:6px;">Higher file upload limits</td>
+        <td style="text-align:center; white-space:nowrap;">❌</td>
+        <td style="text-align:center; white-space:nowrap;">✅</td>
+      </tr>
+
+      <tr>
+        <td style="padding:6px;">Full command catalog access</td>
+        <td style="text-align:center; white-space:nowrap;">❌</td>
+        <td style="text-align:center; white-space:nowrap;">✅</td>
+      </tr>
+
+    </table>
+
+    <br>
+
+  </div>
+</div>
+
 <script>
 document.getElementById("dropdownHeader").addEventListener("click", () => {
   const content = document.getElementById("dropdownContent");
   const arrow = document.getElementById("dropdownArrow");
+
+  if (content.style.display === "block") {
+    content.style.display = "none";
+    arrow.textContent = "^";
+  } else {
+    content.style.display = "block";
+    arrow.textContent = ">";
+  }
+});
+
+document.getElementById("dropdownHeader2").addEventListener("click", () => {
+  const content = document.getElementById("dropdownContent2");
+  const arrow = document.getElementById("dropdownArrow2");
 
   if (content.style.display === "block") {
     content.style.display = "none";
