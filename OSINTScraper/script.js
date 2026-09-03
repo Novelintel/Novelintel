@@ -145,7 +145,20 @@ if (lowerMsg.startsWith("!search ")) {
         botResponse();
         return;
     }
+    if (query.includes("ip")) {
+       botResponse();
+       return;
+    }
 
+    if (query.includes("email")) {
+        botResponse();
+        return;
+    }
+
+    if (query.includes("user")) {
+        appendMessage(BOT_NAME, BOT_IMG, "left", "Please specify which site you want the username to be checked on for.", true);
+        return;
+    }
     if (query.includes("password")) {
         appendMessage(BOT_NAME, BOT_IMG, "left", "Please specify which site you want the password checked for.", true);
         return;
