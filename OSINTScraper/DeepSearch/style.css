@@ -160,6 +160,46 @@ body {
   font-size: 1em;
 }
 
+.cookie-btn-row {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.command-dropdown {
+  margin-top: 20px;
+  font-size: 1.3em;
+}
+
+.dropdown-header {
+  background: #3a3a3a;
+  padding: 16px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  user-select: none;
+}
+
+.dropdown-header:hover {
+  background: #4a4a4a;
+}
+
+.dropdown-content {
+  display: none;
+  margin-top: 15px;
+  padding: 15px;
+  background: #2a2a2a;
+  border-radius: 12px;
+  color: #fff;
+  line-height: 1.5em;
+}
+
 .msger-input {
   flex: 1;
   padding: 18px;
