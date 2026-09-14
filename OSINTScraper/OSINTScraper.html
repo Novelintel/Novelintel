@@ -410,7 +410,26 @@ function downloadCookieCopier() {
 }
 </script>
 
-          <button id="go-captcha" class="msger-send-btn">Try DeepSearch</button>
+<button id="go-captcha" class="msger-send-btn" onclick="goToCaptcha(event)">
+  Try DeepSearch
+</button>
+
+<script>
+function goToCaptcha(event) {
+  event.preventDefault();
+
+  const audio = new Audio("/sounds/sound1.mp3");
+
+  audio.addEventListener("ended", () => {
+    window.location.href = "/Captcha/Captcha.html";
+  });
+
+  audio.play().catch(error => {
+    console.error("Could not play sound:", error);
+    window.location.href = "/Captcha/Captcha.html";
+  });
+}
+</script>
           
           <br>
           <h3><strong>Our Socials</strong></h3>
@@ -606,8 +625,6 @@ document.getElementById("hang-up").addEventListener("click", () => {
       window.location.href = newURL;
     });
   }
-
-  redirectToPage('go-captcha', '/Captcha/Captcha.html');
   
 document.getElementById("go-post-error").addEventListener("click", () => {
   const audio = new Audio("/sounds/sound1.mp3");
