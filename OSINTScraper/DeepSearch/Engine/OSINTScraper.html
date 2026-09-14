@@ -18,15 +18,47 @@
       Please try again by uploading a clearer photo, or continue using the basic trial below if you prefer to proceed without verification.
     </p>
 
-    <div class="actions">
-      <button class="btn decline" onclick="window.location.href='/../../Captcha/Captcha.html'">
-        Retry Captcha
-      </button>
+<div class="actions">
+  <button class="btn decline" onclick="playRetrySound()">
+    Retry Captcha
+  </button>
 
-      <button class="btn agree" onclick="window.location.href='/../../OSINTScraper.html'">
-        Return to Basic
-      </button>
-    </div>
+  <button class="btn agree" onclick="playReturnSound()">
+    Return to Basic
+  </button>
+</div>
+
+<script>
+function playRetrySound() {
+  const audio = new Audio("/../../sounds/sound1.mp3");
+
+  audio.play()
+    .then(() => {
+      audio.addEventListener("ended", () => {
+        window.location.href = "/../../Captcha/Captcha.html";
+      });
+    })
+    .catch(error => {
+      console.error("Could not play sound:", error);
+      window.location.href = "/../../Captcha/Captcha.html";
+    });
+}
+
+function playReturnSound() {
+  const audio = new Audio("/../../sounds/sound1.mp3");
+
+  audio.play()
+    .then(() => {
+      audio.addEventListener("ended", () => {
+        window.location.href = "/../../OSINTScraper.html";
+      });
+    })
+    .catch(error => {
+      console.error("Could not play sound:", error);
+      window.location.href = "/../../OSINTScraper.html";
+    });
+}
+</script>
 
     <p style="margin-top:50px; font-size:1.2em; color:var(--text-light); line-height:1.7;">
 Verification ensures authenticity and security. If issues continue, please reach out on our socials we’re here to help and make your experience smooth and hassle‑free.
