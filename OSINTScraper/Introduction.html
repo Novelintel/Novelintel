@@ -16,9 +16,27 @@
 
     <div class="nav-right">
       <p class="nav-info">Want to learn more about OSINT?</p>
-<button class="nav-btn osint-btn" onclick="window.location.href='https://en.wikipedia.org/wiki/Open-source_intelligence'">
+<button class="nav-btn osint-btn" onclick="playOsintSoundAndRedirect()">
   What is OSINT?
 </button>
+
+<script>
+  function playOsintSoundAndRedirect() {
+    const audio = new Audio('/sounds/sound1.mp3');
+
+    audio.play()
+      .then(() => {
+        audio.addEventListener('ended', () => {
+          window.location.href = 'https://en.wikipedia.org/wiki/Open-source_intelligence';
+        });
+      })
+      .catch((error) => {
+        console.error('Could not play sound:', error);
+        window.location.href = 'https://en.wikipedia.org/wiki/Open-source_intelligence';
+      });
+  }
+</script>
+
     </div>
   </nav>
 
@@ -44,10 +62,31 @@
 
         <p class="preorder">Beta v1.5.3 Launching 2026</p>
 
-        <div class="hero-buttons">
-          <button class="cta-btn" onclick="window.location.href='/Register/Register.html'">
-            Try Demo (Mobile devices only)
-          </button>
+<div class="hero-buttons">
+  <button class="cta-btn" onclick="playSoundAndRedirect()">
+    Try Demo (Mobile devices only)
+  </button>
+</div>
+
+<script>
+  function playSoundAndRedirect() {
+    const audio = new Audio('/sounds/sound1.mp3');
+
+    audio.play()
+      .then(() => {
+
+        audio.addEventListener('ended', () => {
+          window.location.href = '/Register/Register.html';
+        });
+      })
+      .catch((error) => {
+        console.error('Could not play sound:', error);
+
+        window.location.href = '/Register/Register.html';
+      });
+  }
+</script>
+
         </div>
       </div>
 
