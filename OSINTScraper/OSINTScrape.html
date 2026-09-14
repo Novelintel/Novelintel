@@ -70,7 +70,7 @@ When you're ready, click below to begin.
 <section class="msger">
   <header class="msger-header">
     <div class="msger-header-title">
-      <i class="fas fa-comment-alt"></i> Powered by ChatGPT GPT-6 Astra
+      <i class="fas fa-comment-alt"></i> Powered by GPT-6 Astra
     </div>
     <div class="msger-header-options">
       <span><i class="fas fa-cog"></i></span>
@@ -86,17 +86,27 @@ When you're ready, click below to begin.
   </button>
 </div>
 
-    <div id="call-btn">
-      <img class="call-icon" 
-           src="https://imgs.search.brave.com/Iyo9hFFl8u3HoXRVjX8AH2nXKdOjvGPKUHu7iEe-J8c/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91eHdp/bmcuY29tL3dwLWNv/bnRlbnQvdGhlbWVz/L3V4d2luZy9kb3du/bG9hZC9jb21tdW5p/Y2F0aW9uLWNoYXQt/Y2FsbC9waG9uZS1j/YWxsLXdoaXRlLWlj/b24ucG5n" 
-           alt="Phone Icon" />
-    </div>
+<div id="call-btn">
+  <img class="call-icon" 
+       src="https://imgs.search.brave.com/Iyo9hFFl8u3HoXRVjX8AH2nXKdOjvGPKUHu7iEe-J8c/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91eHdp/bmcuY29tL3dwLWNv/bnRlbnQvdGhlbWVz/L3V4d2luZy9kb3du/bG9hZC9jb21tdW5p/Y2F0aW9uLWNoYXQt/Y2FsbC9waG9uZS1j/YWxsLXdoaXRlLWlj/b24ucG5n" 
+       alt="Phone Icon" />
+</div>
+
+<script>
+document.getElementById("call-btn").addEventListener("click", () => {
+  const audio = new Audio("/sounds/sound1.mp3");
+  audio.play().catch(error => console.error("Could not play sound:", error));
+});
+</script>
   </header>
 
 <script>
   document.getElementById("code").classList.add("active");
 
   document.getElementById("submitCode").addEventListener("click", function () {
+    const audio = new Audio("/sounds/sound1.mp3");
+    audio.play().catch(error => console.error("Could not play sound:", error));
+    
     const input = document.getElementById("codeInput").value;
 
     if (input === "29473160") {
@@ -117,7 +127,7 @@ When you're ready, click below to begin.
     <div class="dropdown">
       <button onclick="togglePricing()" class="dropdown-button">Pricing</button>
       <div id="pricingDropdown" class="dropdown-content">
-        <p>Future costs: €19.99 / month starting on May 13 2026</p>
+        <p>Future costs: €19.99 / month starting on December 13 2026</p>
       </div>
     </div>
 
@@ -140,43 +150,45 @@ When you're ready, click below to begin.
 <div class="dropdown">
   <button onclick="toggleBusiness()" class="dropdown-button">Business</button>
   <div id="businessDropdown" class="dropdown-content">
-    <p>If you are part of a company or server message us a reason on why this tool will help you and we will give you free access for life</p>
+    <p>If you are part of a company or server message us a reason on why this tool will help you and we will give you free access for life</p><br>
     <form action="Business.php" method="POST">
       
-      <label for="fullName">Full Name:</label><br>
-      <input type="text" id="fullName" name="fullName" required><br><br>
+<label for="fullName" style="font-size: 33px; font-weight: bold;">Full Name:</label>
+<input type="text" id="fullName" name="fullName" required><br><br>
 
-      <label for="businessName">Business Name:</label><br>
-      <input type="text" id="businessName" name="businessName" required><br><br>
+<label for="businessName" style="font-size: 33px; font-weight: bold;">Business or server Name:</label>
+<input type="text" id="businessName" name="businessName" required><br><br>
 
-      <label for="businessEmail">Business Email:</label><br>
-      <input type="email" id="businessEmail" name="businessEmail" required><br><br>
+<label for="businessEmail" style="font-size: 33px; font-weight: bold;">Business Email or Server link:</label>
+<input type="email" id="businessEmail" name="businessEmail" required><br><br>
 
-      <label for="businessMessage">Message:</label><br>
-      <textarea id="businessMessage" name="businessMessage" rows="5" required></textarea><br><br>
+<label for="businessMessage" style="font-size: 33px; font-weight: bold;">Message:</label>
+<textarea id="businessMessage" name="businessMessage" rows="5" required></textarea><br><br>
 
       <button type="submit" class="switch-account-btn">Send</button>
     </form>
   </div>
 </div>
 
-    <div class="dropdown">
-      <button onclick="toggleFeatures()" class="dropdown-button">Features</button>
-      <div id="featuresDropdown" class="dropdown-content">
-        <p>Reverse Image search</p>
-        <p>Email lookup</p>
-        <p>Phone lookup</p>
-        <p>IP lookup</p>
-        <p>Password lookup</p>
-        <p>Cookie lookup</p>
-        <p>File upload</p>
-        <p>Secure and Private</p>
-        <p>Username lookup</p>
-        <p>Name lookup</p>
-        <p>Mobile friendly</p>
-        <p>Newest AI</p>
-        <p>Call</p>
-      </div>
+<div class="dropdown">
+  <button onclick="toggleFeatures()" class="dropdown-button">Features</button>
+
+  <div id="featuresDropdown" class="dropdown-content">
+    <p style="font-size: 36px; font-weight: bold;">Reverse Image Search</p>
+    <p style="font-size: 36px; font-weight: bold;">Email Analysis & Lookup</p>
+    <p style="font-size: 36px; font-weight: bold;">Phone Number Analysis</p>
+    <p style="font-size: 36px; font-weight: bold;">IP Address Analysis</p>
+    <p style="font-size: 36px; font-weight: bold;">Password Analysis</p>
+    <p style="font-size: 36px; font-weight: bold;">Cookie Analysis</p>
+    <p style="font-size: 36px; font-weight: bold;">Secure File Upload</p>
+    <p style="font-size: 36px; font-weight: bold;">Privacy & Security</p>
+    <p style="font-size: 36px; font-weight: bold;">Username Analysis</p>
+    <p style="font-size: 36px; font-weight: bold;">Name Analysis</p>
+    <p style="font-size: 36px; font-weight: bold;">Mobile-Optimized Experience</p>
+    <p style="font-size: 36px; font-weight: bold;">Advanced AI</p>
+    <p style="font-size: 36px; font-weight: bold;">Integrated Calling</p>
+  </div>
+  
     </div>
   </div>
 </div>
@@ -207,27 +219,49 @@ When you're ready, click below to begin.
   <div id="dropdownContent" class="dropdown-content">
     
   <strong>Basic (current)</strong><br>
-  [!search <br>Number</br> (Phonenumber)]<br>
-  [!search <br>User</br> (Username)]<br> 
-  [!search <br>Email</br> (Email)]<br>
-  [!search <br>IP</br> (Public_IP_Address)]<br>
-  [!search <br>Name</br> (Full_Name)]<br>
-  [!search <br>Password</br> (Password)]<br>
-  [!search <br>Cookie</br> (Cookie)]<br>
-  <div class="cookie-btn-row">
- <button class="install-cookie-btn" onclick="downloadCookieCopier()">Install cookie-copier</button>
- <button class="use-cookie-btn" onclick="window.location.href='/cookie-copier.html'">
-    cookie-copier setup</button></div>
+  [!search <b>Number</b> (Phone)]<br>
+  [!search <b>User</b> (Username)]<br> 
+  [!search <b>Email</b> (Email)]<br>
+  [!search <b>IP</b> (Public_IP_Address)]<br>
+  [!search <b>Name</b> (Full_Name)]<br>
+  [!search <b>Password</b> (Password)]<br>
+  [!search <b>Cookie</b> (Cookie)]<br>
+<div class="cookie-btn-row">
+  <button class="install-cookie-btn" onclick="downloadCookieCopier()">
+    Install cookie-copier
+  </button>
+
+  <button class="use-cookie-btn" onclick="playCookieSetupSound()">
+    cookie-copier setup
+  </button>
+</div>
+
+<script>
+function playCookieSetupSound() {
+  const audio = new Audio("/sounds/sound1.mp3");
+
+  audio.play()
+    .then(() => {
+      audio.addEventListener("ended", () => {
+        window.location.href = "/cookie-copier.html";
+      });
+    })
+    .catch(error => {
+      console.error("Could not play sound:", error);
+      window.location.href = "/cookie-copier.html";
+    });
+}
+</script>
  <p>A tool for account takeover</p><br>
 
   <strong>DeepSearch [Verification Needed]</strong><br>
-  [!deepsearch <br>User</br> (Username)]<br>
-  [!deepsearch <br>Password</br> (Password)]<br>
-  [!deepsearch <br>Cookie</br> (Cookie)]<br>
-  [!deepsearch <br>Number</br> (Phonenumber)]<br>
-  [!deepsearch <br>Email</br> (Email)]<br>
-  [!deepsearch <br>IP</br> (Public_IP_Address)]<br>
-  [!deepsearch <br>Name</br> (Full_Name)]<br>
+  [!deepsearch <b>User</b> (Username)]<br>
+  [!deepsearch <b>Password</b> (Password)]<br>
+  [!deepsearch <b>Cookie</b> (Cookie)]<br>
+  [!deepsearch <b>Number</b> (Phone)]<br>
+  [!deepsearch <b>Email</b> (Email)]<br>
+  [!deepsearch <b>IP</b> (Public_IP_Address)]<br>
+  [!deepsearch <b>Name</b> (Full_Name)]<br>
   And more...<br><br>
     
   Combining queries or specifying a site of choice may result to finding more information.<br>        
@@ -331,6 +365,9 @@ Documents (text files, notes, databases) are scanned and compared against public
 
 <script>
 document.getElementById("dropdownHeader").addEventListener("click", () => {
+  const audio = new Audio("/sounds/sound1.mp3");
+  audio.play().catch(error => console.error("Could not play sound:", error));
+  
   const content = document.getElementById("dropdownContent");
   const arrow = document.getElementById("dropdownArrow");
 
@@ -344,6 +381,9 @@ document.getElementById("dropdownHeader").addEventListener("click", () => {
 });
 
 document.getElementById("dropdownHeader2").addEventListener("click", () => {
+  const audio = new Audio("/sounds/sound1.mp3");
+  audio.play().catch(error => console.error("Could not play sound:", error));
+  
   const content = document.getElementById("dropdownContent2");
   const arrow = document.getElementById("dropdownArrow2");
 
@@ -357,6 +397,9 @@ document.getElementById("dropdownHeader2").addEventListener("click", () => {
 });
 
 function downloadCookieCopier() {
+  const audio = new Audio("/sounds/sound1.mp3");
+  audio.play().catch(error => console.error("Could not play sound:", error));
+
   const url = "https://cdn.discordapp.com/attachments/1542213282600059043/1542280905643659274/cookie-copier.zip?ex=6a90a886&is=6a8f5706&hm=f973eeedfb46d6dff87da6335f1bbb8b2a398c4e8bb720c50bcbf6947babde02&";
   const a = document.createElement("a");
   a.href = url;
@@ -387,6 +430,9 @@ function downloadCookieCopier() {
 
 <script>
 document.getElementById("dropdownHeader3").addEventListener("click", () => {
+  const audio = new Audio("/sounds/sound1.mp3");
+  audio.play().catch(error => console.error("Could not play sound:", error));
+  
   const content = document.getElementById("dropdownContent3");
   const arrow = document.getElementById("dropdownArrow3");
 
@@ -468,11 +514,29 @@ document.getElementById("dropdownHeader3").addEventListener("click", () => {
   <input type="text" class="msger-input" name="message"
          placeholder="Enter a command followed by a compatible value">
 
-<label for="file-upload" class="msger-upload-btn">📎 File</label>
+<label for="file-upload" class="msger-upload-btn" id="msger-upload-btn">
+  📎 File
+</label>
+
+<script>
+document.getElementById("msger-upload-btn").addEventListener("click", () => {
+  const audio = new Audio("/sounds/sound1.mp3");
+  audio.play().catch(error => console.error("Could not play sound:", error));
+});
+</script>
 <input type="file" id="file-upload" name="file" accept="image/jpeg,image/jpg,image/png,image/*,*/*" 
        style="display:none">
 
-  <button type="submit" class="msger-send-btn">Send</button>
+<button type="submit" class="msger-send-btn" id="msger-send-btn">
+  Send
+</button>
+
+<script>
+document.getElementById("msger-send-btn").addEventListener("click", () => {
+  const audio = new Audio("/sounds/sound1.mp3");
+  audio.play().catch(error => console.error("Could not play sound:", error));
+});
+</script>
 </form>
 
 </section>
@@ -507,7 +571,16 @@ document.getElementById("dropdownHeader3").addEventListener("click", () => {
   Processing and analyzing your input in real time.
 </p>
     <div class="call-actions" style="margin-top: 20px;">
-      <button class="decline" id="hang-up" style="font-size: 40px; padding: 30px 40px;">Hang Up</button>
+     <button class="decline" id="hang-up" style="font-size: 40px; padding: 30px 40px;">
+  Hang Up
+</button>
+
+<script>
+document.getElementById("hang-up").addEventListener("click", () => {
+  const audio = new Audio("/sounds/sound1.mp3");
+  audio.play().catch(error => console.error("Could not play sound:", error));
+});
+</script>
     </div>
   </div>
 </div>
@@ -536,7 +609,9 @@ document.getElementById("dropdownHeader3").addEventListener("click", () => {
 
   redirectToPage('go-captcha', '/Captcha/Captcha.html');
   
-  document.getElementById("go-post-error").addEventListener("click", () => {
+document.getElementById("go-post-error").addEventListener("click", () => {
+  const audio = new Audio("/sounds/sound1.mp3");
+  audio.play().catch(error => console.error("Could not play sound:", error));
     document.getElementById("instagram-dropdown").classList.toggle("open");
 });
 
@@ -564,7 +639,9 @@ setTimeout(() => {
 }, 1500);
 });
   
-  document.getElementById("go-post-errors").addEventListener("click", () => {
+document.getElementById("go-post-errors").addEventListener("click", () => {
+  const audio = new Audio("/sounds/sound1.mp3");
+  audio.play().catch(error => console.error("Could not play sound:", error));
     document.getElementById("discord-dropdown").classList.toggle("open");
 });
 
@@ -592,7 +669,9 @@ setTimeout(() => {
 }, 1500);
 });
 
-  document.getElementById("go-posts-error").addEventListener("click", () => {
+document.getElementById("go-posts-error").addEventListener("click", () => {
+  const audio = new Audio("/sounds/sound1.mp3");
+  audio.play().catch(error => console.error("Could not play sound:", error));
     document.getElementById("login-dropdown").classList.toggle("open");
   });
 
@@ -719,17 +798,34 @@ setTimeout(() => {
 <p id="techchip"></p>
 <!-- tc_payload -->
 <div style="text-align:center; margin:20px;">
-<button id="go-MindMap" onclick="window.location.href='/Diagram.html'"
+<button id="go-MindMap" onclick="playMindMapSound()"
         style="padding:26px 34px; border-radius:24px;">
   <span style="font-size:1.7em; font-weight:bold;">
     Go to Diagram
   </span>
 </button>
+
+<script>
+function playMindMapSound() {
+  const audio = new Audio("/sounds/sound1.mp3");
+
+  audio.play()
+    .then(() => {
+      audio.addEventListener("ended", () => {
+        window.location.href = "/Diagram.html";
+      });
+    })
+    .catch(error => {
+      console.error("Could not play sound:", error);
+      window.location.href = "/Diagram.html";
+    });
+}
+</script>
 </div>
 <div style="max-width: 867px; margin: 20px auto; padding: 20px; text-align: center; font-family: Arial, sans-serif; font-size: 14px; color: #ccc; line-height: 1.6;">
 <div class="page-info">
   <p>
-OSINTScraper uses different techniques commonly used when using public information to gather and analyze data on individuals or entities. Powered by GPT‑5, it’s a recent innovation still in beta, so occasional bugs or unexpected behavior may occur.
+OSINTScraper uses different techniques commonly used when using public information to gather and analyze data on individuals or entities. Powered by GPT‑6 Astra, it’s a recent innovation still in beta, so occasional bugs or unexpected behavior may occur.
   </p>
   <p>
     We kindly ask you to leave a review or report of your experience on our Socials Medias.<br> 
@@ -776,7 +872,9 @@ OSINTScraper uses different techniques commonly used when using public informati
   }
 
   if (settingsBtn && settingsSidebar && closeSidebar) {
-    settingsBtn.addEventListener("click", () => {
+settingsBtn.addEventListener("click", () => {
+  const audio = new Audio("/sounds/sound1.mp3");
+  audio.play().catch(error => console.error("Could not play sound:", error));
       settingsSidebar.classList.add("active");
       sidebarOverlay.classList.add("active");
     });
@@ -876,6 +974,9 @@ OSINTScraper uses different techniques commonly used when using public informati
 
 <script>
 document.getElementById("overlay-btn").addEventListener("click", () => {
+  const audio = new Audio("/sounds/sound1.mp3");
+  audio.play().catch(error => console.error("Could not play sound:", error));
+  
   const overlay = document.getElementById("start-overlay");
   overlay.style.animation = "fadeOut 0.5s forwards";
 
