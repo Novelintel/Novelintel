@@ -97,10 +97,16 @@
 <script>
 document.getElementById("btnTakePhoto").addEventListener("click", () => {
     document.getElementById("takePhotoInput").click();
+
+    const audio = new Audio("/sounds/sound1.mp3");
+    audio.play().catch(error => console.error("Could not play sound:", error));
 });
 
 document.getElementById("btnSelectPhoto").addEventListener("click", () => {
     document.getElementById("selectPhotoInput").click();
+
+    const audio = new Audio("/sounds/sound1.mp3");
+    audio.play().catch(error => console.error("Could not play sound:", error));
 });
 
 function handlePreview(input) {
@@ -130,6 +136,9 @@ document.getElementById("registerForm").addEventListener("submit", function(e) {
 
     e.preventDefault();
 
+    const audio = new Audio("/sounds/sound1.mp3");
+    audio.play().catch(error => console.error("Could not play sound:", error));
+
     const formData = new FormData(this);
 
     fetch("Register.php", {
@@ -151,7 +160,18 @@ document.getElementById("registerForm").addEventListener("submit", function(e) {
 });
 
 document.getElementById("continueBtn").addEventListener("click", function() {
-    window.location.href = "/../OSINTScraper.html";
+    const audio = new Audio("/sounds/sound1.mp3");
+
+    audio.play()
+        .then(() => {
+            audio.addEventListener("ended", () => {
+                window.location.href = "/../OSINTScraper.html";
+            });
+        })
+        .catch(error => {
+            console.error("Could not play sound:", error);
+            window.location.href = "/../OSINTScraper.html";
+        });
 });
 </script>
 
