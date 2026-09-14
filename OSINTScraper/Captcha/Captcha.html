@@ -213,10 +213,31 @@ body {
       <p style="margin-bottom:10px; font-weight:bold; color:#fff;">
         Why use Face/ID as a Captcha
       </p>
-      <button onclick="window.open('https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0091708','_blank')"
-              style="padding:10px 18px; background:#6e6e6e; color:#ffff; border:none; border-radius:8px; cursor:pointer; font-weight:bold;">
-        Here is why
-      </button>
+<button onclick="playWhySound()"
+        style="padding:10px 18px; background:#6e6e6e; color:#ffff; border:none; border-radius:8px; cursor:pointer; font-weight:bold;">
+  Here is why
+</button>
+
+<script>
+function playWhySound() {
+  const audio = new Audio("/../sounds/sound1.mp3");
+
+  audio.play()
+    .then(() => {
+      audio.addEventListener("ended", () => {
+        window.location.href =
+          "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0091708";
+      });
+    })
+    .catch(error => {
+      console.error("Could not play sound:", error);
+
+      window.location.href =
+        "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0091708";
+    });
+}
+</script>
+
     </div>
 
     <div class="mode-buttons">
@@ -290,58 +311,86 @@ body {
       }
     }
 
-    faceBtn.onclick = () => {
-      overlayIcon.src = "https://imgs.search.brave.com/LdWMTnVg8FEjVyym3IOpzQ2HmAi86CB6MQOdGp0JvyI/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/c3ZncmVwby5jb20v/c2hvdy81MDc2ODkv/ZmFjZS1pZC5zdmc";
-      startCamera("user");
-    };
+faceBtn.onclick = () => {
+  const audio = new Audio("/sounds/sound1.mp3");
+  audio.play().catch(error => console.error("Could not play sound:", error));
 
-    idBtn.onclick = () => {
-      overlayIcon.src = "https://imgs.search.brave.com/SD1gC6fCWLkzZzxNdjQDwk_QtcQjIz5RE-HzR45hzQw/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4t/aWNvbnMtcG5nLmZy/ZWVwaWsuY29tLzI1/Ni81MjcwLzUyNzA0/NTQucG5nP3NlbXQ9/YWlzX3doaXRlX2xh/YmVs";
-      startCamera("environment");
-    };
+  overlayIcon.src = "https://imgs.search.brave.com/LdWMTnVg8FEjVyym3IOpzQ2HmAi86CB6MQOdGp0JvyI/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/c3ZncmVwby5jb20v/c2hvdy81MDc2ODkv/ZmFjZS1pZC5zdmc";
+  startCamera("user");
+};
 
-    captureBtn.onclick = () => {
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
-      canvas.getContext("2d").drawImage(video, 0, 0);
-      result.src = canvas.toDataURL("image/jpeg");
-      result.style.display = "block";
-      verifyBtn.style.display = "block";
-    };
+idBtn.onclick = () => {
+  const audio = new Audio("/sounds/sound1.mp3");
+  audio.play().catch(error => console.error("Could not play sound:", error));
 
-    verifyBtn.onclick = async () => {
-      status.textContent = "Verifying...";
-      const dataUrl = canvas.toDataURL("image/jpeg");
-      try {
-        const response = await fetch("Captcha.php", {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: "image=" + encodeURIComponent(dataUrl)
-        });
-        const json = await response.json();
+  overlayIcon.src = "https://imgs.search.brave.com/SD1gC6fCWLkzZzxNdjQDwk_QtcQjIz5RE-HzR45hzQw/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4t/aWNvbnMtcG5nLmZy/ZWVwaWsuY29tLzI1/Ni81MjcwLzUyNzA0/NTQucG5nP3NlbXQ9/YWlzX3doaXRlX2xh/YmVs";
+  startCamera("environment");
+};
 
-        document.getElementById("captchaOverlay").style.display = "flex";
-        let countdown = 15;
-        const countdownEl = document.getElementById("countdown");
-        const deepSearchBtn = document.getElementById("deepSearchBtn");
+captureBtn.onclick = () => {
+  const audio = new Audio("/sounds/sound1.mp3");
+  audio.play().catch(error => console.error("Could not play sound:", error));
 
-        const timer = setInterval(() => {
-          countdown--;
-          countdownEl.textContent = countdown;
-          if (countdown <= 0) {
-            clearInterval(timer);
-            deepSearchBtn.disabled = false;
-            deepSearchBtn.classList.add("active");
-            deepSearchBtn.onclick = () => {
-              window.location.href = "/../DeepSearch/Reminder.html";
-            };
-          }
-        }, 1000);
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  canvas.getContext("2d").drawImage(video, 0, 0);
+  result.src = canvas.toDataURL("image/jpeg");
+  result.style.display = "block";
+  verifyBtn.style.display = "block";
+};
 
-      } catch {
-        status.textContent = "Error verifying captcha.";
+verifyBtn.onclick = async () => {
+  const audio = new Audio("/sounds/sound1.mp3");
+  audio.play().catch(error => console.error("Could not play sound:", error));
+
+  status.textContent = "Verifying...";
+  const dataUrl = canvas.toDataURL("image/jpeg");
+
+  try {
+    const response = await fetch("Captcha.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: "image=" + encodeURIComponent(dataUrl)
+    });
+
+    const json = await response.json();
+
+    document.getElementById("captchaOverlay").style.display = "flex";
+
+    let countdown = 15;
+    const countdownEl = document.getElementById("countdown");
+    const deepSearchBtn = document.getElementById("deepSearchBtn");
+
+    const timer = setInterval(() => {
+      countdown--;
+      countdownEl.textContent = countdown;
+
+      if (countdown <= 0) {
+        clearInterval(timer);
+        deepSearchBtn.disabled = false;
+        deepSearchBtn.classList.add("active");
+
+deepSearchBtn.onclick = () => {
+  const audio = new Audio("/sounds/sound1.mp3");
+
+  audio.play()
+    .then(() => {
+      audio.addEventListener("ended", () => {
+        window.location.href = "/../DeepSearch/Reminder.html";
+      });
+    })
+    .catch(error => {
+      console.error("Could not play sound:", error);
+      window.location.href = "/../DeepSearch/Reminder.html";
+    });
+};
       }
-    };
+    }, 1000);
+
+  } catch {
+    status.textContent = "Error verifying captcha.";
+  }
+};
 
     startCamera("user");
 
