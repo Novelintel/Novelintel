@@ -37,24 +37,6 @@ body {
   animation: fadeIn 0.8s ease-in forwards;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    radial-gradient(circle, rgba(255,255,255,0.18) 4px, transparent 4px),
-    radial-gradient(circle, rgba(255,255,255,0.12) 2px, transparent 2px);
-  background-size: 120px 120px, 80px 80px;
-  animation: particles 18s linear infinite;
-  opacity: 0.28;
-}
-
-@keyframes particles {
-  0% { transform: translateY(0) translateX(0); }
-  100% { transform: translateY(-200px) translateX(200px); }
-}
-
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
