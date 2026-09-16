@@ -94,6 +94,9 @@
   <label for="fullName">What is your name?</label>
   <input type="text" id="fullName" name="fullName"
          placeholder="Your name" required />
+  <small>
+    Used to personalize your account and distinguish between users with similar usernames.
+  </small>
 </div>
 
 <div class="onboarding-question">
@@ -109,7 +112,16 @@
     autocomplete="bday"
   />
   <small>
-    Please enter your date of birth in the format dd/mm/yyyy.
+    Used to determine age range to access appropriate content from integrated news articles (not search results). Minimum age is 14 years.
+  </small>
+</div>
+
+<div class="onboarding-question">
+  <label for="schoolWork">School or workplace</label>
+  <input type="text" id="schoolWork" name="schoolWork"
+         placeholder="School, university, company, etc." required />
+  <small>
+    Helps understand your professional or educational context. Investigative researchers, journalists, students, and cybersecurity professionals may use the chatbot differently.
   </small>
 </div>
 
