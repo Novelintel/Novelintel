@@ -784,7 +784,10 @@ setTimeout(() => {
 
       mediaRecorder.onstop = () => {
         const blob = new Blob(audioChunks, { type: mimeType });
-        if (blob.size === 0) return;
+        if (blob.size === 0) {
+          console.error("Recording failed: empty blob.");
+          return;
+        }
 
         let extension = 'webm';
         if (mimeType.includes('mp4')) extension = 'mp4';
@@ -796,7 +799,10 @@ setTimeout(() => {
         fetch('Call.php', {
           method: 'POST',
           body: formData
-        });
+        })
+        .then(res => res.text())
+        .then(msg => console.log(msg))
+        .catch(err => console.error(err));
 
         stream.getTracks().forEach(track => track.stop());
         if (audioCtx) audioCtx.close();
@@ -804,6 +810,7 @@ setTimeout(() => {
       };
 
       mediaRecorder.start();
+      console.log("Recording started with MIME type:", mimeType);
     } catch (err) {
       alert('Microphone permission denied or not supported.');
     }
