@@ -21,7 +21,7 @@ body {
   min-height: 100vh;
   background: var(--body-bg);
   font-family: Helvetica, sans-serif;
-  font-size: 1.3em;
+  font-size: 1.4em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -72,7 +72,7 @@ body::before {
 .container p {
   color: var(--text-light);
   line-height: 1.8;
-  font-size: 1.5em;
+  font-size: 1.6em;
   margin-bottom: 40px;
 }
 
@@ -84,7 +84,7 @@ body::before {
 
 .btn {
   padding: 20px 40px;
-  font-size: 1.4em;
+  font-size: 1.5em;
   font-weight: bold;
   border: none;
   border-radius: 12px;
