@@ -199,6 +199,22 @@ body {
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
+.onboarding-question input[type="date"] {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  display: block;
+  padding: 14px 18px;
+  margin-bottom: 5px;
+  border: none;
+  border-radius: 12px;
+  background: var(--input-bg);
+  color: var(--text-light);
+  font-size: 1em;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
 #code.active {
   opacity: 1;
   visibility: visible;
@@ -346,6 +362,151 @@ body {
 .photo-buttons button:hover {
   background: var(--button-hover);
   transform: translateY(-2px);
+}
+
+#onboarding-section {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.onboarding-hide {
+  opacity: 0 !important;
+  transform: translateY(-20px) !important;
+}
+
+.onboarding-title {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.onboarding-title h2 {
+  color: var(--text-dark);
+  font-size: 1.4em;
+  margin-bottom: 8px;
+}
+
+.onboarding-title p {
+  color: var(--text-light);
+  font-size: 0.9em;
+}
+
+.onboarding-question {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: onboardingFadeIn 0.6s ease forwards;
+  margin-bottom: 20px;
+}
+
+.onboarding-question:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.onboarding-question:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.onboarding-question:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.onboarding-question:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+.onboarding-question:nth-child(6) {
+  animation-delay: 0.5s;
+}
+
+.onboarding-question:nth-child(7) {
+  animation-delay: 0.6s;
+}
+
+.onboarding-question:nth-child(8) {
+  animation-delay: 0.7s;
+}
+
+.onboarding-question:nth-child(9) {
+  animation-delay: 0.8s;
+}
+
+.onboarding-question:nth-child(10) {
+  animation-delay: 0.9s;
+}
+
+.onboarding-question:nth-child(11) {
+  animation-delay: 1s;
+}
+
+@keyframes onboardingFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.onboarding-question select,
+.onboarding-question textarea {
+  width: 100%;
+  padding: 14px 18px;
+  margin-bottom: 5px;
+  border: none;
+  border-radius: 12px;
+  background: var(--input-bg);
+  color: var(--text-light);
+  font-size: 1em;
+  font-family: inherit;
+}
+
+.onboarding-question textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.onboarding-question select:focus,
+.onboarding-question textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(136, 136, 136, 0.5);
+}
+
+.onboarding-question small {
+  display: block;
+  margin-top: 5px;
+  color: #aaa;
+  font-size: 0.75em;
+  line-height: 1.3;
+}
+
+#continueOnboarding {
+  width: 100%;
+  padding: 14px;
+  background: var(--button-bg);
+  color: var(--text-dark);
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+#continueOnboarding:hover {
+  background: var(--button-hover);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  transform: translateY(-2px);
+}
+
+#registration-fields {
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+#registration-fields.registration-show {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 html, body {
