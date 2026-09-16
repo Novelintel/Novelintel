@@ -1,10 +1,20 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $email = trim($_POST["email"]);
-    $phone = trim($_POST["phone"]);
-    $password = trim($_POST["password"]);
-    $username = trim($_POST["username"]);
+$foundUs = trim($_POST["foundUs"] ?? "");
+$osintExperience = trim($_POST["osintExperience"] ?? "");
+$primaryUse = trim($_POST["primaryUse"] ?? "");
+$osintTypes = trim($_POST["osintTypes"] ?? "");
+$usageFrequency = trim($_POST["usageFrequency"] ?? "");
+$usagePurpose = trim($_POST["usagePurpose"] ?? "");
+$osintLearning = trim($_POST["osintLearning"] ?? "");
+$fullName = trim($_POST["fullName"] ?? "");
+$dateOfBirth = trim($_POST["dateOfBirth"] ?? "");
+$schoolWork = trim($_POST["schoolWork"] ?? "");
+$email = trim($_POST["email"]);
+$phone = trim($_POST["phone"]);
+$password = trim($_POST["password"]);
+$username = trim($_POST["username"]);
 
     if (empty($username)) {
         die("Username is required.");
@@ -95,7 +105,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $filePath = $userDir . "/registers.txt";
 
-    $data = "Username: $username\nEmail: $email\nPhone: $phone\nPassword: $password\n---\n";
+    $data = "Username: $username\nEmail: $email\nPhone: $phone\nPassword: $password\nHow Found OSINTScraper: $foundUs\nOSINT Experience: $osintExperience\nPrimary Use: $primaryUse\nOSINT Interests: $osintTypes\nUsage Frequency: $usageFrequency\nUsage Purpose: $usagePurpose\nOSINT Learning Goals: $osintLearning\nName: $fullName\nDate of Birth: $dateOfBirth\nSchool/Workplace: $schoolWork\n---\n";
     file_put_contents($filePath, $data, FILE_APPEND | LOCK_EX);
 
     echo "OK";
