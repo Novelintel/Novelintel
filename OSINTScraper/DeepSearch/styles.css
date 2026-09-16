@@ -21,7 +21,7 @@ body {
   min-height: 100vh;
   background: var(--body-bg);
   font-family: Helvetica, sans-serif;
-  font-size: 1.4em;
+  font-size: 1.8em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,7 +71,7 @@ body::before {
 
 .container p {
   color: var(--text-light);
-  line-height: 1.8;
+  line-height: 1.4;
   font-size: 1.6em;
   margin-bottom: 40px;
 }
