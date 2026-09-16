@@ -56,52 +56,6 @@ html {
   }
 }
 
-body::before {
-  content: "";
-
-  position: fixed;
-  inset: 0;
-
-  pointer-events: none;
-
-  background-image:
-    radial-gradient(
-      circle,
-      rgba(255, 255, 255, 0.18) 4px,
-      transparent 4px
-    ),
-    radial-gradient(
-      circle,
-      rgba(255, 255, 255, 0.12) 2px,
-      transparent 2px
-    );
-
-  background-size:
-    120px 120px,
-    80px 80px;
-
-  background-position:
-    0 0,
-    40px 40px;
-
-  animation: particles 18s linear infinite;
-
-  opacity: 0.28;
-
-  z-index: 0;
-}
-
-@keyframes particles {
-  0% {
-    transform: translateY(0) translateX(0);
-  }
-
-  100% {
-    transform: translateY(-200px) translateX(200px);
-  }
-}
-
-
 .nav-bar,
 .hero,
 .features {
