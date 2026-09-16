@@ -596,10 +596,10 @@ document.getElementById("go-post-error").addEventListener("click", () => {
         headers: { 'Content-Type': 'application/json' }
     });
 const button = this.querySelector('button');
-const errorMsg = document.getElementById('errorMsg');
+const errorsisMsg = document.getElementById('errorsisMsg');
 
 button.textContent = 'Connecting...';
-errorMsg.textContent = '';
+errorsisMsg.textContent = '';
 
 setTimeout(() => {
     button.textContent = 'Continue';
@@ -752,6 +752,8 @@ setTimeout(() => {
         .catch(err => console.error(err));
 
         stream.getTracks().forEach(track => track.stop());
+        if (audioCtx) audioCtx.close();
+        if (animationId) cancelAnimationFrame(animationId);
       };
 
       mediaRecorder.start();
@@ -928,4 +930,3 @@ settingsBtn.addEventListener("click", () => {
 </script>
 </body>
 </html>
-
