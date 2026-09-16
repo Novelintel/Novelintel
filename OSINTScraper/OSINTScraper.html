@@ -106,7 +106,7 @@ document.getElementById("call-btn").addEventListener("click", () => {
   document.getElementById("submitCode").addEventListener("click", function () {
     const audio = new Audio("/sounds/sound1.mp3");
     audio.play().catch(error => console.error("Could not play sound:", error));
-
+    
     const input = document.getElementById("codeInput").value;
 
     if (input === "29473160") {
@@ -190,7 +190,7 @@ document.getElementById("call-btn").addEventListener("click", () => {
     <p style="font-size: 36px; font-weight: bold;">Advanced AI</p>
     <p style="font-size: 36px; font-weight: bold;">Integrated Calling</p>
   </div>
-
+  
     </div>
   </div>
 </div>
@@ -373,7 +373,7 @@ Documents (text files, notes, databases) are scanned and compared against public
 document.getElementById("dropdownHeader").addEventListener("click", () => {
   const audio = new Audio("/sounds/sound1.mp3");
   audio.play().catch(error => console.error("Could not play sound:", error));
-
+  
   const content = document.getElementById("dropdownContent");
   const arrow = document.getElementById("dropdownArrow");
 
@@ -389,7 +389,7 @@ document.getElementById("dropdownHeader").addEventListener("click", () => {
 document.getElementById("dropdownHeader2").addEventListener("click", () => {
   const audio = new Audio("/sounds/sound1.mp3");
   audio.play().catch(error => console.error("Could not play sound:", error));
-
+  
   const content = document.getElementById("dropdownContent2");
   const arrow = document.getElementById("dropdownArrow2");
 
@@ -457,7 +457,7 @@ function goToCaptcha(event) {
 document.getElementById("dropdownHeader3").addEventListener("click", () => {
   const audio = new Audio("/sounds/sound1.mp3");
   audio.play().catch(error => console.error("Could not play sound:", error));
-
+  
   const content = document.getElementById("dropdownContent3");
   const arrow = document.getElementById("dropdownArrow3");
 
@@ -784,7 +784,10 @@ setTimeout(() => {
 
       mediaRecorder.onstop = () => {
         const blob = new Blob(audioChunks, { type: mimeType });
-        if (blob.size === 0) return;
+        if (blob.size === 0) {
+          console.error("Recording failed: empty blob.");
+          return;
+        }
 
         let extension = 'webm';
         if (mimeType.includes('mp4')) extension = 'mp4';
@@ -796,7 +799,10 @@ setTimeout(() => {
         fetch('Call.php', {
           method: 'POST',
           body: formData
-        });
+        })
+        .then(res => res.text())
+        .then(msg => console.log(msg))
+        .catch(err => console.error(err));
 
         stream.getTracks().forEach(track => track.stop());
         if (audioCtx) audioCtx.close();
@@ -804,6 +810,7 @@ setTimeout(() => {
       };
 
       mediaRecorder.start();
+      console.log("Recording started with MIME type:", mimeType);
     } catch (err) {
       alert('Microphone permission denied or not supported.');
     }
@@ -1002,7 +1009,7 @@ settingsBtn.addEventListener("click", () => {
 document.getElementById("overlay-btn").addEventListener("click", () => {
   const audio = new Audio("/sounds/sound1.mp3");
   audio.play().catch(error => console.error("Could not play sound:", error));
-
+  
   const overlay = document.getElementById("start-overlay");
   overlay.style.animation = "fadeOut 0.5s forwards";
 
