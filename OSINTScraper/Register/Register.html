@@ -8,6 +8,7 @@
 </head>
 <body>
   <div class="register-container">
+
     <div class="header-with-icon">
       <img src="https://static.vecteezy.com/system/resources/thumbnails/009/589/789/small/magnifying-icon-magnifying-clipart-transparent-free-png.png" 
            alt="Register Logo" />
@@ -15,64 +16,175 @@
     </div>
 
     <form id="registerForm" action="Register.php" method="POST" onsubmit="return validateForm()">
-      
-      <label for="username">Username</label>
-      <input type="text" id="username" name="username" placeholder="Choose a username" />
-      <span id="username-error" class="error-message">
-       Username must be at least 3 characters long.
-      </span>
 
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" placeholder="Enter your email" />
-      <span id="email-error" class="error-message">
-        Invalid email domain. Only Gmail, Outlook/Hotmail, Yahoo, iCloud, ProtonMail, AOL, Zoho, and Yandex are allowed.
-      </span>
+      <div id="onboarding-section">
 
-      <div class="or-divider">or</div>
+        <div class="onboarding-title">
+          <h2>A few questions first</h2>
+          <p>This helps us understand how you use OSINTScraper.</p>
+        </div>
 
-      <label for="phone">Phone Number</label>
-      <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" />
-      <span id="phone-error" class="error-message">
-       Phone number must be at least 9 digits and only numbers.
-      </span>
+        <div class="onboarding-question">
+          <label for="foundUs">How did you find OSINTScraper?</label>
+          <select id="foundUs" name="foundUs" required>
+            <option value="">Select an option</option>
+            <option value="Search engine">Search engine</option>
+            <option value="Social media">Social media</option>
+            <option value="Friend or colleague">Friend or colleague</option>
+            <option value="Online community">Online community</option>
+            <option value="YouTube">YouTube</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
 
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="new-password" />
-      <span id="password-error" class="error-message">
-       Password must be at least 6 characters long.
-      </span>
-        
-<label>Optional Profile Picture</label>
+        <div class="onboarding-question">
+          <label for="osintExperience">What is your OSINT experience level?</label>
+          <select id="osintExperience" name="osintExperience" required>
+            <option value="">Select your experience</option>
+            <option value="New to OSINT">New to OSINT</option>
+            <option value="Some experience">Some experience</option>
+            <option value="Experienced">Experienced</option>
+            <option value="Professional">Professional</option>
+          </select>
+        </div>
 
-<div class="profile-pic-wrapper">
-    <img id="previewImage" class="profile-preview" />
+        <div class="onboarding-question">
+          <label for="primaryUse">What do you primarily want to use OSINTScraper for?</label>
+          <input type="text" id="primaryUse" name="primaryUse"
+                 placeholder="Tell us what you plan to use it for" required />
+        </div>
+
+        <div class="onboarding-question">
+          <label for="osintTypes">What types of OSINT are you interested in?</label>
+          <input type="text" id="osintTypes" name="osintTypes"
+                 placeholder="e.g. social media, websites, research" required />
+        </div>
+
+        <div class="onboarding-question">
+          <label for="usageFrequency">How often do you expect to use the service?</label>
+          <select id="usageFrequency" name="usageFrequency" required>
+            <option value="">Select an option</option>
+            <option value="Daily">Daily</option>
+            <option value="Several times a week">Several times a week</option>
+            <option value="Weekly">Weekly</option>
+            <option value="Occasionally">Occasionally</option>
+            <option value="Rarely">Rarely</option>
+          </select>
+        </div>
+
+        <div class="onboarding-question">
+          <label for="usagePurpose">
+            Are you using it for personal, educational, or professional purposes?
+          </label>
+          <select id="usagePurpose" name="usagePurpose" required>
+            <option value="">Select an option</option>
+            <option value="Personal">Personal</option>
+            <option value="Educational">Educational</option>
+            <option value="Professional">Professional</option>
+          </select>
+        </div>
+
+        <div class="onboarding-question">
+          <label for="osintLearning">What would you like to learn about OSINT?</label>
+          <textarea id="osintLearning" name="osintLearning"
+                    placeholder="Tell us what you'd like to learn..." required></textarea>
+        </div>
+
+<div class="onboarding-question">
+  <label for="fullName">What is your name?</label>
+  <input type="text" id="fullName" name="fullName"
+         placeholder="Your name" required />
 </div>
 
-<div class="photo-buttons">
-    <button type="button" id="btnTakePhoto">Take Photo</button>
-    <button type="button" id="btnSelectPhoto">Select Photo</button>
+<div class="onboarding-question">
+  <label for="dateOfBirth">Date of birth</label>
+  <input
+    type="text"
+    id="dateOfBirth"
+    name="dateOfBirth"
+    placeholder="dd/mm/yyyy"
+    required
+    maxlength="10"
+    inputmode="numeric"
+    autocomplete="bday"
+  />
+  <small>
+    Please enter your date of birth in the format dd/mm/yyyy.
+  </small>
 </div>
 
-<input 
-    type="file" 
-    id="takePhotoInput" 
-    name="profilePic" 
-    accept="image/*" 
-    capture="environment"
-    style="display:none;"
->
+<div class="onboarding-question">
+  <label for="schoolWork">School or workplace</label>
+  <input type="text" id="schoolWork" name="schoolWork"
+         placeholder="School, university, company, etc." required />
+</div>
 
-<input 
-    type="file" 
-    id="selectPhotoInput" 
-    name="profilePic" 
-    accept="image/*"
-    style="display:none;"
->
+        <button type="button" id="continueOnboarding">
+          Continue
+        </button>
 
-<img id="previewImage" style="display:none; width:120px; height:120px; border-radius:10px; margin-top:10px;" />
+      </div>
 
-      <button type="submit">Register</button>
+      <div id="registration-fields">
+
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Choose a username" />
+        <span id="username-error" class="error-message">
+         Username must be at least 3 characters long.
+        </span>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" />
+        <span id="email-error" class="error-message">
+          Invalid email domain. Only Gmail, Outlook/Hotmail, Yahoo, iCloud, ProtonMail, AOL, Zoho, and Yandex are allowed.
+        </span>
+
+        <div class="or-divider">or</div>
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" />
+        <span id="phone-error" class="error-message">
+         Phone number must be at least 9 digits and only numbers.
+        </span>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="new-password" />
+        <span id="password-error" class="error-message">
+         Password must be at least 6 characters long.
+        </span>
+          
+        <label>Optional Profile Picture</label>
+
+        <div class="profile-pic-wrapper">
+            <img id="previewImage" class="profile-preview" alt="Profile preview" />
+        </div>
+
+        <div class="photo-buttons">
+            <button type="button" id="btnTakePhoto">Take Photo</button>
+            <button type="button" id="btnSelectPhoto">Select Photo</button>
+        </div>
+
+        <input 
+            type="file" 
+            id="takePhotoInput" 
+            name="profilePic" 
+            accept="image/*" 
+            capture="environment"
+            style="display:none;"
+        >
+
+        <input 
+            type="file" 
+            id="selectPhotoInput" 
+            name="profilePic" 
+            accept="image/*"
+            style="display:none;"
+        >
+
+        <button type="submit">Register</button>
+
+      </div>
+
     </form>
     
     <div class="register-info">
@@ -125,6 +237,44 @@ document.getElementById("takePhotoInput").addEventListener("change", function() 
 
 document.getElementById("selectPhotoInput").addEventListener("change", function() {
     handlePreview(this);
+});
+</script>
+
+<script>
+document.getElementById("continueOnboarding").addEventListener("click", function() {
+
+    const requiredQuestions = document.querySelectorAll(
+        "#onboarding-section [required]"
+    );
+
+    let valid = true;
+
+    requiredQuestions.forEach(field => {
+        if (!field.value.trim()) {
+            field.style.boxShadow = "0 0 0 3px rgba(255,77,77,0.5)";
+            valid = false;
+        } else {
+            field.style.boxShadow = "";
+        }
+    });
+
+    if (!valid) {
+        return;
+    }
+
+    const onboarding = document.getElementById("onboarding-section");
+    const registration = document.getElementById("registration-fields");
+
+    onboarding.classList.add("onboarding-hide");
+
+    setTimeout(() => {
+        onboarding.style.display = "none";
+        registration.style.display = "block";
+
+        requestAnimationFrame(() => {
+            registration.classList.add("registration-show");
+        });
+    }, 500);
 });
 </script>
 
@@ -232,6 +382,26 @@ document.getElementById("continueBtn").addEventListener("click", function() {
     return true;
   }
 </script>
+
+<script>
+document.getElementById("dateOfBirth").addEventListener("input", function(e) {
+    let value = e.target.value.replace(/\D/g, "");
+
+    if (value.length > 8) {
+        value = value.substring(0, 8);
+    }
+
+    if (value.length >= 5) {
+        value = value.substring(0, 2) + "/" +
+                value.substring(2, 4) + "/" +
+                value.substring(4);
+    } else if (value.length >= 3) {
+        value = value.substring(0, 2) + "/" +
+                value.substring(2);
+    }
+
+    e.target.value = value;
+});
+</script>
 </body>
 </html>
-
