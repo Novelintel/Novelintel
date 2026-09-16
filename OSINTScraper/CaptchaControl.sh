@@ -34,11 +34,11 @@ read -p "Enter choice (1, 2 or q): " choice
 
 case $choice in
   1)
-    sed -i "s|onclick=\"location.href='Engine/OSINTScraper.html'\"|onclick=\"location.href='OSINTScraper.html'\"|" "$HTML_FILE"
+    sed -i 's|window.location.href = "Engine/OSINTScraper.html";|window.location.href = "OSINTScraper.html";|g' "$HTML_FILE"
     echo "Updated I Agree redirect to OSINTScraper.html (Image was Valid)"
     ;;
   2)
-    sed -i "s|onclick=\"location.href='OSINTScraper.html'\"|onclick=\"location.href='Engine/OSINTScraper.html'\"|" "$HTML_FILE"
+    sed -i 's|window.location.href = "OSINTScraper.html";|window.location.href = "Engine/OSINTScraper.html";|g' "$HTML_FILE"
     echo "Updated I Agree redirect to /Engine/OSINTScraper.html (Image was Invalid)"
     ;;
   q|Q)
