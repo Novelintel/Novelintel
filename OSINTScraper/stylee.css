@@ -1,15 +1,15 @@
 :root {
-  --bg-1: #1a1a1a;
-  --bg-2: #222222;
-  --bg-3: #2a2a2a;
+  --bg-1: #F4E9DF;
+  --bg-2: #F4E9DF;
+  --bg-3: #F4E9DF;
 
-  --accent: #888888;
-  --accent-glow: rgba(136, 136, 136, 0.45);
+  --accent: #C58F75;
+  --accent-glow: rgba(197, 143, 117, 0.22);
 
-  --text-light: #f5f5f5;
+  --text-light: #4A403A;
 
-  --glass: rgba(255, 255, 255, 0.08);
-  --glass-border: rgba(255, 255, 255, 0.15);
+  --glass: rgba(255, 248, 242, 0.72);
+  --glass-border: rgba(197, 143, 117, 0.35);
 
   --transition: 0.35s ease;
 }
@@ -23,27 +23,22 @@ body {
 
   font-family: "Inter", sans-serif;
 
-  background:
-    radial-gradient(
-      circle at 20% 20%,
-      var(--bg-3),
-      var(--bg-2),
-      var(--bg-1)
-    );
+  background: linear-gradient(
+    135deg,
+    var(--bg-1) 0%,
+    var(--bg-2) 50%,
+    var(--bg-3) 100%
+  );
 
   background-attachment: fixed;
-  background-size: 200% 200%;
 
   color: var(--text-light);
 
   overflow-x: hidden;
-
-  animation: bgShift 12s ease-in-out infinite alternate;
 }
 
 html {
   background-color: var(--bg-1);
-  color-scheme: dark;
 }
 
 @keyframes bgShift {
@@ -94,7 +89,7 @@ html {
 
   padding: 16px;
 
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(240, 220, 208, 0.92);
 
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -153,7 +148,6 @@ html {
   margin: 0 auto;
 }
 
-
 .hero-content h1 {
   font-size: 2em;
 
@@ -164,7 +158,6 @@ html {
 
   animation: glowPulse 4s infinite ease-in-out;
 }
-
 
 .sub-headline {
   font-size: 1.2em;
@@ -271,13 +264,13 @@ html {
 .feature-item:hover {
   transform: translateY(-5px);
 
-  background: rgba(255, 255, 255, 0.11);
+  background: rgba(255, 248, 242, 0.82);
 
-  border-color: rgba(255, 255, 255, 0.25);
+  border-color: rgba(197, 143, 117, 0.5);
 
   box-shadow:
-    0 10px 35px rgba(0, 0, 0, 0.25),
-    0 0 20px rgba(136, 136, 136, 0.08);
+    0 10px 35px rgba(91, 66, 52, 0.25),
+    0 0 20px rgba(197, 143, 117, 0.08);
 }
 
 .step-img {
@@ -297,7 +290,7 @@ html {
 
   object-fit: contain;
 
-  background: rgba(0, 0, 0, 0.15);
+  background: rgba(240, 220, 208, 0.35);
 
   transition:
     transform var(--transition),
@@ -307,7 +300,7 @@ html {
 .step-img:hover {
   transform: scale(1.01);
 
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 25px rgba(91, 66, 52, 0.25);
 }
 
 .step-text {
