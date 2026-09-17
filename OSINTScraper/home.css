@@ -1,28 +1,30 @@
 :root {
-  --bg-1: #1a1a1a;  
-  --bg-2: #222222;    
-  --bg-3: #2a2a2a;    
-  --accent: #888888;
-  --accent-glow: rgba(136, 136, 136, 0.45);
-  --text-light: #f5f5f5;
-  --glass: rgba(255, 255, 255, 0.08);
-  --glass-border: rgba(255, 255, 255, 0.15);
-  --transition: 0.35s ease;
+  --bg-1: #F4E9DF;
+  --bg-2: #F8EFE8;
+  --bg-3: #E5B39A;
+  --accent: #C58F75;
+  --accent-hover: #B57D65;
+  --accent-glow: rgba(197, 143, 117, 0.22);
+  --text-light: #4A403A;
+  --text-dark: #2B2724;
+  --glass: rgba(255, 248, 242, 0.72);
+  --glass-border: rgba(197, 143, 117, 0.35);
+  --transition: 0.25s ease;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   font-family: "Inter", sans-serif;
-  background: radial-gradient(circle at 20% 20%, var(--bg-3), var(--bg-2), var(--bg-1));
+  background: var(--bg-1);
   color: var(--text-light);
   overflow-x: hidden;
-  animation: bgShift 12s ease-in-out infinite alternate;
 }
 
-@keyframes bgShift {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 100% 100%; }
+body {
+  background: linear-gradient(135deg, #F4E9DF 0%, #F8EFE8 50%, #E5B39A 100%);
+  background-attachment: fixed;
 }
 
 .fade-in {
@@ -41,44 +43,48 @@ html, body {
   flex-direction: column;
   text-align: center;
   padding: 16px;
-  background: rgba(0,0,0,0.35);
-  backdrop-filter: blur(10px);
+  background: rgba(240, 220, 208, 0.92);
+  backdrop-filter: none;
   border-bottom: 1px solid var(--glass-border);
   animation: slideDown 1s ease forwards;
 }
 
 .osint-btn {
-  background: #6e6e6e;
-  color: #fff;
-  border: none;
+  background: #C58F75;
+  color: #FFFFFF;
+  border: 1px solid #B57D65;
   border-radius: 8px;
   padding: 10px 18px;
   font-size: 1em;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-  transition: background 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 3px 8px rgba(91, 66, 52, 0.14);
+  transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  animation: buttonPulse 3s infinite ease-in-out;
 }
 
 .osint-btn:hover {
-  background: #888888;
+  background: #B57D65;
   transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(91, 66, 52, 0.2);
 }
 
 @keyframes slideDown {
-  from { transform: translateY(-40px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(-40px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .logo {
   font-size: 1.8em;
-  font-weight: 700;
-  color: var(--accent);
+  font-weight: 600;
+  color: #2B2724;
   margin-bottom: 8px;
-  animation: glowPulse 4s infinite ease-in-out;
-}
-
-@keyframes glowPulse {
-  0%, 100% { text-shadow: 0 0 10px var(--accent-glow); }
-  50% { text-shadow: 0 0 25px var(--accent-glow); }
+  animation: none;
 }
 
 .hero {
@@ -91,49 +97,54 @@ html, body {
 .hero-content h1 {
   font-size: 2em;
   margin-bottom: 10px;
-  animation: glowPulse 4s infinite ease-in-out;
+  color: #2B2724;
+  animation: none;
 }
 
 .sub-headline {
   font-size: 1.2em;
   margin-bottom: 16px;
-  animation: slideInLeft 1s ease;
-}
-
-@keyframes slideInLeft {
-  from { transform: translateX(-40px); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+  color: #4A403A;
+  animation: none;
 }
 
 .hero-content p {
   font-size: 1em;
   opacity: 0.85;
   margin-bottom: 16px;
-  animation: fadeInText 1.5s ease;
-}
-
-@keyframes fadeInText {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  color: #4A403A;
+  animation: none;
 }
 
 .cta-btn {
   padding: 12px 20px;
   font-size: 1em;
-  border-radius: 12px;
+  border-radius: 10px;
   cursor: pointer;
-  border: 1px solid var(--glass-border);
-  background: var(--glass);
-  backdrop-filter: blur(10px);
-  transition: var(--transition);
+  border: 1px solid rgba(197, 143, 117, 0.4);
+  background: #F8EFE8;
+  backdrop-filter: none;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
   width: 100%;
   animation: buttonPulse 3s infinite ease-in-out;
-  color: #ffffff;
+  color: #2B2724;
+}
+
+.cta-btn:hover {
+  background: #F0DED2;
+  border-color: rgba(197, 143, 117, 0.6);
+  transform: translateY(-2px);
 }
 
 @keyframes buttonPulse {
-  0%, 100% { box-shadow: 0 0 10px transparent; }
-  50% { box-shadow: 0 0 18px var(--accent-glow); }
+  0%,
+  100% {
+    box-shadow: 0 3px 8px rgba(91, 66, 52, 0.1);
+  }
+
+  50% {
+    box-shadow: 0 5px 16px rgba(197, 143, 117, 0.25);
+  }
 }
 
 .hero-stats {
@@ -144,18 +155,25 @@ html, body {
 }
 
 .stat-item {
-  background: var(--glass);
+  background: rgba(255, 248, 242, 0.72);
   border: 1px solid var(--glass-border);
   padding: 16px;
-  border-radius: 14px;
-  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  backdrop-filter: none;
   text-align: center;
   animation: floatUp 3s ease-in-out infinite;
+  box-shadow: 0 3px 10px rgba(91, 66, 52, 0.08);
 }
 
 @keyframes floatUp {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
 }
 
 .features {
@@ -171,92 +189,104 @@ html, body {
 
 .feature-item {
   padding: 20px;
-  background: var(--glass);
+  background: rgba(255, 248, 242, 0.72);
   border: 1px solid var(--glass-border);
-  border-radius: 16px;
-  backdrop-filter: blur(10px);
-  box-shadow: var(--shadow-soft);
+  border-radius: 14px;
+  backdrop-filter: none;
+  box-shadow: 0 4px 12px rgba(91, 66, 52, 0.09);
   animation: breathe 4s infinite ease-in-out;
 }
 
 @keyframes breathe {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.03); }
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.015);
+  }
 }
 
 .deploy {
   padding: 50px 20px;
   text-align: center;
-  background: #000;          
-  border-radius: 22px;
+  background: #E5C5B2;
+  border-radius: 20px;
   animation: fadeIn 2s ease;
-  max-width: 900px;                 
-  margin: 0 auto;               
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .deploy-list {
   padding: 0;
   margin: 0;
-  list-style: none;    
+  list-style: none;
 }
 
 .deploy-list li {
-  margin: 1px 0;              
+  margin: 1px 0;
   font-size: 1.1em;
   padding: 22px;
-  background: #1c1c1c;        
-  border-radius: 14px;
+  background: #F8EFE8;
+  border-radius: 12px;
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(255,255,255,0.06);
+  backdrop-filter: none;
+  border: 1px solid rgba(197, 143, 117, 0.35);
   text-align: left;
-
   animation: cardLift 3s ease-in-out infinite;
+  box-shadow: 0 3px 9px rgba(91, 66, 52, 0.08);
 }
 
 .deploy-list li::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(255,255,255,0.10) 0%,
-    transparent 70%
-  );
+  background: rgba(255, 248, 242, 0.18);
   opacity: 0;
   animation: cardGlow 4s ease-in-out infinite;
   pointer-events: none;
   border-radius: inherit;
 }
 
+.deploy-list li:hover {
+  background: #F5E6DC;
+  border-color: rgba(197, 143, 117, 0.5);
+}
+
 @keyframes cardLift {
-  0%, 100% { 
-    transform: translateY(0) scale(1); 
-    box-shadow: 0 0 0 rgba(0,0,0,0); 
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 3px 9px rgba(91, 66, 52, 0.08);
   }
-  50% { 
-    transform: translateY(-8px) scale(1.02); 
-    box-shadow: 0 10px 22px rgba(0,0,0,0.55); 
+
+  50% {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 8px 18px rgba(91, 66, 52, 0.14);
   }
 }
 
 @keyframes cardGlow {
-  0%, 100% { opacity: 0; transform: scale(1); }
-  50% { opacity: 0.25; transform: scale(1.05); }
-}
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
 
-@keyframes slideGlow {
-  0% { left: -100%; }
-  100% { left: 100%; }
+  50% {
+    opacity: 0.18;
+    transform: scale(1.02);
+  }
 }
 
 .logo-title {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0;      
-  margin-left: -30px; 
+  gap: 0;
+  margin-left: -30px;
 }
 
 .logo-img {
@@ -264,11 +294,11 @@ html, body {
   height: auto;
 }
 
-html, body {
-  background-color: #1a1a1a;
+html,
+body {
+  background-color: #F4E9DF;
 }
 
 body {
   background-attachment: fixed;
 }
-
