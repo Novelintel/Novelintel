@@ -1,11 +1,11 @@
 :root {
-  --body-bg: linear-gradient(135deg, #1a1a1a 0%, #222222 50%, #2a2a2a 100%);
-  --container-bg: #1f1f1f;
-  --border: 3px solid #2a2a2a;
-  --accent-light: #2e2e2e;
-  --accent-dark: #3a3a3a;
-  --text-light: #eee;
-  --text-dark: #fff;
+  --body-bg: linear-gradient(135deg, #F4E9DF 100%, #F8EFE8 100%, #E5B39A 100%);
+  --container-bg: #F8EFE8;
+  --border: 3px solid #E5B39A;
+  --accent-light: #E5B39A;
+  --accent-dark: #C58F75;
+  --text-light: #4A403A;
+  --text-dark: #2B2724;
 }
 
 html {
@@ -41,7 +41,7 @@ body {
   border: var(--border);
   border-radius: 20px;
   padding: 60px;
-  box-shadow: 0 16px 32px rgba(0,0,0,0.6);
+  box-shadow: 0 16px 32px rgba(91, 66, 52, 0.2);
   text-align: center;
 }
 
@@ -75,27 +75,27 @@ body {
 }
 
 .btn.agree {
-  background: #4caf50;
+  background: #E5B39A;
   color: var(--text-dark);
 }
 .btn.agree:hover {
-  background: #45a049;
+  background: #C58F75;
   transform: translateY(-3px);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.5);
+  box-shadow: 0 8px 18px rgba(91, 66, 52, 0.2);
 }
 
 .btn.decline {
-  background: #d9534f;
+  background: #E5B39A;
   color: var(--text-dark);
 }
 .btn.decline:hover {
-  background: #c9302c;
+  background: #C58F75;
   transform: translateY(-3px);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.5);
+  box-shadow: 0 8px 18px rgba(91, 66, 52, 0.2);
 }
 
 html, body {
-  background-color: #1a1a1a;
+  background-color: #F4E9DF;
 }
 
 body {
