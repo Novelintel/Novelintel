@@ -132,6 +132,39 @@ body {
   font-size: 1.3em;
 }
 
+.bot-message-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.bot-action-btn {
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  color: inherit;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.bot-action-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.bot-action-btn:active {
+  transform: scale(0.95);
+}
+
+.copy-btn,
+.share-btn {
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
 .dropdown-header {
   background: #E5C5B2;
   padding: 16px 20px;
