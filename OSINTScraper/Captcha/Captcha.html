@@ -5,19 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Captcha</title>
 
-  <style>
+<style>
 :root {
-  --body-bg: linear-gradient(135deg, #1a1a1a 0%, #222222 50%, #2a2a2a 100%);
-  --panel-gradient: linear-gradient(145deg, #1f1f1f, #2a2a2a);
-  --input-bg: #2e2e2e;
-  --button-bg: #6e6e6e;   
-  --button-hover: #888888;  
-  --border: 2px solid #2a2a2a;
-  --text-light: #eee;
-  --text-dark: #fff;
+  --body-bg: linear-gradient(135deg, #F4E9DF 100%, #F8EFE8 100%, #E5B39A 100%);
+  --panel-gradient: linear-gradient(145deg, #F8EFE8, #F2E2D7);
+  --input-bg: #F0DED2;
+
+  --button-bg: #C9967C;
+  --button-hover: #B98269;
+
+  --border: 2px solid #D7B8A6;
+  --input-border: rgba(185, 130, 105, 0.45);
+
+  --text-light: #5A4A42;
+  --text-dark: #2D2926;
+
+  --accent: #B98269;
+  --accent-glow: rgba(185, 130, 105, 0.25);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
   min-height: 100vh;
@@ -27,9 +38,20 @@ body {
   justify-content: center;
   align-items: center;
   animation: fadeIn 1s ease-in forwards;
+  color: var(--text-light);
+  padding: 20px;
+  background-attachment: fixed;
 }
 
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
 
 .register-container {
   width: 100%;
@@ -37,13 +59,16 @@ body {
   background: var(--panel-gradient);
   padding: 35px 28px;
   border-radius: 16px;
-  box-shadow: 0 12px 20px rgba(0,0,0,0.4);
+  box-shadow: 0 12px 20px rgba(91, 67, 56, 0.14);
   border: var(--border);
   color: var(--text-light);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.register-container:hover { transform: translateY(-3px); }
+.register-container:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 26px rgba(91, 67, 56, 0.18);
+}
 
 .header-with-icon {
   display: flex;
@@ -70,34 +95,55 @@ body {
 .info-link {
   text-align: center;
   margin-bottom: 25px;
+  color: var(--text-light);
 }
 
 .register-container button {
   width: 100%;
   padding: 14px;
   background: var(--button-bg);
-  color: var(--text-dark);
+  color: #FFFFFF;
   font-weight: bold;
   font-size: 16px;
   border: none;
   border-radius: 12px;
   cursor: pointer;
-  transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.2s ease;
+
+  box-shadow: 0 4px 8px rgba(91, 67, 56, 0.16);
+
+  animation: buttonPulse 3s infinite ease-in-out;
 }
 
 .register-container button:hover {
   background: var(--button-hover);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  box-shadow: 0 6px 12px rgba(91, 67, 56, 0.20);
   transform: translateY(-2px);
 }
 
 .register-container button:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(136, 136, 136, 0.5);
+  box-shadow: 0 0 0 3px rgba(185, 130, 105, 0.30);
 }
 
-video, canvas, img {
+@keyframes buttonPulse {
+  0%,
+  100% {
+    box-shadow: 0 4px 8px rgba(91, 67, 56, 0.12);
+  }
+
+  50% {
+    box-shadow: 0 6px 16px rgba(185, 130, 105, 0.25);
+  }
+}
+
+video,
+canvas,
+img {
   width: 100%;
   border-radius: 12px;
   margin-bottom: 20px;
@@ -110,7 +156,10 @@ video, canvas, img {
   margin: 20px 0;
 }
 
-.video-container { position: relative; margin-bottom: 8px; }
+.video-container {
+  position: relative;
+  margin-bottom: 8px;
+}
 
 .overlay-icon {
   position: absolute;
@@ -123,15 +172,23 @@ video, canvas, img {
   pointer-events: none;
 }
 
-video::-webkit-media-controls { display: none !important; }
-video::-moz-media-controls { display: none !important; }
+video::-webkit-media-controls {
+  display: none !important;
+}
 
-#captureBtn { margin-top: 0; }
+video::-moz-media-controls {
+  display: none !important;
+}
+
+#captureBtn {
+  margin-top: 0;
+}
 
 .captcha-info {
   margin-top: 25px;
   padding: 12px;
-  background: rgba(255,255,255,0.05);
+  background: rgba(255, 250, 245, 0.55);
+  border: 1px solid rgba(185, 130, 105, 0.25);
   border-radius: 8px;
   font-size: 0.9em;
   color: var(--text-light);
@@ -141,12 +198,19 @@ video::-moz-media-controls { display: none !important; }
 
 #captchaOverlay {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.6);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: rgba(67, 49, 41, 0.55);
+
+  backdrop-filter: blur(4px);
+
   display: none;
   justify-content: center;
   align-items: center;
+
   z-index: 9999;
 }
 
@@ -156,50 +220,130 @@ video::-moz-media-controls { display: none !important; }
   padding: 30px;
   width: 320px;
   text-align: center;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+
+  box-shadow: 0 12px 28px rgba(91, 67, 56, 0.20);
+
+  border: var(--border);
+
   color: var(--text-light);
+  animation: scaleIn 0.3s ease;
 }
 
 .overlay-box .checkmark {
   font-size: 48px;
-  color: #4CAF50;
+  color: #6D9B72;
   margin-bottom: 15px;
 }
 
-# {
-  font-size: 20px;
-  font-weight: bold;
-  margin: 10px 0;
-  color: var(--text-dark);
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 #deepSearchBtn {
   width: 100%;
   padding: 12px;
+
   border-radius: 10px;
-  border: none;
+
+  border: 1px solid rgba(185, 130, 105, 0.35);
+
   font-weight: bold;
   font-size: 16px;
+
   cursor: not-allowed;
-  background: #2a2a2a;
-  color: #ccc;
-  transition: background 0.3s ease;
+
+  background: #E5D1C4;
+  color: #8A756A;
+
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.2s ease;
 }
 
 #deepSearchBtn.active {
   background: var(--button-bg);
-  color: var(--text-dark);
+  color: #FFFFFF;
   cursor: pointer;
+
+  box-shadow: 0 4px 8px rgba(91, 67, 56, 0.16);
 }
 
-html, body {
-  background-color: #1a1a1a;
+#deepSearchBtn.active:hover {
+  background: var(--button-hover);
+  transform: translateY(-2px);
+
+  box-shadow: 0 6px 12px rgba(91, 67, 56, 0.20);
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 14px 18px;
+
+  background: var(--input-bg);
+
+  color: var(--text-dark);
+
+  font-family: inherit;
+  font-size: 1em;
+
+  border: 1px solid rgba(185, 130, 105, 0.45);
+
+  border-radius: 12px;
+
+  transition:
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease,
+    transform 0.2s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #6B5A51;
+  opacity: 0.8;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+
+  border-color: #B98269;
+
+  background: #F5E6DC;
+
+  box-shadow:
+    0 0 0 3px rgba(185, 130, 105, 0.22);
+
+  transform: scale(1.01);
+}
+
+label {
+  color: var(--text-dark);
+  font-weight: bold;
+}
+
+html,
+body {
+  background-color: #F4E9DF;
 }
 
 body {
   background-attachment: fixed;
 }
-  </style>
+</style>
+
 </head>
 
 <body>
@@ -209,14 +353,15 @@ body {
       <h2>Captcha</h2>
     </div>
 
-    <div class="info-link">
-      <p style="margin-bottom:10px; font-weight:bold; color:#fff;">
-        Why use Face/ID as a Captcha
-      </p>
-<button onclick="playWhySound()"
-        style="padding:10px 18px; background:#6e6e6e; color:#ffff; border:none; border-radius:8px; cursor:pointer; font-weight:bold;">
-  Here is why
-</button>
+<div class="info-link">
+  <p style="margin-bottom:10px; font-weight:bold; color:#5A4A42;">
+    Why use Face/ID as a Captcha
+  </p>
+
+  <button onclick="playWhySound()"
+    style="padding:10px 18px; background:#C9967C; color:#FFFFFF; border:none; border-radius:8px; cursor:pointer; font-weight:bold;">
+    Here is why
+  </button>
 
 <script>
 function playWhySound() {
