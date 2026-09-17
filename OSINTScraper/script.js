@@ -177,6 +177,8 @@ appendMessage(BOT_NAME, BOT_IMG, "left", "Invalid command please try again. if e
 });
 
 function appendMessage(name, img, side, text, typingEffect = false) {
+  const isBot = side === "left";
+
   const msgHTML = `
     <div class="msg ${side}-msg">
       <div class="msg-img" style="background-image: url(${img})"></div>
@@ -185,25 +187,125 @@ function appendMessage(name, img, side, text, typingEffect = false) {
           <div class="msg-info-name">${name}</div>
           <div class="msg-info-time">${formatDate(new Date())}</div>
         </div>
+
         <div class="msg-text"></div>
+
+        ${isBot ? `
+          <div class="bot-message-actions">
+            <button type="button" class="bot-action-btn copy-btn">
+              Copy
+            </button>
+            <button type="button" class="bot-action-btn share-btn">
+              Share
+            </button>
+          </div>
+        ` : ""}
       </div>
     </div>
   `;
+
   msgerChat.insertAdjacentHTML("beforeend", msgHTML);
   msgerChat.scrollTop = msgerChat.scrollHeight;
 
-  const msgTextDiv = msgerChat.querySelector(".msg:last-child .msg-text");
+  const msg = msgerChat.querySelector(".msg:last-child");
+  const msgTextDiv = msg.querySelector(".msg-text");
 
   if (typingEffect) {
     let i = 0;
+
     const interval = setInterval(() => {
       msgTextDiv.textContent += text.charAt(i);
       i++;
+
       msgerChat.scrollTop = msgerChat.scrollHeight;
-      if (i >= text.length) clearInterval(interval);
+
+      if (i >= text.length) {
+        clearInterval(interval);
+      }
     }, 40);
   } else {
     msgTextDiv.textContent = text;
+  }
+
+  if (isBot) {
+    const copyBtn = msg.querySelector(".copy-btn");
+    const shareBtn = msg.querySelector(".share-btn");
+
+    copyBtn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(msgTextDiv.textContent);
+
+        copyBtn.textContent = "Copied!";
+
+        setTimeout(() => {
+          copyBtn.textContent = "Copy";
+        }, 1500);
+
+      } catch (err) {
+        const textarea = document.createElement("textarea");
+        textarea.value = msgTextDiv.textContent;
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+
+        document.body.appendChild(textarea);
+        textarea.select();
+
+        try {
+          document.execCommand("copy");
+          copyBtn.textContent = "Copied!";
+
+          setTimeout(() => {
+            copyBtn.textContent = "Copy";
+          }, 1500);
+        } catch (error) {
+          copyBtn.textContent = "Failed";
+
+          setTimeout(() => {
+            copyBtn.textContent = "Copy";
+          }, 1500);
+        }
+
+        document.body.removeChild(textarea);
+      }
+    });
+      
+    shareBtn.addEventListener("click", async () => {
+      const messageText = msgTextDiv.textContent;
+
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: "OSINTScraper",
+            text: messageText
+          });
+
+          shareBtn.textContent = "Shared!";
+
+          setTimeout(() => {
+            shareBtn.textContent = "Share";
+          }, 1500);
+
+        } catch (err) {
+          if (err.name !== "AbortError") {
+            console.error("Share failed:", err);
+          }
+        }
+
+      } else {
+        try {
+          await navigator.clipboard.writeText(messageText);
+
+          shareBtn.textContent = "Copied!";
+
+          setTimeout(() => {
+            shareBtn.textContent = "Share";
+          }, 1500);
+
+        } catch (err) {
+          console.error("Share/copy failed:", err);
+        }
+      }
+    });
   }
 }
 
