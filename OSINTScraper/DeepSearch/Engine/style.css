@@ -1,16 +1,16 @@
 :root {
-  --body-bg: linear-gradient(135deg, #1a1a1a 0%, #222 50%, #2a2a2a 100%);
-  --container-bg: #1f1f1f;
-  --border: 3px solid #2a2a2a;
-  --text-light: #e6e6e6;
-  --text-dark: #fff;
+  --body-bg: linear-gradient(135deg, #F0E3DA 100%, #F4E9E1 100%, #E5C5B2 100%);
+  --container-bg: #F4E9E1;
+  --border: 2px solid #D6A68C;
+  --text-light: #4A403A;
+  --text-dark: #2B2724;
 
-  --btn-grey: #b5b5b5;
-  --btn-grey-hover: #c8c8c8;
+  --btn-grey: #C58F75;
+  --btn-grey-hover: #B57D65;
 }
 
 html {
-  background-color: #1a1a1a;
+  background-color: #F0E3DA;
   height: -webkit-fill-available;
 }
 
@@ -21,7 +21,7 @@ body {
   margin: 0;
 
   background: var(--body-bg);
-  background-color: #1a1a1a;
+  background-color: #F0E3DA;
 
   font-family: Helvetica, sans-serif;
   font-size: 1.2em;
@@ -51,7 +51,7 @@ body {
   border-radius: 20px;
 
   padding: 20px 25px;      
-  box-shadow: 0 16px 32px rgba(0,0,0,0.6);
+  box-shadow: 0 16px 32px rgba(91, 66, 52, 0.6);
 
   text-align: center;
 
@@ -87,7 +87,7 @@ body {
   cursor: pointer;
 
   background: var(--btn-grey);
-  color: #fff;
+  color: #FFFFFF;
 
   transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease;
   width: 100%;
@@ -96,7 +96,7 @@ body {
 .btn:hover {
   background: var(--btn-grey-hover);
   transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.5);
+  box-shadow: 0 6px 14px rgba(91, 66, 52, 0.5);
 }
 
 @media (min-width: 700px) {
@@ -124,4 +124,3 @@ body {
     font-size: 1.3em;
   }
 }
-
