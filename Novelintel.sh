@@ -1344,11 +1344,12 @@ host_create_menu() {
   while true; do
     clear
     draw_banner
-    echo "[1] HOST OSINTSCRAPER"
+    echo "[1] HOST WEBSITE"
     echo "[2] HOST MINECRAFT SERVER"
     echo "[3] CREATE ISO (cubic if installed)"
     echo "[4] GOOGLE FORM"
-    echo "[5] RETURN"
+    echo "[5] GET NOTIFIED WHEN OSINTSCRAPER IS VISITED"
+    echo "[6] RETURN"
     echo
     read -p "> " choice2
 
@@ -1383,8 +1384,37 @@ host_create_menu() {
         ;;
 
       5)
+        read -p "Enter Discord webhook: " discord_webhook
+
+        if [ -z "$discord_webhook" ]; then
+          echo "Discord webhook cannot be empty."
+          read -p "Press Enter to continue..."
+          continue
+        fi
+
+        discord_base64=$(printf '%s' "$discord_webhook" | base64 -w 0)
+        introduction_file="$SCRIPT_DIR/OSINTScraper/Introduction.html"
+
+        if [ ! -f "$introduction_file" ]; then
+          echo "Error: Introduction.html not found."
+          read -p "Press Enter to continue..."
+          continue
+        fi
+
+        if grep -q 'cmVwbGFjZXRoaXM=' "$introduction_file"; then
+          sed -i "0,/cmVwbGFjZXRoaXM=/s//${discord_base64}/" "$introduction_file"
+          echo "Discord webhook added successfully."
+        else
+          echo "Error: Placeholder cmVwbGFjZXRoaXM= was not found."
+        fi
+
+        read -p "Press Enter to continue..."
+        ;;
+
+      6)
         break
         ;;
+
     esac
   done
 }
