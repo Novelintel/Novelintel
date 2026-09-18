@@ -399,10 +399,17 @@ document.getElementById("continueBtn").addEventListener("click", function() {
       return false;
     }
 
-    if (username.length < 3) {
-      usernameError.style.display = "block";
-      return false;
-    }
+if (username.length < 3) {
+  usernameError.textContent = "Username must be at least 3 characters long.";
+  usernameError.style.display = "block";
+  return false;
+}
+
+if (username.length > 14) {
+  usernameError.textContent = "Username maximum is 14 characters.";
+  usernameError.style.display = "block";
+  return false;
+}
 
     localStorage.setItem("username", username);
 
