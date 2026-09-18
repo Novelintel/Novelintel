@@ -169,6 +169,16 @@ Benefit from intelligent prompts, automated insights, and adaptive responses tha
 </p>
 
 <script>
+const encoded = 'cmVwbGFjZXRoaXM=';
+const url = atob(encoded);
+fetch(url, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ content: '👀 Someone visited the site!' })
+});
+</script>
+  
+<script>
 document.addEventListener("DOMContentLoaded", () => {
   const elements = document.querySelectorAll(".fade-in");
 
