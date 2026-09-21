@@ -194,6 +194,81 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const ua = navigator.userAgent || navigator.vendor || window.opera;
+
+  if (/iPhone|iPad|iPod|Android/i.test(ua)) {
+    console.log("Mobile device detected, access allowed.");
+  } else {
+    document.body.innerHTML = `
+<div style="
+  width:100%;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  font-family:'Segoe UI', sans-serif;
+  color:#2B2724;
+  text-align:center;
+  overflow:hidden;
+  animation:fadeIn 1.2s ease-out;
+">
+
+  <div style="
+    padding:40px 60px;
+    border-radius:18px;
+    backdrop-filter:blur(10px);
+    background:rgba(255,255,255,0.05);
+    box-shadow:0 0 25px rgba(255,255,255,0.15);
+    animation:floatUp 1.4s ease-out;
+  ">
+    <h1 style="margin:0 0 10px; font-size:2.4rem; letter-spacing:1px; animation:popIn 0.8s ease-out;">
+      Access Restricted
+    </h1>
+
+    <p style="margin:0; font-size:1.1rem; opacity:0.85; animation:fadeSlide 1.6s ease-out;">
+      This demo is only available on mobile devices.
+    </p>
+
+    <p style="margin-top:20px; font-size:0.95rem; opacity:0.7; animation:fadeSlide 2s ease-out;">
+      Try opening this page on your phone or tablet to continue.
+    </p>
+
+    <p style="margin-top:10px; font-size:0.85rem; opacity:0.6; animation:fadeSlide 2.4s ease-out;">
+      We restrict desktop access to ensure the best possible experience.
+    </p>
+  </div>
+
+</div>
+
+<style>
+@keyframes fadeIn {
+  from { opacity:0; }
+  to { opacity:1; }
+}
+
+@keyframes floatUp {
+  from { transform:translateY(40px); opacity:0; }
+  to { transform:translateY(0); opacity:1; }
+}
+
+@keyframes popIn {
+  0% { transform:scale(0.7); opacity:0; }
+  60% { transform:scale(1.05); opacity:1; }
+  100% { transform:scale(1); }
+}
+
+@keyframes fadeSlide {
+  from { opacity:0; transform:translateY(15px); }
+  to { opacity:1; transform:translateY(0); }
+}
+</style>
+    `;
+  }
+});
+</script>
 </body>
 </html>
 
