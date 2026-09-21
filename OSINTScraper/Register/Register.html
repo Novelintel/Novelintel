@@ -233,6 +233,13 @@
   </div>
 </div>
 
+  <script>
+document.getElementById("continueOnboarding").addEventListener("click", () => {
+    const audio = new Audio("/sounds/sound1.mp3");
+    audio.play().catch(error => console.error("Could not play sound:", error));
+});
+</script>
+  
 <script>
 document.getElementById("btnTakePhoto").addEventListener("click", () => {
     document.getElementById("takePhotoInput").click();
