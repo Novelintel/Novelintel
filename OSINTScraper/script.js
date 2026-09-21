@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
   justify-content:center;
   align-items:center;
   font-family:'Segoe UI', sans-serif;
-  color:white;
+  color:#2B2724;
   text-align:center;
   overflow:hidden;
   animation:fadeIn 1.2s ease-out;
